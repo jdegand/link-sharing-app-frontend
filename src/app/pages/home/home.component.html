@@ -1,0 +1,48 @@
+<section>
+    <h1>Customize your links</h1>
+    <p>Add/edit/remove links below and then share all your profiles with the world!</p>
+</section>
+<form class="add-links-form" [formGroup]="form" (submit)="onSubmit()">
+    <button type="button" (click)="addLink()" [disabled]="count() === 6">
+        + Add new link
+    </button>
+    <ng-container formArrayName="links">
+        @for (linkForm of links.controls; track linkForm; let i = $index){
+        <ng-container>
+            <div class="link-form-row" [formGroupName]="i">
+                <div class="link-form-row-container">
+                    <div class="link-form-row-container-header">
+                        <h2>Link #{{i + 1}}</h2>
+                        <button type="button" (click)="deleteLink(i)">
+                            Remove
+                        </button>
+                    </div>
+                    <div>
+                        <label for="select-{{ i }}">Platform</label>
+                        <select id="select-{{ i }}" formControlName="platform">
+                            <option>Github</option>
+                            <option>YouTube</option>
+                            <option>Facebook</option>
+                            <option>Instagram</option>
+                            <option>Twitter</option>
+                            <option>LinkedIn</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="link-{{i}}">Link</label>
+                        <input id="link-{{i}}" formControlName="url" placeholder="https://...">
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        @if(links.controls[i].errors?.['platformDoesNotMatchUrl']){
+        <div class="cross-validation-error-message alert alert-danger">
+            *Platform must match url link.
+        </div>
+        } @else {
+        <div>No errors</div>
+        }
+        }
+    </ng-container>
+    <button type="submit">Save</button>
+</form>
