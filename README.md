@@ -23,7 +23,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 
 - Angular Material or Tailwind ?
 - Drag and Drop functionality on Preview page -> Angular Material CDK
-- When to save the API request -> have to resave the links array when order of links changes
+- When to send the API request -> have to save the links array when order of links changes
 - Authentication
 - Services & Interceptors
 - Spring Boot Backend
@@ -57,3 +57,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Blitz](https://stackblitz.com/edit/angular-ktzv69?file=src%2Fapp%2Fapp.component.ts) - form array vs form array group validator
 - [Stack Overflow](https://stackoverflow.com/questions/66426678/angular-11-type-controlarray-formarray-validationerrors-null-is-not) - form array validation errors
 - [Stack Blitz](https://stackblitz.com/edit/angular-custom-validator-formgroup-formarray?file=src%2Fapp%2Fapp.component.ts) - Angular Custom Validator Formgroup Formarray
+- [Medium](https://medium.com/@aayyash/authentication-in-angular-why-it-is-so-hard-to-wrap-your-head-around-it-23ea38a366de) - authentication in angular why it is so hard to wrap your head around it
