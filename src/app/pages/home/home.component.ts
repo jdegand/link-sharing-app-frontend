@@ -27,11 +27,6 @@ export class HomeComponent implements OnInit {
   // this regex is too permissive
   #REGEX = '(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})';
 
-  // this is less flexible -> https://www.youtube.com | https://www.youtube.com/ won't validate
-  //#REGEX = '/(https?:\/\/www\.)(github|twitter|instagram|twitter|linkedin|youtube)\.com\/\w+/gi';
-  // problems with this regex
-
-
   ngOnInit(): void {
 
     // here I add the 2 different link objects
@@ -69,7 +64,7 @@ export class HomeComponent implements OnInit {
 
       // need to check if url has a period first
       // might not be best to depend on array segments but dealing with a known sequence 
-      // find index of both 2 periods and slice the string and compare that to the select value 
+      // find index of both periods and slice the string and compare that to the select value 
       if (url.indexOf('.') !== -1 && url.split('.')[1].toLowerCase() === platform.toLowerCase()) {
         return null
       }
