@@ -18,6 +18,14 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - This [StackBlitz](https://stackblitz.com/edit/angular-custom-validator-formgroup-formarray?file=src%2Fapp%2Fapp.component.ts) was a great help.  
 - I had included the errors in the wrong place and moved the error message conditional statement into the `for` loop for the link controls.  This change helped to localize the errors for each link group.  
 - Creating a regex to handle every error scenario and url deviation is very difficult and time-consuming.  It is very difficult to trust a regex.  Using a custom validator seems to be the best choice to make sure the url link is for the selected platform.  
+- Material design icons has removed all 3rd party icons. See [Github](https://github.com/google/material-design-icons/issues/166) for more. `facebook` still works, but it is deprecated and will be removed shortly.  None of the other select options have working icons.  It would have been nice just to use a `mat-icon` inside a `mat-option` of a `mat-select`.  This really negates a big benefit of switching the form to an Angular Material Form.
+- Adding a little icon to each input is a lot more involved than it really should be.  
+- I had problems using `mat-label` and the `for` attribute with a dynamic index. I had to add `CUSTOM_ELEMENTS_SCHEMA` to the schemas array of the home component to use the `for` attribute.
+- Removing the `for` attributes and just using `mat-label`, chrome complained about there being no `id` matching the generated `for` attribute.
+- I also had trouble getting the `mat-select` working correctly.  
+- Ultimately, I think there is limited benefit in converting the form to use Angular Material.
+- Angular Material won't save me any styling work either, as their standard themes are terrible.   
+- I may just use the Angular Material CDK for the drag and drop functionality.
 
 ## Continued Development
 
@@ -58,3 +66,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/66426678/angular-11-type-controlarray-formarray-validationerrors-null-is-not) - form array validation errors
 - [Stack Blitz](https://stackblitz.com/edit/angular-custom-validator-formgroup-formarray?file=src%2Fapp%2Fapp.component.ts) - Angular Custom Validator Formgroup Formarray
 - [Medium](https://medium.com/@aayyash/authentication-in-angular-why-it-is-so-hard-to-wrap-your-head-around-it-23ea38a366de) - authentication in angular why it is so hard to wrap your head around it
+- [Stack Blitz](https://stackoverflow.com/questions/48681594/angular-dynamic-forms-and-angular-material) - angular dynamic forms and angular material
+- [Medium](https://medium.com/ngconf/an-introduction-to-angular-material-form-fields-5828b92d3a3c) - an introduction to angular material form fields
+- [Stack Overflow](https://stackoverflow.com/questions/55299113/replace-mat-icon-with-svg-graphic) - replace mat icon with svg graphic
+- [Stack Overflow](https://stackoverflow.com/questions/56882657/mat-select-value-doesnt-work-with-formcontrolname) - mat select value doesnt work with formcontrolname
+- [Stack Overflow](https://stackoverflow.com/questions/57646437/how-to-use-mat-select-with-reactive-forms-formarray-angular) - how to use mat select with reactive forms formarray angular

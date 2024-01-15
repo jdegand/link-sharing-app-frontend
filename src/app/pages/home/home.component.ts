@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
@@ -6,7 +5,7 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
