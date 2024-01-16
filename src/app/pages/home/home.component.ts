@@ -1,51 +1,52 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgFor, NgIf, CommonModule, ReactiveFormsModule, DropdownModule, ButtonModule, InputTextModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 
 export class HomeComponent implements OnInit {
+  form: FormGroup;
+  link: FormArray;
+  platforms: any[] = []; // need to create an interface
 
-  private fb = inject(FormBuilder);
   count = signal(2);
 
-  form = this.fb.group({
-    links: this.fb.array([])
-  });
+  #REGEX = '(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?\/[a-zA-Z0-9]{2,}';
 
-  get links() {
-    return this.form.controls["links"] as FormArray;
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      links: this.fb.array([]),
+    });
+    this.link = this.form.get('links') as FormArray
+    this.platforms = [
+      { label: 'Github', value: 'github' }, // need value lowercase for the icon
+      { label: 'YouTube', value: 'youtube' },
+      { label: 'Facebook', value: 'facebook' },
+      { label: 'Instagram', value: 'instagram' },
+      { label: 'Twitter', value: 'twitter' },
+      { label: 'LinkedIn', value: 'linkedin' },
+    ];
   }
 
-  // this regex is too permissive
-  #REGEX = '(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})';
-
   ngOnInit(): void {
-
-    // here I add the 2 different link objects
-    // or add the default links to the links array directly ?
-    // validator to check selected platform name is included in the url text
-
-    // choices for validation -> 
-    // 1. regex
-    // 2. custom validator
-    // 3. both
-
     const linkForm1: FormGroup = this.fb.group({
-      platform: ['Github', Validators.required],
+      platform: ['github', Validators.required],
       url: ['https://www.github.com/username', [Validators.required, Validators.pattern(this.#REGEX)]]
     }, {
       validators: this.customValidator()
     });
 
     const linkForm2: FormGroup = this.fb.group({
-      platform: ['YouTube', Validators.required],
+      platform: ['youtube', Validators.required],
       url: ['https://www.youtube.com/username', [Validators.required, Validators.pattern(this.#REGEX)]]
     }, {
       validators: this.customValidator()
@@ -53,6 +54,10 @@ export class HomeComponent implements OnInit {
 
     this.links.push(linkForm1);
     this.links.push(linkForm2);
+  }
+
+  get links() {
+    return this.form.controls['links'] as FormArray;
   }
 
   private customValidator() {
@@ -79,7 +84,7 @@ export class HomeComponent implements OnInit {
     this.count.update(value => value + 1);
 
     const newLinkForm: FormGroup = this.fb.group({
-      platform: ['Facebook', Validators.required],
+      platform: ['facebook', Validators.required],
       url: ['https://www.facebook.com/username', [Validators.required, Validators.pattern(this.#REGEX)]]
     }, {
       validators: this.customValidator()
