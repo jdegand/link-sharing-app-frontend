@@ -33,11 +33,16 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Prime icons require a single import in the global `styles.css` file.  
 - `FormField doesn't have a name or id` warning in the browser console so I added a name with the `index` to the url input.  
 - It is tough to associate a label with the dropdown.  The `ng-template` cannot take an id.
+- I think the ng-template loop creates ids for each dropdown option.  
+- The dropdown's `name` property is `platform`.  
+- Firefox doesn't show an errors for the label.  Firefox had quite a few warnings associated with the `primeng` styling.    
+- To fix this label issue, I may have to refactor again.  
+- In Chrome, error choice is incorrect label use or `no label associated with a form field`.  
 
 ## Continued Development
 
 - Platform label
-- Allow multiple links for same platform -> need another custom validator?
+- Allow multiple links for same platform ? -> need another custom validator to prevent it?
 - Drag and Drop functionality on Preview page
 - When to send the API request -> have to save the links array when order of links changes
 - Authentication
