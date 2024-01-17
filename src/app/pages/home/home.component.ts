@@ -4,11 +4,8 @@ import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule, Validators, Abs
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
-interface Options {
-  label: string;
-  value: string;
-}
+import { Options } from '../../interfaces/Options';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,13 +18,13 @@ interface Options {
 export class HomeComponent implements OnInit {
   form: FormGroup;
   link: FormArray;
-  platforms: Options[] = []; // need to create an interface
+  platforms: Options[] = [];
 
   count = signal(2);
 
   #REGEX = '(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?\/[a-zA-Z0-9]{2,}';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public authService: AuthService) {
     this.form = this.fb.group({
       links: this.fb.array([]),
     });

@@ -1,1 +1,10 @@
-<p>profile works!</p>
+@if(!authService.currentUserSig()?.token){
+<h1>Unauthorized</h1>
+<p>Please <a routerLink="/login">Login</a> to access this page.</p>
+} @else{
+
+<h1>Profile Page</h1>
+
+<h2>{{authService.currentUserSig()?.username}}</h2>
+<p>{{authService.currentUserSig()?.email}}</p>
+}
