@@ -8,29 +8,35 @@
     <br>
     <div formArrayName="links" *ngFor="let link of links.controls; let i = index">
         <ng-container [formGroupName]="i">
-            <div class="link-form-row-container">
-                <div class="link-form-row-container-header">
+            <div>
+                <div>
                     <h2>Link #{{i + 1}}</h2>
                     <p-button type="button" severity="danger" [text]="true" (click)="deleteLink(i)">
                         Remove
                     </p-button>
                 </div>
             </div>
-            <p-dropdown formControlName="platform" [options]="platforms" placeholder="Select a Platform">
+            <label>Platform</label>
+            <br>
+            <p-dropdown formControlName="platform" [options]="platforms" inputId="float-label">
                 <ng-template let-platform pTemplate="platform">
-                    <div class="flex align-items-center gap-2">
+                    <div>
                         <span class="pi pi-{{platform.value}}"></span>
                         &nbsp;
                         <span>{{ platform.label }}</span>
                     </div>
                 </ng-template>
             </p-dropdown>
+            <br>
+            <label for="url-{{i}}">Link</label>
+            <br>
             <span class="p-input-icon-left">
                 <i class="pi pi-link"></i>
-                <input type="text" pInputText name="url-{{i}}" placeholder="https://" formControlName="url" />
+                <input type="text" pInputText id="url-{{i}}" name="url-{{i}}" placeholder="https://"
+                    formControlName="url" />
             </span>
             @if(links.controls[i].errors?.['platformDoesNotMatchUrl']){
-            <div class="cross-validation-error-message alert alert-danger">
+            <div>
                 *Platform must match url link.
             </div>
             }

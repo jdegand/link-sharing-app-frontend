@@ -32,9 +32,11 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Prime Ng doesn't have an `ng add` command so you have to add theme styles to the `angular.json` yourself.  
 - Prime icons require a single import in the global `styles.css` file.  
 - `FormField doesn't have a name or id` warning in the browser console so I added a name with the `index` to the url input.  
+- It is tough to an associate label with the dropdown.  The `ng-template` cannot take an id.  
 
 ## Continued Development
 
+- Platform label
 - Allow multiple links for same platform -> need another custom validator?
 - Drag and Drop functionality on Preview page
 - When to send the API request -> have to save the links array when order of links changes
