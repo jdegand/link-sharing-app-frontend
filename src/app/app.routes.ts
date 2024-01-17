@@ -11,6 +11,7 @@ export const routes: Routes = [
     { path: 'register', title: 'Please sign up', component: RegisterComponent },
     { path: 'preview', title: 'Preview', component: PreviewComponent },
     { path: 'profile', title: 'Profile', component: ProfileComponent },
-    { path: '', title: 'Home Page', component: HomeComponent },
+    { path: 'home', title: 'primelinks', component: HomeComponent},
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', title: '404 Not Found', component: NotFoundComponent }
 ];
