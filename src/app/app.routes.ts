@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { CanActivate } from './auth.guard';
 
 export const routes: Routes = [
     {
@@ -11,11 +12,11 @@ export const routes: Routes = [
             import('./pages/register/register.component').then((m) => m.RegisterComponent)
     },
     {
-        path: 'preview', title: 'Preview', loadComponent: () =>
+        path: 'preview', title: 'Preview', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/preview/preview.component').then((m) => m.PreviewComponent)
     },
     {
-        path: 'profile', title: 'Profile', loadComponent: () =>
+        path: 'profile', title: 'Profile', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/profile/profile.component').then((m) => m.ProfileComponent)
     },
     { path: 'home', title: 'primelinks', component: HomeComponent },
