@@ -5,6 +5,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
+interface Options {
+  label: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -16,7 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
 export class HomeComponent implements OnInit {
   form: FormGroup;
   link: FormArray;
-  platforms: any[] = []; // need to create an interface
+  platforms: Options[] = []; // need to create an interface
 
   count = signal(2);
 
