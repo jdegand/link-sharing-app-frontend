@@ -30,8 +30,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.authService.currentUserSig.set(null);
+    this.authService.logout();
     this.router.navigate(['/home']);
   }
 

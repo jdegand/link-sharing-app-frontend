@@ -37,7 +37,7 @@ export class LoginComponent {
         this.error = false;
         localStorage.setItem('token', response.user.token);
         this.authService.currentUserSig.set(response.user);
-        this.router.navigateByUrl('/');
+        this.router.navigate(['/home']);
         },
         error: (err) => {
           console.log('errr', err);

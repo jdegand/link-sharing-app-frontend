@@ -24,8 +24,9 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Material design icons has removed all 3rd party icons. See [Github](https://github.com/google/material-design-icons/issues/166) for more. `facebook` still works, but it is deprecated and will be removed shortly.  None of the other select options have working icons.  It would have been nice just to use a `mat-icon` inside a `mat-option` of a `mat-select`.  This really negates a big benefit of switching the form to an Angular Material Form.
 - Adding a little icon to each input is a lot more involved than it really should be.  
 - I had problems using `mat-label` and the `for` attribute with a dynamic index. I had to add `CUSTOM_ELEMENTS_SCHEMA` to the schemas array of the home component to use the `for` attribute.
-- Removing the `for` attributes and just using `mat-label`, chrome complained about there being no `id` matching the generated `for` attribute.
+- Removing the `for` attributes and just using `mat-label`, Chrome complained about there being no `id` matching the generated `for` attribute.
 - I also had trouble getting the `mat-select` working correctly.  
+- If you have to use `CUSTOM_ELEMENTS_SCHEMA`, you probably have done something wrong.  
 - Ultimately, I think there is limited benefit in converting the form to use Angular Material.
 - I did some research and decided to try to use `primeng` and `primeicons`.
 - Prime Ng has third party icons.  It also has drag and drop functionality.
@@ -37,9 +38,12 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - The dropdown's `name` property is `platform`.  
 - Firefox doesn't show an errors for the label.  Firefox had quite a few warnings associated with the `primeng` styling.    
 - To fix this label issue, I may have to refactor again.  
-- In Chrome, error choice is incorrect label use or `no label associated with a form field`.  
+- In Chrome, error choice is incorrect label use or `no label associated with a form field`.
 - `visible` in the menubar does not update from state changes.  It appears to be only evaluated once.  I have a correct conditional and the `logout` link's visibility does not change.  
 - Best to localize the navbar per page versus adding it once to the `app` component ?  This strategy would lead to duplicated code.
+- `primeng` has a design philosophy to minimize conditionals in templates.  
+- I do not like the primeng menubar and its navigation defaults.  
+- One strategy I have seen for primeng navbar is to use `ngIf` to conditionally render the menubar.  Basically, you show no menubar when unauthenticated.
 
 ## Continued Development
 
@@ -105,3 +109,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/50674470/show-primeng-menuitem-only-when-authenticated) - show primeng menuitem only when authenticated
 - [Primefaces](https://forum.primefaces.org/viewtopic.php?t=58402) - Hide/display menu items based on user role
 - [YouTube](https://www.youtube.com/watch?v=P1r2QjuJWcI&t=112s) - User Login and Register Form Full Video (Code Attatched) - Angular 16 | PrimeNG | Json Server
+- [Github](https://github.com/softrams/bulwark/pull/379/files) - Refactor navbar to use PrimeNG menubar #379
+- [Github](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) - frontend/src/app/navbar/navbar.component.html

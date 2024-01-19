@@ -11,6 +11,8 @@ import { MenubarModule } from 'primeng/menubar';
 })
 export class NavbarComponent {
 
+  // need to set items to MenuItem to get intellisense
+
   /*
   @Input()
   items: MenuItem[] | undefined;
@@ -27,7 +29,6 @@ export class NavbarComponent {
         items: [
           {
             label: 'Register',
-            icon: 'pi pi-star',
             routerLink: 'register'
           },
         ]

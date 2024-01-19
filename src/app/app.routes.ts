@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { CanActivate } from './auth.guard';
 
+// need to deactivate register route when logged in
+// problem when navigating -> page seems to refresh
+// but if you don't use "/" if front of a route -> segments don't replace each other
+
 export const routes: Routes = [
     {
         path: 'login', title: 'Please sign in', loadComponent: () =>
@@ -19,8 +23,8 @@ export const routes: Routes = [
         path: 'profile', title: 'Profile', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/profile/profile.component').then((m) => m.ProfileComponent)
     },
-    { path: 'home', title: 'primelinks', component: HomeComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', title: 'primelinks', canActivate: [CanActivate], component: HomeComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
         path: '**', title: '404 Not Found', loadComponent: () =>
             import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent)
