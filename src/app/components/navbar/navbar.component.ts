@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 
@@ -11,8 +11,13 @@ import { MenubarModule } from 'primeng/menubar';
 })
 export class NavbarComponent {
 
+  /*
+  @Input()
   items: MenuItem[] | undefined;
+  */
 
+  items: MenuItem[] | undefined;
+  
   ngOnInit() {
     this.items = [
       {

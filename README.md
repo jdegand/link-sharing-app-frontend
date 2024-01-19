@@ -38,7 +38,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Firefox doesn't show an errors for the label.  Firefox had quite a few warnings associated with the `primeng` styling.    
 - To fix this label issue, I may have to refactor again.  
 - In Chrome, error choice is incorrect label use or `no label associated with a form field`.  
-- `visible` in the menubar does not update from state changes.  It appears to be only evaluated once.  I have a correct conditional and the `logout` link will not toggle.  
+- `visible` in the menubar does not update from state changes.  It appears to be only evaluated once.  I have a correct conditional and the `logout` link's visibility does not change.  
+- Best to localize the navbar per page versus adding it once to the `app` component ?  This strategy would lead to duplicated code.
 
 ## Continued Development
 
@@ -101,3 +102,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/76789680/primeng-tab-menu-items-not-updating-with-model-change) - primeng tab menu items not updating with model change
 - [Github](https://github.com/primefaces/primeng/issues/13242) - Component: MenuBar - should watch changes on MenuItems
 - [Angular Gems](https://angulargems.beehiiv.com/p/angular-signals-rfcs-overview) - signals overview
+- [Stack Overflow](https://stackoverflow.com/questions/50674470/show-primeng-menuitem-only-when-authenticated) - show primeng menuitem only when authenticated
