@@ -1,65 +1,43 @@
 @if(success){
 <section>
     <h1>Success!</h1>
-    <p>
+    <div>
         <a routerLink="/">Sign In</a>
-    </p>
+    </div>
 </section>
 } @else {
 <section>
     <h1>Register</h1>
+    <br>
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
 
         <label for="email">
             Email:
-            @if(registerForm.get('email')?.value !== ''){
-            <span class="green">&#10003;</span>
-            } @else {
-            <span class="red">&#120;</span>
-            }
         </label>
-        <input type="email" id="email" formControlName="email" autocomplete="off" />
-        <div class="errors-container">
-            @if(registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']){
-            <small>Email is required</small>
-            }
-        </div>
-
+        <br>
+        <input type="email" pInputText id="email" formControlName="email" autocomplete="off" />
+        <br>
         <label for="username">
             Username:
-            @if(registerForm.get('username')?.value !== ''){
-            <span class="green">&#10003;</span>
-            } @else {
-            <span class="red">&#120;</span>
-            }
         </label>
-        <input type="text" id="username" formControlName="username" autocomplete="off" />
-        <div class="errors-container">
-            @if(registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['required']){
-            <small>Username is required</small>
-            }
-        </div>
-
+        <br>
+        <input type="text" pInputText id="username" formControlName="username" autocomplete="off" />
+        <br>
         <label for="password">
             Password:
-            @if(registerForm.get('password')?.value !== ''){
-            <span class="green">&#10003;</span>
-            } @else {
-            <span class="red">&#120;</span>
-            }
         </label>
-        <input type="password" id="password" formControlName="password" autocomplete="off" />
-        <div class="errors-container">
-            @if(registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']){
-            <small>Password is required</small>
-            }
-        </div>
-
-        <button [disabled]="registerForm.invalid">Sign Up</button>
+        <br>
+        <input type="password" pInputText id="password" formControlName="password" autocomplete="off" />
+        <br>
+        <br>
+        <p-button label="Sign Up" [disabled]="registerForm.invalid"></p-button>
     </form>
+    <br>
+    <br>
     <p>
-        Already registered?<br />
-        <span className="line">
+        Already registered?
+        <span>
+            &nbsp;
             <a routerLink="/login">Sign In</a>
         </span>
     </p>

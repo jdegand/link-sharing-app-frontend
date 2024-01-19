@@ -1,21 +1,25 @@
+<p-toast></p-toast>
 <section>
-    @if(error){
-    <div class="errmsg">Unauthorized</div>
-    }
     <h1>Sign In</h1>
+    <br>
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <label for="email">Email:</label>
-        <input type="email" id="email" formControlName="email" autocomplete="off" />
+        <br>
+        <input type="email" pInputText id="email" formControlName="email" autocomplete="off" />
         <br>
         <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password" autocomplete="off" />
         <br>
-        <button>Sign In</button>
+        <input type="password" pInputText id="password" formControlName="password" autocomplete="off" />
         <br>
+        <br>
+        <p-button type="submit" label="Sign in"></p-button>
     </form>
+    <br>
+    <br>
     <p>
-        Need an Account?<br>
-        <span className="line">
+        Need an Account?
+        <span>
+            &nbsp;
             <a routerLink="/register">Sign Up</a>
         </span>
     </p>

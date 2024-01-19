@@ -17,18 +17,20 @@ export class NavbarComponent {
   */
 
   items: MenuItem[] | undefined;
-  
+
   ngOnInit() {
     this.items = [
       {
-        label: 'Register',
-        icon: 'pi pi-star',
-        routerLink: 'register'
-      },
-      {
         label: 'Sign-in',
         icon: 'pi pi-sign-in',
-        routerLink: 'login'
+        routerLink: 'login',
+        items: [
+          {
+            label: 'Register',
+            icon: 'pi pi-star',
+            routerLink: 'register'
+          },
+        ]
       },
       {
         label: 'Profile Details',

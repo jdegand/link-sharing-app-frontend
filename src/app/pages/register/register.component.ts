@@ -3,11 +3,16 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ToastModule, InputTextModule, ButtonModule],
+  providers: [MessageService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -16,13 +21,14 @@ export class RegisterComponent {
   success = false;
 
   fb = inject(FormBuilder);
+  messageService = inject(MessageService);
   authService = inject(AuthService);
   apiService = inject(ApiService);
   router = inject(Router);
 
   registerForm = this.fb.nonNullable.group({
     username: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', Validators.required, Validators.email],
     password: ['', Validators.required],
   });
 
@@ -44,7 +50,10 @@ export class RegisterComponent {
       this.success = true;
       //localStorage.setItem('token', response.user.token);
       //this.authService.currentUserSig.set(response.user);
-      this.router.navigateByUrl('/');
+
+      // use toast for success & error
+
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered' });
     })
   }
 

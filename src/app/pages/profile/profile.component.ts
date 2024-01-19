@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ButtonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

@@ -103,3 +103,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Github](https://github.com/primefaces/primeng/issues/13242) - Component: MenuBar - should watch changes on MenuItems
 - [Angular Gems](https://angulargems.beehiiv.com/p/angular-signals-rfcs-overview) - signals overview
 - [Stack Overflow](https://stackoverflow.com/questions/50674470/show-primeng-menuitem-only-when-authenticated) - show primeng menuitem only when authenticated
+- [Primefaces](https://forum.primefaces.org/viewtopic.php?t=58402) - Hide/display menu items based on user role
+- [YouTube](https://www.youtube.com/watch?v=P1r2QjuJWcI&t=112s) - User Login and Register Form Full Video (Code Attatched) - Angular 16 | PrimeNG | Json Server
