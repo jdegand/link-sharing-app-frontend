@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Signal, computed, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,45 +12,74 @@ import { MenubarModule } from 'primeng/menubar';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  // need to set items to MenuItem to get Intellisense
 
-  // need to set items to MenuItem to get intellisense
+  authService = inject(AuthService);
+  router = inject(Router);
 
-  /*
-  @Input()
-  items: MenuItem[] | undefined;
-  */
+  // make items a computed signal from the authService
+  items: Signal<MenuItem[]> = computed(() => {
+    if (this.authService.currentUserSig()?.token) {
+      return [
+        {
+          label: 'Sign-in',
+          icon: 'pi pi-sign-in',
+          routerLink: 'login',
+          items: [
+            {
+              label: 'Register',
+              routerLink: 'register'
+            },
+          ]
+        },
+        {
+          label: 'Profile Details',
+          icon: 'pi pi-user-edit',
+          routerLink: 'profile'
+        },
+        {
+          label: 'Links',
+          icon: 'pi pi-link',
+          routerLink: 'home'
+        },
+        {
+          label: 'Preview',
+          icon: 'pi pi-eye',
+          routerLink: 'preview'
+        },
+        {
+          separator: true
+        },
+        {
+          label: 'Logout',
+          icon: 'pi pi-sign-out',
+          command: () => this.logout(),
+        }
+      ]
+    } else {
+      return [
+        {
+          label: 'Sign-in',
+          icon: 'pi pi-sign-in',
+          routerLink: 'login',
+          items: [
+            {
+              label: 'Register',
+              routerLink: 'register'
+            },
+          ]
+        },
+      ]
+    }
+  })
 
-  items: MenuItem[] | undefined;
-
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'Sign-in',
-        icon: 'pi pi-sign-in',
-        routerLink: 'login',
-        items: [
-          {
-            label: 'Register',
-            routerLink: 'register'
-          },
-        ]
-      },
-      {
-        label: 'Profile Details',
-        icon: 'pi pi-user-edit',
-        routerLink: 'profile'
-      },
-      {
-        label: 'Links',
-        icon: 'pi pi-link',
-        routerLink: 'home'
-      },
-      {
-        label: 'Preview',
-        icon: 'pi pi-eye',
-        routerLink: 'preview'
-      }
-    ]
+  logout(){
+    // could add the route navigation inside the authService
+    // need to look up best practices
+    // does it really matter?  I don't like the idea of putting router inside a service
+    // testing implications?
+    this.authService.logout();
+    this.router.navigate(['/login']); 
   }
 
 }

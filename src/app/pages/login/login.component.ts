@@ -40,7 +40,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);
         },
         error: (err) => {
-          console.log('errr', err);
+          console.log('err', err);
           this.error = true;
           this.authService.currentUserSig.set(null);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });
