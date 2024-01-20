@@ -37,9 +37,6 @@ export class NavbarComponent {
           routerLink: '/preview'
         },
         {
-          separator: true
-        },
-        {
           label: 'Logout',
           icon: 'pi pi-sign-out',
           command: () => this.logout(),
@@ -62,13 +59,14 @@ export class NavbarComponent {
     }
   })
 
-  logout(){
-    // could add the route navigation inside the authService
-    // need to look up best practices
-    // does it really matter?  I don't like the idea of putting router inside a service
-    // testing implications?
-    this.authService.logout();
-    this.router.navigate(['/login']); 
+  logout() {
+    // refactored a few times
+    // had a logout method in the authService
+    // not really necessary there -> I am not invoking logout method anywhere else in the app
+
+    localStorage.clear(); // could set the token to empty string -> if more was stored in local storage 
+    this.authService.currentUserSig.set(null);
+    this.router.navigate(['/login']);
   }
 
 }

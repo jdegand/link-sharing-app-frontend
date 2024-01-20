@@ -6,10 +6,4 @@ import { UserInterface } from '../../interfaces/UserInterface';
 })
 export class AuthService {
   currentUserSig = signal<UserInterface | undefined | null>(undefined);
-
-  logout() {
-    localStorage.clear();
-    this.currentUserSig.set(null);
-    //this.router.navigate(['/home']);
-  }
 }
