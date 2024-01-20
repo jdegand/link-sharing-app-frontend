@@ -22,6 +22,7 @@ export class PreviewComponent implements OnInit {
       },
       error: () => {
         this.authService.currentUserSig.set(null);
+        // toast here for error
       },
     });
   }

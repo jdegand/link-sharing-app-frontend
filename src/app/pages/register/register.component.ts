@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ErrorResponse } from '../../interfaces/ErrorResponse';
-import { UserInterface } from '../../interfaces/UserInterface';
 import { UserResponse } from '../../interfaces/UserResponse';
 
 @Component({

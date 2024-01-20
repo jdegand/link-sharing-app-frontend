@@ -1,5 +1,3 @@
-import { UserInterface } from "./UserInterface";
-
 export interface UserResponse {
     user: {
         id: number;
