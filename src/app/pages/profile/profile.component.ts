@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
@@ -14,7 +14,6 @@ import { ButtonModule } from 'primeng/button';
 export class ProfileComponent implements OnInit {
   authService = inject(AuthService);
   apiService = inject(ApiService);
-  router = inject(Router);
 
   ngOnInit() {
     this.apiService.getUser()
@@ -27,11 +26,6 @@ export class ProfileComponent implements OnInit {
           this.authService.currentUserSig.set(null);
         },
       });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/home']);
   }
 
 }
