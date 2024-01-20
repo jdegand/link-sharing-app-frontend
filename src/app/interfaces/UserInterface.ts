@@ -1,4 +1,5 @@
 export interface UserInterface {
+    id?: number;
     email: string;
     token?: string;
     username: string;
@@ -6,4 +7,5 @@ export interface UserInterface {
     image?: string;
     firstname?:string;
     lastname?:string;
+    bio?: string;
 }

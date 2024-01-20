@@ -28,33 +28,41 @@ export class RegisterComponent {
 
   registerForm = this.fb.nonNullable.group({
     username: ['', Validators.required],
-    email: ['', Validators.required, Validators.email],
+    email: ['', Validators.required], // Validators.email causes issues
     password: ['', Validators.required],
   });
 
   submit() {
-    /*
-    this.http
-      .post<{ user: UserInterface }>('https://api.realworld.io/api/users', {
-        user: this.registerForm.value,
-      })
-      .subscribe((response) => {
-        console.log('response', response);
-        localStorage.setItem('token', response.user.token);
-        //this.authService.currentUserSig.set(response.user);
-        this.router.navigateByUrl('/');
-      });
-    */
     this.apiService.register(this.registerForm.getRawValue()).subscribe(response => {
       console.log('res', response);
       this.success = true;
-      //localStorage.setItem('token', response.user.token);
-      //this.authService.currentUserSig.set(response.user);
-
-      // use toast for success & error
-
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered' });
     })
   }
 
 }
+
+/*
+
+// doing something like this -> the messages don't display
+
+submit() {
+  console.log('registerForm', this.registerForm);
+  // need interface for response
+  // realworld api just sends a user object back that has no errors object or status codes 
+  this.apiService.register(this.registerForm.getRawValue()).subscribe({
+    next: (response: Partial<UserInterface>) => {
+      console.log(response);
+      this.success = true;
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered' });
+    },
+    error: (err: ErrorResponse) => {
+      this.success = false;
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Registration failed' });
+    },
+    complete: () => {
+      console.log('done');
+    }
+  })
+}
+*/

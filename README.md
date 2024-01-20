@@ -49,6 +49,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 
 - Platform label
 - Allow multiple links for same platform ? -> need another custom validator to prevent it?
+- [Messages Module](https://primeng.org/messages) for inline errors on forms 
+- Dark Mode added to Navbar
 - Drag and Drop functionality on Preview page
 - When to send the API request -> have to save the links array when order of links changes
 - Authentication
