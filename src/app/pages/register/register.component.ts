@@ -7,6 +7,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { ErrorResponse } from '../../interfaces/ErrorResponse';
+import { UserInterface } from '../../interfaces/UserInterface';
+import { UserResponse } from '../../interfaces/UserResponse';
 
 @Component({
   selector: 'app-register',
@@ -33,36 +36,22 @@ export class RegisterComponent {
   });
 
   submit() {
-    this.apiService.register(this.registerForm.getRawValue()).subscribe(response => {
-      console.log('res', response);
-      this.success = true;
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered' });
+    console.log('registerForm', this.registerForm);
+    // need interface for response
+    // realworld api just sends a user object back that has no errors object or status codes 
+    this.apiService.register(this.registerForm.getRawValue()).subscribe({
+      next: (response: Partial<UserResponse>) => { // typing still needs work
+        this.success = true;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: response.user?.username + ' Registered' });
+      },
+      error: (err: ErrorResponse) => {
+        this.success = false;
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
+      },
+      complete: () => {
+        console.log('done');
+      }
     })
   }
 
 }
-
-/*
-
-// doing something like this -> the messages don't display
-
-submit() {
-  console.log('registerForm', this.registerForm);
-  // need interface for response
-  // realworld api just sends a user object back that has no errors object or status codes 
-  this.apiService.register(this.registerForm.getRawValue()).subscribe({
-    next: (response: Partial<UserInterface>) => {
-      console.log(response);
-      this.success = true;
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered' });
-    },
-    error: (err: ErrorResponse) => {
-      this.success = false;
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Registration failed' });
-    },
-    complete: () => {
-      console.log('done');
-    }
-  })
-}
-*/
