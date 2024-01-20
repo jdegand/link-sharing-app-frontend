@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-preview',
@@ -7,6 +9,20 @@ import { Component } from '@angular/core';
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.css'
 })
-export class PreviewComponent {
+export class PreviewComponent implements OnInit {
+  apiService = inject(ApiService);
+  authService = inject(AuthService);
 
+  ngOnInit(): void {
+    this.apiService.getUser()
+    .subscribe({
+      next: (response) => {
+        console.log('profile', response);
+        this.authService.currentUserSig.set(response.user);
+      },
+      error: () => {
+        this.authService.currentUserSig.set(null);
+      },
+    });
+  }
 }

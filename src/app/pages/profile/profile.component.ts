@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -15,7 +14,6 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class ProfileComponent implements OnInit {
   authService = inject(AuthService);
-  apiService = inject(ApiService);
   fb = inject(FormBuilder);
 
   profileForm!: FormGroup;
@@ -27,17 +25,6 @@ export class ProfileComponent implements OnInit {
       email: [this.authService.currentUserSig()?.email],
       image: [this.authService.currentUserSig()?.image],
     });
-
-    this.apiService.getUser()
-      .subscribe({
-        next: (response) => {
-          console.log('profile', response);
-          this.authService.currentUserSig.set(response.user);
-        },
-        error: () => {
-          this.authService.currentUserSig.set(null);
-        },
-      });
   }
 
   onSubmit() {
