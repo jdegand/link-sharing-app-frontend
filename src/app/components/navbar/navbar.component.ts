@@ -24,28 +24,28 @@ export class NavbarComponent {
         {
           label: 'Sign-in',
           icon: 'pi pi-sign-in',
-          routerLink: 'login',
+          routerLink: '/login',
           items: [
             {
               label: 'Register',
-              routerLink: 'register'
+              routerLink: '/register'
             },
           ]
         },
         {
           label: 'Profile Details',
           icon: 'pi pi-user-edit',
-          routerLink: 'profile'
+          routerLink: '/profile'
         },
         {
           label: 'Links',
           icon: 'pi pi-link',
-          routerLink: 'home'
+          routerLink: '/home'
         },
         {
           label: 'Preview',
           icon: 'pi pi-eye',
-          routerLink: 'preview'
+          routerLink: '/preview'
         },
         {
           separator: true
@@ -61,11 +61,11 @@ export class NavbarComponent {
         {
           label: 'Sign-in',
           icon: 'pi pi-sign-in',
-          routerLink: 'login',
+          routerLink: '/login',
           items: [
             {
               label: 'Register',
-              routerLink: 'register'
+              routerLink: '/register'
             },
           ]
         },

@@ -38,7 +38,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - The dropdown's `name` property is `platform`.  
 - Firefox doesn't show an errors for the label.  Firefox had quite a few warnings associated with the `primeng` styling.    
 - To fix this label issue, I may have to refactor again.  
-- In Chrome, error choice is incorrect label use or `no label associated with a form field`.
+- In Chrome, error choice is `incorrect label use` or `no label associated with a form field`.
 - `visible` in the menubar does not update from state changes.  It appears to be only evaluated once.  I have a correct conditional and the `logout` link's visibility does not change.  
 - Best to localize the navbar per page versus adding it once to the `app` component ?  This strategy would lead to duplicated code.
 - `primeng` has a design philosophy to minimize conditionals in templates.  
