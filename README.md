@@ -43,7 +43,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Best to localize the navbar per page versus adding it once to the `app` component ?  This strategy would lead to duplicated code.
 - `primeng` has a design philosophy to minimize conditionals in templates.    
 - One strategy I have seen for primeng navbar is to use `ngIf` to conditionally render the menubar.  Basically, you show no menubar when unauthenticated.  I searched Github and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
-- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made good sense.
+- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made good sense.  
+- Guards have to be functions with "inner" functions.
 
 ## Continued Development
 
@@ -113,3 +114,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Github](https://github.com/softrams/bulwark/pull/379/files) - Refactor navbar to use PrimeNG menubar #379
 - [Github](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) - frontend/src/app/navbar/navbar.component.html
 - [Github](https://github.com/primefaces/primeng/issues/13394) - Menubar (and other menu components): PrimeNG 16.1.0 unable to dynamically update menu items
+- [Medium](https://medium.com/ngconf/functional-route-guards-in-angular-8829f0e4ca5c) - functional route guards in angular
+- [Github](https://github.com/primefaces/primeng/issues/4197) - Tabmenu - class ui-state-active is not set correctly on `<a>` and `<li>` elements when routing with guards #4197
+- [Stack Overflow](https://stackoverflow.com/questions/65360736/angular-guard-not-called-on-route-path-that-redirects) - angular guard not called on route path that redirects
