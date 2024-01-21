@@ -45,6 +45,13 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - One strategy I have seen for primeng navbar is to use `ngIf` to conditionally render the menubar.  Basically, you show no menubar when unauthenticated.  I searched Github and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
 - Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made good sense.  
 - Guards have to be functions with "inner" functions.
+- Signals and Guards are a problematic combination.  If you change the signal to an observable, you create a memory leak.  See [Github](https://github.com/angular/angular/issues/51280) for more.  
+- `computed` does not seem to work with guards.  
+- Checking signals with conditionals is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
+- So creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
+- It is important to keep in mind that the register route is lazy loaded.  I think the `register` route is reloaded and the signal is initially `undefined` again.  
+- There are subtle differences between using `navigate` and `navigateByUrl`.  The choice could affect how Angular sees the `URL Tree`.   
+- I have removed both links from the navbar but a user can visit those routes from the url.  
 
 ## Continued Development
 
@@ -57,7 +64,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Authentication
 - Services & Interceptors
 - Spring Boot Backend
-- JWT & Route Guards
+- Auth Service Signal & Guard -> issues
 - Profile photo vs profile picture url
 - Testing (I left the Karma and Jasmine packages installed)
 - ESLint
@@ -117,3 +124,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Medium](https://medium.com/ngconf/functional-route-guards-in-angular-8829f0e4ca5c) - functional route guards in angular
 - [Github](https://github.com/primefaces/primeng/issues/4197) - Tabmenu - class ui-state-active is not set correctly on `<a>` and `<li>` elements when routing with guards #4197
 - [Stack Overflow](https://stackoverflow.com/questions/65360736/angular-guard-not-called-on-route-path-that-redirects) - angular guard not called on route path that redirects
+- [Stack Overflow](https://stackoverflow.com/questions/77625251/angular-17-route-guard-using-signal-not-working) - angular 17 route guard using signal not working
+- [Github](https://github.com/angular/angular/issues/51280) - effect() created in toObservable() keeps watching the signal when using in Guards #51280
+- [Github](https://github.com/angular/angular/issues/49161) - signals: TypeScript and nullability #49161
+- [Stack Overflow](https://stackoverflow.com/questions/67027172/subscribing-subject-in-guard-not-giving-response) - subscribing subject in guard not giving response
+- [Stack Overflow](https://stackoverflow.com/questions/38425461/angular2-canactivate-calling-async-function) - canActivate calling async function
