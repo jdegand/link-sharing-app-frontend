@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
@@ -45,6 +45,18 @@ export class RegisterComponent {
         this.router.navigate(['home']);
       }
     });
+  }
+  */
+
+  /*
+  // could do something like this -> but navbar will be wrong since auth signal is destroyed
+  // set token to auth signal ? 
+  // need to use token to get user data again?
+
+  constructor() {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/home']);
+    }
   }
   */
 

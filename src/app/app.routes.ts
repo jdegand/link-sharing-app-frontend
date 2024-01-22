@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { CanActivate } from './auth.guard';
-import { CanRegister } from './register.guard';
 
 // need to deactivate register route when logged in
 // problem when navigating -> page seems to refresh -> checking the signal doesn't work
@@ -13,7 +12,7 @@ export const routes: Routes = [
             import('./pages/login/login.component').then((m) => m.LoginComponent),
     },
     {
-        path: 'register', title: 'Please sign up', canMatch: [CanRegister], loadComponent: () =>
+        path: 'register', title: 'Please sign up', loadComponent: () =>
         import('./pages/register/register.component').then((m) => m.RegisterComponent)
     },
     {
