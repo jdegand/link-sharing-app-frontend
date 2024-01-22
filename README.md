@@ -49,9 +49,9 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - `computed` does not seem to work with guards.  
 - Checking signals with conditionals is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
 - So creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
-- It is important to keep in mind that the register route is lazy loaded.  I think the `register` route is reloaded and the signal is initially `undefined` again.  
-- There are subtle differences between using `navigate` and `navigateByUrl`.  The choice could affect how Angular sees the `URL Tree`.   
-- I have removed both links from the navbar but a user can visit those routes from the url.  
+- It is also important to keep in mind that the register route is lazy loaded. 
+- Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.
+- I have removed both links from the navbar but a user can visit those routes from the url.    
 
 ## Continued Development
 
@@ -129,3 +129,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Github](https://github.com/angular/angular/issues/49161) - signals: TypeScript and nullability #49161
 - [Stack Overflow](https://stackoverflow.com/questions/67027172/subscribing-subject-in-guard-not-giving-response) - subscribing subject in guard not giving response
 - [Stack Overflow](https://stackoverflow.com/questions/38425461/angular2-canactivate-calling-async-function) - canActivate calling async function
+- [Medium](https://netbasal.com/converting-signals-to-observables-in-angular-what-you-need-to-know-971eacd3af2) - converting signals to observables
+- [Stack Overflow](https://stackoverflow.com/questions/44742091/how-to-call-an-async-method-in-canactivate-with-angular) - how to call an async method in canActivate
+- [Stack Overflow](https://stackoverflow.com/questions/64676206/authguard-loaded-before-authservice) - authguard-loaded before authservice
+- [Blog](https://devlinduldulao.pro/unveiling-global-state-management-in-angular-with-signals-with-localstorage/) - unveiling global state management in angular in signals with local storage
+- [Medium](https://medium.com/kanlanc/heres-why-storing-jwt-in-local-storage-is-a-great-mistake-df01dad90f9e) - heres why storing jwt in local storage is a great mistake
