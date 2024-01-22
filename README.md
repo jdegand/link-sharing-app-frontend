@@ -52,6 +52,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - It is also important to keep in mind that the register route is lazy loaded. 
 - Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.
 - I have removed both links from the navbar but a user can visit those routes from the url.    
+- Instead of using a guard for `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
 
 ## Continued Development
 
@@ -134,3 +135,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/64676206/authguard-loaded-before-authservice) - authguard-loaded before authservice
 - [Blog](https://devlinduldulao.pro/unveiling-global-state-management-in-angular-with-signals-with-localstorage/) - unveiling global state management in angular in signals with local storage
 - [Medium](https://medium.com/kanlanc/heres-why-storing-jwt-in-local-storage-is-a-great-mistake-df01dad90f9e) - heres why storing jwt in local storage is a great mistake
+- [Stack Overflow](https://stackoverflow.com/questions/40387979/angular-2-observables-destroy-itself-when-navigating-to-another-route) - observables destroy itself when navigating to another route

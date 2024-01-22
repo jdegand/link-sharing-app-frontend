@@ -6,4 +6,11 @@ import { UserInterface } from '../../interfaces/UserInterface';
 })
 export class AuthService {
   currentUserSig = signal<UserInterface | undefined | null>(undefined);
+
+  notSignedIn(){
+    const signal = this.currentUserSig();
+    console.log('signal', signal);
+    console.log('signal condition', signal === undefined ? true : false);
+    return signal === undefined ? true : false;
+  }
 }

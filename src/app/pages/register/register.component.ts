@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
@@ -33,6 +33,20 @@ export class RegisterComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
+
+  /*
+  // doesn't work -> manually typing `/register` causes a refresh and auth signal is destroyed
+
+  constructor() {
+    console.log('sig', this.authService.currentUserSig()) // undefined
+
+    effect(() => {
+      if (this.authService.currentUserSig()?.token) {
+        this.router.navigate(['home']);
+      }
+    });
+  }
+  */
 
   submit() {
     console.log('registerForm', this.registerForm);

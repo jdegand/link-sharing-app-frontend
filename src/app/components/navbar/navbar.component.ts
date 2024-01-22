@@ -19,6 +19,17 @@ export class NavbarComponent {
     if (this.authService.currentUserSig()?.token) {
       return [
         {
+          label: 'Sign-in',
+          icon: 'pi pi-sign-in',
+          routerLink: '/login',
+          items: [
+            {
+              label: 'Register',
+              routerLink: '/register'
+            },
+          ]
+        },
+        {
           label: 'Profile Details',
           icon: 'pi pi-user-edit',
           routerLink: '/profile'
