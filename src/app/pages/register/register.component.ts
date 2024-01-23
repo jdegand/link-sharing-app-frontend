@@ -42,7 +42,7 @@ export class RegisterComponent {
 
     effect(() => {
       if (this.authService.currentUserSig()?.token) {
-        this.router.navigate(['home']);
+        this.router.navigate(['/links']);
       }
     });
   }
@@ -55,10 +55,14 @@ export class RegisterComponent {
 
   constructor() {
     if (localStorage.getItem('token')) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/links']);
     }
   }
   */
+
+  constructor() {
+    localStorage.clear();
+  }
 
   submit() {
     console.log('registerForm', this.registerForm);

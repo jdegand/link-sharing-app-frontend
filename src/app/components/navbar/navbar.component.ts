@@ -26,7 +26,7 @@ export class NavbarComponent {
         {
           label: 'Links',
           icon: 'pi pi-link',
-          routerLink: '/home'
+          routerLink: '/links'
         },
         {
           label: 'Preview',

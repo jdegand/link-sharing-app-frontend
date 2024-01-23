@@ -11,11 +11,11 @@ import { AuthService } from '../../services/auth/auth.service';
   selector: 'app-home',
   standalone: true,
   imports: [NgFor, NgIf, CommonModule, ReactiveFormsModule, DropdownModule, ButtonModule, InputTextModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './links.component.html',
+  styleUrl: './links.component.css'
 })
 
-export class HomeComponent implements OnInit {
+export class LinksComponent implements OnInit {
   form: FormGroup;
   link: FormArray;
   platforms: Options[] = [];

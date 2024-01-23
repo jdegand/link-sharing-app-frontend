@@ -29,15 +29,19 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
+  constructor() {
+    localStorage.clear();
+  }
+
   submit() {
     this.apiService.login(this.loginForm.value)
       .subscribe({
-        next: (response:any) => {
-        console.log('response', response);
-        this.error = false;
-        localStorage.setItem('token', response.user.token);
-        this.authService.currentUserSig.set(response.user); // set vs update?
-        this.router.navigateByUrl('/home'); //navigate vs navigateByUrl
+        next: (response: any) => {
+          console.log('response', response);
+          this.error = false;
+          localStorage.setItem('token', response.user.token);
+          this.authService.currentUserSig.set(response.user); // set vs update?
+          this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
         },
         error: (err) => {
           console.log('err', err);

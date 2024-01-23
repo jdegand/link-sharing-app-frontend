@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { CanActivate } from './auth.guard';
 
 // need to deactivate register route when logged in
@@ -13,17 +12,20 @@ export const routes: Routes = [
     },
     {
         path: 'register', title: 'Please sign up', loadComponent: () =>
-        import('./pages/register/register.component').then((m) => m.RegisterComponent)
+            import('./pages/register/register.component').then((m) => m.RegisterComponent)
     },
     {
-        path: 'preview', title: 'Preview', canMatch: [CanActivate], loadComponent: () =>
+        path: 'preview', title: 'Preview', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/preview/preview.component').then((m) => m.PreviewComponent)
     },
     {
-        path: 'profile', title: 'Profile', canMatch: [CanActivate], loadComponent: () =>
+        path: 'profile', title: 'Profile', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/profile/profile.component').then((m) => m.ProfileComponent)
     },
-    { path: 'home', title: 'primelinks', canMatch: [CanActivate], component: HomeComponent },
+    {
+        path: 'links', title: 'primelinks', canActivate: [CanActivate], loadComponent: () =>
+            import('./pages/links/links.component').then((m) => m.LinksComponent)
+    },
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
         path: '**', title: '404 Not Found', loadComponent: () =>
