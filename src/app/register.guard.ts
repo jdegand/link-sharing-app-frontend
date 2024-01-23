@@ -7,6 +7,8 @@ import { AuthService } from './services/auth/auth.service';
 // and user uses that menu link to get to the route
 // typing the route path and its navigation destroys the auth signal
 
+// guard is taken from https://github.com/angular/angular/issues/51280
+
 let isLoggedIn$: any;
 
 export const CanRegister: CanActivateFn = (route, state) => {
@@ -20,7 +22,5 @@ export const CanRegister: CanActivateFn = (route, state) => {
     isLoggedIn$ = toObservable(isLoggedIn);
   }
 
-  // The reason to use a computed value is so
-  // the readings can be logged in the console.
   return isLoggedIn$;
 };

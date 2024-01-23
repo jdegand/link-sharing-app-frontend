@@ -2,8 +2,10 @@ import { Routes } from '@angular/router';
 import { CanActivate } from './auth.guard';
 
 // need to deactivate register route when logged in
-// problem when navigating -> page seems to refresh -> checking the signal doesn't work
-// but if you don't use "/" in front of a route -> segments don't replace each other
+// can only guard against register / login when routes are a part of the navbar
+// navigating by typing in the url causes the auth signal to be destroyed
+// in constructor of both, I reset local storage to remove tokens so navigating to either route
+// is essentially logging out and user can't access protected routes
 
 export const routes: Routes = [
     {

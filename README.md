@@ -47,12 +47,13 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Guards have to be functions with "inner" functions.
 - Signals and Guards are a problematic combination.  If you change the signal to an observable, you create a memory leak.  See [Github](https://github.com/angular/angular/issues/51280) for more.  
 - `computed` does not seem to work with guards.  
-- Checking signals with conditionals is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
-- So creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
-- It is also important to keep in mind that the register route is lazy loaded. 
-- Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.
-- I have removed both links from the navbar but a user can visit those routes from the url.    
+- Checking signals with conditionals in templates is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
+- Creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
 - Instead of using a guard for `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
+- Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.
+- I have removed both links from the navbar, but a user can visit those routes from the url.  
+- So I erase the local storage when a user visits `login` or `register` pages.  Navigating to either route is essentially logging out.
+- Using a signal for auth state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and rxjs can work together for authentication.  
 
 ## Continued Development
 
@@ -66,6 +67,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Services & Interceptors
 - Spring Boot Backend
 - Auth Service Signal & Guard -> issues
+- Login persistence
 - Profile photo vs profile picture url
 - Testing (I left the Karma and Jasmine packages installed)
 - ESLint
@@ -136,3 +138,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Blog](https://devlinduldulao.pro/unveiling-global-state-management-in-angular-with-signals-with-localstorage/) - unveiling global state management in angular in signals with local storage
 - [Medium](https://medium.com/kanlanc/heres-why-storing-jwt-in-local-storage-is-a-great-mistake-df01dad90f9e) - heres why storing jwt in local storage is a great mistake
 - [Stack Overflow](https://stackoverflow.com/questions/40387979/angular-2-observables-destroy-itself-when-navigating-to-another-route) - observables destroy itself when navigating to another route
+- [Medium](https://blog.herodevs.com/navigating-angular-router-events-the-sweet-sixteen-fed8fb8e5f8b) - navigating angular router events the sweet sixteen
+- [Stack Overflow](https://stackoverflow.com/questions/67975666/angular-authguard-and-login-persistence-router-automatically-redirects-to-non-t) - angular authGuard and login persistence
+- [YouTube](https://www.youtube.com/watch?v=V31kisDl4KI) - How to decode JWT token in Angular 17?
+- [YouTube](https://www.youtube.com/@CodeShotsWithProfanis/search?query=authentication) - CodeShots With Profanis authentication videos
+- [YouTube](https://www.youtube.com/watch?v=5nwDz9gfBho) - Angular Signals with Objects and Arrays: Common Pitfall
