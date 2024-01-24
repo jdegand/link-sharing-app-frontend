@@ -44,15 +44,12 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - `primeng` has a design philosophy to minimize conditionals in templates.    
 - One strategy I have seen for primeng navbar is to use `ngIf` to conditionally render the menubar.  Basically, you show no menubar when unauthenticated.  I searched Github and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
 - Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made good sense.  
-- Guards have to be functions with "inner" functions.
 - Signals and Guards are a problematic combination.  If you change the signal to an observable, you create a memory leak.  See [Github](https://github.com/angular/angular/issues/51280) for more.  
-- `computed` does not seem to work with guards.  
 - Checking signals with conditionals in templates is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
 - Creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
-- Instead of using a guard for `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
-- Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.
 - I have removed both links from the navbar, but a user can visit those routes from the url.  
-- So I erase the local storage when a user visits `login` or `register` pages.  Navigating to either route is essentially logging out.
+- Instead of using a guard for `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
+- Since auth signal is only saved in memory, a refresh or typing a url erases the signal state.  By persisting the auth signal, you can add a guard to `register` and `login`.  A user visits the routes but sees nothing on the page besides the navbar.     
 - Using a signal for auth state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and rxjs can work together for authentication.  
 
 ## Continued Development

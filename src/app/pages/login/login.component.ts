@@ -29,22 +29,16 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  constructor() {
-    localStorage.clear();
-  }
-
   submit() {
     this.apiService.login(this.loginForm.value)
       .subscribe({
         next: (response: any) => {
-          console.log('response', response);
           this.error = false;
           localStorage.setItem('token', response.user.token);
-          this.authService.currentUserSig.set(response.user); // set vs update?
+          this.authService.currentUserSig.set(response.user);
           this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
         },
         error: (err) => {
-          console.log('err', err);
           this.error = true;
           this.authService.currentUserSig.set(null);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });

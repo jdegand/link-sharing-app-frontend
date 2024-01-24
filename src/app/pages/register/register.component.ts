@@ -34,38 +34,7 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
 
-  /*
-  // doesn't work -> manually typing `/register` causes a refresh and auth signal is destroyed
-
-  constructor() {
-    console.log('sig', this.authService.currentUserSig()) // undefined
-
-    effect(() => {
-      if (this.authService.currentUserSig()?.token) {
-        this.router.navigate(['/links']);
-      }
-    });
-  }
-  */
-
-  /*
-  // could do something like this -> but navbar will be wrong since auth signal is destroyed
-  // set token to auth signal ? 
-  // need to use token to get user data again?
-
-  constructor() {
-    if (localStorage.getItem('token')) {
-      this.router.navigate(['/links']);
-    }
-  }
-  */
-
-  constructor() {
-    localStorage.clear();
-  }
-
   submit() {
-    console.log('registerForm', this.registerForm);
     // need interface for response
     // realworld api just sends a user object back that has no errors object or status codes 
     this.apiService.register(this.registerForm.getRawValue()).subscribe({

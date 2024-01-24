@@ -27,7 +27,10 @@ export class AuthService {
     if (localStorageToken) {
       const decoded = jwtDecoderService.decodeToken(localStorageToken);
 
-      console.log(decoded.user.id);
+      // need to add extra properties because of UserInterface
+      // UserInterface should probably be split into another interface
+      // for just token etc
+      // the other properties are not needed. The preview page has its own api request, etc.  
       this.currentUserSig.set({
         token: localStorageToken,
         id: decoded.user.id,
@@ -39,11 +42,8 @@ export class AuthService {
 
   }
 
-
   notSignedIn() {
     const signal = this.currentUserSig();
-    console.log('signal', signal);
-    console.log('signal condition', signal === undefined ? true : false);
     return signal === undefined ? true : false;
   }
 }

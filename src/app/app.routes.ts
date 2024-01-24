@@ -1,19 +1,14 @@
 import { Routes } from '@angular/router';
 import { CanActivate } from './auth.guard';
-
-// need to deactivate register route when logged in
-// can only guard against register / login when routes are a part of the navbar
-// navigating by typing in the url causes the auth signal to be destroyed
-// in constructor of both, I reset local storage to remove tokens so navigating to either route
-// is essentially logging out and user can't access protected routes
+import { CanRegister } from './register.guard';
 
 export const routes: Routes = [
     {
-        path: 'login', title: 'Please sign in', loadComponent: () =>
+        path: 'login', title: 'Please sign in', canActivate: [CanRegister], loadComponent: () =>
             import('./pages/login/login.component').then((m) => m.LoginComponent),
     },
     {
-        path: 'register', title: 'Please sign up', loadComponent: () =>
+        path: 'register', title: 'Please sign up', canActivate: [CanRegister], loadComponent: () =>
             import('./pages/register/register.component').then((m) => m.RegisterComponent)
     },
     {
