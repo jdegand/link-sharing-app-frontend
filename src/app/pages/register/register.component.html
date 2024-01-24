@@ -17,18 +17,27 @@
         </label>
         <br>
         <input type="email" pInputText id="email" formControlName="email" autocomplete="off" />
+        @if(registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']){
+        <p-message severity="error" text="Email is required"></p-message>
+        }
         <br>
         <label for="username">
             Username:
         </label>
         <br>
         <input type="text" pInputText id="username" formControlName="username" autocomplete="off" />
+        @if(registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['required']){
+        <p-message severity="error" text="Username is required"></p-message>
+        }
         <br>
         <label for="password">
             Password:
         </label>
         <br>
         <input type="password" pInputText id="password" formControlName="password" autocomplete="off" />
+        @if(registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']){
+        <p-message severity="error" text="Password is required"></p-message>
+        }
         <br>
         <br>
         <p-button type="submit" label="Sign Up" [disabled]="registerForm.invalid"></p-button>

@@ -140,3 +140,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [YouTube](https://www.youtube.com/watch?v=V31kisDl4KI) - How to decode JWT token in Angular 17?
 - [YouTube](https://www.youtube.com/@CodeShotsWithProfanis/search?query=authentication) - CodeShots With Profanis authentication videos
 - [YouTube](https://www.youtube.com/watch?v=5nwDz9gfBho) - Angular Signals with Objects and Arrays: Common Pitfall
+- [Stack Overflow](https://stackoverflow.com/questions/71051108/angular-primeng-value-p-message-is-not-allowed) - p-message is not allowed

@@ -9,11 +9,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ErrorResponse } from '../../interfaces/ErrorResponse';
 import { UserResponse } from '../../interfaces/UserResponse';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, ToastModule, InputTextModule, ButtonModule],
+  imports: [ReactiveFormsModule, RouterLink, ToastModule, InputTextModule, ButtonModule, MessageModule],
   providers: [MessageService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'

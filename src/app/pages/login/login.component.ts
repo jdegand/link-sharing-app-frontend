@@ -7,11 +7,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, InputTextModule, ButtonModule, ToastModule],
+  imports: [ReactiveFormsModule, RouterLink, InputTextModule, ButtonModule, ToastModule, MessageModule],
   providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -25,7 +26,7 @@ export class LoginComponent {
   error = false;
 
   loginForm = this.fb.nonNullable.group({
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 
