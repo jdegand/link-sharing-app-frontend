@@ -19,6 +19,8 @@
         <input type="email" pInputText id="email" formControlName="email" autocomplete="off" />
         @if(registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']){
         <p-message severity="error" text="Email is required"></p-message>
+        } @else if(registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['email']){
+        <p-message severity="error" text="Invalid email format"></p-message>
         }
         <br>
         <label for="username">
