@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule],
+  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

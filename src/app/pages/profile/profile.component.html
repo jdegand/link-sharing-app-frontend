@@ -5,26 +5,29 @@
     <form [formGroup]="profileForm" (submit)="onSubmit()">
         <label for="image">Image</label>
         <br>
-        <input type="text" pInputText id="image" formControlName="image"  placeholder="Add an image url" />
+        <input type="text" pInputText id="image" formControlName="image" placeholder="Add an image url" />
         <br>
         <label for="firstname">First name</label>
         <br>
         <input type="text" pInputText id="firstname" formControlName="firstname" />
+        @if(profileForm.get('firstname')?.touched && profileForm.get('firstname')?.errors?.['required']){
+        <p-message severity="error" text="First Name is required"></p-message>
+        }
         <br>
         <label for="lastname">Last name</label>
         <br>
         <input type="text" pInputText id="lastname" formControlName="lastname" />
+        @if(profileForm.get('lastname')?.touched && profileForm.get('lastname')?.errors?.['required']){
+        <p-message severity="error" text="Last Name is required"></p-message>
+        }
         <br>
         <label for="email">Email</label>
         <br>
         <input type="email" pInputText id="email" formControlName="email" />
         <br>
+        <br>
         <p-button type="submit">
             Save
         </p-button>
     </form>
-</section>
-<section>
-    <h1>Your JWT is:</h1>
-    <p>{{authService.currentUserSig()?.token}}</p>
 </section>
