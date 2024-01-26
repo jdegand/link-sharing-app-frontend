@@ -16,9 +16,9 @@
                     </p-button>
                 </div>
             </div>
-            <label>Platform</label>
+            <label for="dropdown">Platform</label>
             <br>
-            <p-dropdown formControlName="platform" [options]="platforms">
+            <p-dropdown id="dropdown" formControlName="platform" [options]="platforms">
                 <ng-template let-platform pTemplate="platform">
                     <div>
                         <span class="pi pi-{{platform.value}}"></span>
@@ -33,7 +33,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-link"></i>
                 <input type="text" pInputText id="url-{{i}}" name="url-{{i}}" placeholder="https://"
-                    formControlName="url" />
+                    formControlName="url">
             </span>
             @if(links.controls[i].errors?.['platformDoesNotMatchUrl']){
             <div>

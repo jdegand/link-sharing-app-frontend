@@ -1,6 +1,6 @@
 export interface UserResponse {
     user: {
-        id: number;
+        id?: number;
         email: string;
         token: string;
         username: string;

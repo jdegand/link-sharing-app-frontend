@@ -11,7 +11,7 @@ export interface ErrorResponse {
 
 interface Headers {
     normalizedNames: NormalizedNames
-    lazyUpdate: any
+    lazyUpdate: unknown
 }
 
 interface NormalizedNames { }

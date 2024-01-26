@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
+import { UserResponse } from '../../interfaces/UserResponse';
 
 @Component({
   selector: 'app-login',
@@ -33,13 +34,15 @@ export class LoginComponent {
   submit() {
     this.apiService.login(this.loginForm.value)
       .subscribe({
-        next: (response: any) => {
-          this.error = false;
-          localStorage.setItem('token', response.user.token);
-          this.authService.currentUserSig.set(response.user);
-          this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
+        next: (response: Partial<UserResponse>) => {
+          if(response.user){
+            this.error = false;
+            localStorage.setItem('token', response.user.token);
+            this.authService.currentUserSig.set(response.user);
+            this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
+          }
         },
-        error: (err) => {
+        error: () => {
           this.error = true;
           this.authService.currentUserSig.set(null);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });

@@ -22,6 +22,7 @@ export class LinksComponent implements OnInit {
 
   count = signal(2);
 
+  // eslint-disable-next-line
   #REGEX = '(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?\/[a-zA-Z0-9]{2,}';
 
   constructor(private fb: FormBuilder, public authService: AuthService) {
