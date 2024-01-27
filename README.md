@@ -50,7 +50,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I have removed both links from the navbar, but a user can visit those routes from the URL.  
 - Instead of using a guard for the `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
 - Since auth signal is only saved in memory, a refresh or typing a URL erases the signal state.  By persisting the auth signal, you can add a guard to `register` and `login`.  A user visits the routes but sees nothing on the page besides the navbar.     
-- Using a signal for authentication state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and rxjs can work together for authentication.  
+- Using a signal for authentication state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and RxJs can work together for authentication.  
 
 ## Continued Development
 

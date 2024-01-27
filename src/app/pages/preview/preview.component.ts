@@ -17,7 +17,6 @@ export class PreviewComponent implements OnInit {
     this.apiService.getUser()
     .subscribe({
       next: (response) => {
-        console.log('profile', response);
         this.authService.currentUserSig.set(response.user);
       },
       error: () => {
