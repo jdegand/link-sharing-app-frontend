@@ -106,9 +106,8 @@ export class LinksComponent implements OnInit {
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
     if (this.form.valid && this.form.touched) {
-      console.log(this.form.value.links);
 
-      this.apiService.postLinks(this.form.value.links).subscribe((res: any)=> {
+      this.apiService.postLinks(this.form.value.links).subscribe((res: any)=> { // Response object
         console.log('api post response', res);
         // check response and navigate 
         // add 3 things to the subscribe -> next, error, complete
