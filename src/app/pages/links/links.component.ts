@@ -1,11 +1,12 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { Options } from '../../interfaces/Options';
 import { AuthService } from '../../services/auth/auth.service';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 
 export class LinksComponent implements OnInit {
+  apiService = inject(ApiService);
   form: FormGroup;
   link: FormArray;
   platforms: Options[] = [];
@@ -104,7 +106,14 @@ export class LinksComponent implements OnInit {
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
     if (this.form.valid && this.form.touched) {
-      console.log(this.form)
+      console.log(this.form.value.links);
+
+      this.apiService.postLinks(this.form.value.links).subscribe((res: any)=> {
+        console.log('api post response', res);
+        // check response and navigate 
+        // add 3 things to the subscribe -> next, error, complete
+      })
+
     }
   }
 
