@@ -6,11 +6,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule],
+  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule, FileUploadModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

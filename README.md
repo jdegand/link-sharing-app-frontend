@@ -51,6 +51,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Instead of using a guard for the `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
 - Since auth signal is only saved in memory, a refresh or typing a URL erases the signal state.  By persisting the auth signal, you can add a guard to `register` and `login`.  A user visits the routes but sees nothing on the page besides the navbar.     
 - Using a signal for authentication state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and RxJs can work together for authentication.  
+- An implementation choice between including the profile image inside the other form or having the image inside another form.  If it is separate, you would potentially need to make multiple api requests for the preview page.   
 
 ## Continued Development
 
@@ -144,3 +145,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/71051108/angular-primeng-value-p-message-is-not-allowed) - p-message is not allowed
 - [Medium](https://netbasal.com/create-reusable-copy-to-clipboard-directive-in-angular-fc1139b9e755) - create reusable copy to clipboard directive in angular
 - [Stack Overflow](https://stackoverflow.com/questions/36665234/retrieve-hash-fragment-from-url-with-angular2) - retrieve hash fragment from url with angular2
+- [Medium](https://medium.com/weareaize/creating-a-loading-indicator-using-rxjs-and-the-withloading-pattern-8add4500008e) - creating a loading indicator using rxjs and the with loading pattern
+- [Blog](https://blog.dai.codes/handling-http-loadng-states-in-angular-with-rxjs/) - handling http loading states in angular with rxjs

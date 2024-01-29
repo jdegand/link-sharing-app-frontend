@@ -21,12 +21,14 @@ export class NavbarComponent {
         {
           label: 'Profile Details',
           icon: 'pi pi-user-edit',
-          routerLink: '/profile'
+          routerLink: '/profile',
+          fragment: this.authService.currentUserSig()?.id?.toString()
         },
         {
           label: 'Links',
           icon: 'pi pi-link',
-          routerLink: '/links'
+          routerLink: '/links', 
+          fragment: this.authService.currentUserSig()?.id?.toString()
         },
         {
           label: 'Preview',
