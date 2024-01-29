@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,7 @@ import { MessageModule } from 'primeng/message';
 })
 export class ProfileComponent implements OnInit {
   authService = inject(AuthService);
+  apiService = inject(ApiService);
   fb = inject(FormBuilder);
 
   profileForm!: FormGroup;
@@ -31,7 +33,8 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
     if (this.profileForm.valid && this.profileForm.touched) {
-      console.log(this.profileForm)
+      console.log(this.profileForm.value);
+      this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
     }
   }
 

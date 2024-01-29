@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { UserInterface } from '../../interfaces/UserInterface';
 import { Link } from '../../interfaces/Link';
+import { Profile } from '../../interfaces/Profile';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class ApiService {
 
   postLinks(links: Link[]){
     return this.http.post('http://localhost:8080/links', links)
+  }
+
+  postProfile(profile: Profile){
+    return this.http.post('http://localhost:8080/profile', profile)
   }
 
 

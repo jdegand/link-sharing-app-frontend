@@ -64,7 +64,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Authentication
 - Services & Interceptors
 - Spring Boot Backend
-- Profile photo vs profile picture url
+- Profile photo vs profile picture url -> [FileInput](https://primeng.org/fileupload)
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
 - Preview route -> need to make URL unique
@@ -143,3 +143,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [YouTube](https://www.youtube.com/watch?v=5nwDz9gfBho) - Angular Signals with Objects and Arrays: Common Pitfall
 - [Stack Overflow](https://stackoverflow.com/questions/71051108/angular-primeng-value-p-message-is-not-allowed) - p-message is not allowed
 - [Medium](https://netbasal.com/create-reusable-copy-to-clipboard-directive-in-angular-fc1139b9e755) - create reusable copy to clipboard directive in angular
+- [Stack Overflow](https://stackoverflow.com/questions/36665234/retrieve-hash-fragment-from-url-with-angular2) - retrieve hash fragment from url with angular2
