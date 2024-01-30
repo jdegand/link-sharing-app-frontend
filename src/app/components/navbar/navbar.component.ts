@@ -70,6 +70,9 @@ export class NavbarComponent {
 
   constructor() {
     effect(() => {
+
+      console.log('effect evaluated', this.authService.currentUserSig()?.username)
+
       if (this.authService.currentUserSig()) {
         this.items = [
           {

@@ -39,7 +39,8 @@ export class LoginComponent {
             this.error = false;
             localStorage.setItem('token', response.user.token);
             this.authService.currentUserSig.set(response.user);
-            this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
+            console.log('currentUserSignal', this.authService.currentUserSig());
+            this.router.navigate(['/links']); // add fragment or query param here ?
           }
         },
         error: () => {
