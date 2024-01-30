@@ -53,7 +53,9 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Using a signal for authentication state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and RxJs can work together for authentication.  
 - An implementation choice between including the profile image inside the other form or having the image inside another form.  If it is separate, you would potentially need to make multiple api requests for the preview page. 
 - Primeng file upload doesn't appear to need to be inside a form.  You can complete the upload with an async function or use the `url` action. 
-- `computed` menubar fragments can be missing on navigation.  I can use `visible` to have the links add when the fragment is available.   
+- `computed` menubar fragments can be missing on navigation.  I can use `visible` to have the links add when the fragment is available.  
+- I don't think the fragments are `recomputed` inside the computed signal.  See this [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals).   
+- When you first login from the realworld api, the response doesn't have an `id`.  I changed the fragment to `username`.  The fragment is missing on the `links` page only (the first navigation).  
 
 ## Continued Development
 
@@ -153,3 +155,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Spring Content](https://paulcwarren.github.io/spring-content/) - spring content
 - [Stack Overflow](https://stackoverflow.com/questions/73284094/how-to-store-profile-pictures-in-spring-boot-rest-api-application) - how to store profile pictures in spring boot rest api application
 - [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals) - angular effects and conditional use of signals
+- [Blog](https://danielk.tech/home/basic-auth-state-management) - basic auth state management

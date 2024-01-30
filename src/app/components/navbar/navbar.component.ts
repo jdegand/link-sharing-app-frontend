@@ -1,4 +1,4 @@
-import { Component, Signal, computed, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { AuthService } from '../../services/auth/auth.service';
@@ -15,6 +15,7 @@ export class NavbarComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
+  /*
   items: Signal<MenuItem[]> = computed(() => {
     if (this.authService.currentUserSig()?.token) {
       return [
@@ -63,6 +64,59 @@ export class NavbarComponent {
       ]
     }
   })
+  */
+
+  items: MenuItem[] = [];
+
+  constructor() {
+    effect(() => {
+      if (this.authService.currentUserSig()) {
+        this.items = [
+          {
+            label: 'Profile Details',
+            icon: 'pi pi-user-edit',
+            routerLink: '/profile',
+            fragment: this.authService.currentUserSig()?.username?.toString(), // id is not sent from the realworld api on first login?
+          },
+          {
+            label: 'Links',
+            icon: 'pi pi-link',
+            routerLink: '/links',
+            fragment: this.authService.currentUserSig()?.username?.toString()
+          },
+          {
+            label: 'Preview',
+            icon: 'pi pi-eye',
+            routerLink: '/preview',
+            // queryParams: {id: this.authService.currentUserSig()?.id}
+            // queryParams are not added on initial navigation
+            // use fragment to add id -> grab the fragment id to query Profile object ?
+            // fragment needs to be a string vs signal
+            fragment: this.authService.currentUserSig()?.username?.toString()
+          },
+          {
+            label: 'Logout',
+            icon: 'pi pi-sign-out',
+            command: () => this.logout(),
+          }
+        ]
+      } else {
+        this.items = [
+          {
+            label: 'Sign-in',
+            icon: 'pi pi-sign-in',
+            routerLink: '/login',
+            items: [
+              {
+                label: 'Register',
+                routerLink: '/register'
+              },
+            ]
+          },
+        ]
+      }
+    })
+  }
 
   logout() {
     // refactored a few times
@@ -75,60 +129,3 @@ export class NavbarComponent {
   }
 
 }
-
-/*
-// The computed above is used like an effect.  
-// A effect doesn't cause a refresh to happen when the currentUserSig updates 
-
-items: MenuItem[] = [];
-
-constructor() {
-  effect(() => {
-    if (this.authService.currentUserSig()?.token && this.authService.currentUserSig()?.id) {
-      this.items = [
-        {
-          label: 'Profile Details',
-          icon: 'pi pi-user-edit',
-          routerLink: '/profile',
-          fragment: this.authService.currentUserSig()?.id?.toString(),
-        },
-        {
-          label: 'Links',
-          icon: 'pi pi-link',
-          routerLink: '/links',
-          fragment: this.authService.currentUserSig()?.id?.toString()
-        },
-        {
-          label: 'Preview',
-          icon: 'pi pi-eye',
-          routerLink: '/preview',
-          // queryParams: {id: this.authService.currentUserSig()?.id}
-          // queryParams are not added on initial navigation
-          // use fragment to add id -> grab the fragment id to query Profile object ?
-          // fragment needs to be a string vs signal
-          fragment: this.authService.currentUserSig()?.id?.toString()
-        },
-        {
-          label: 'Logout',
-          icon: 'pi pi-sign-out',
-          command: () => this.logout(),
-        }
-      ]
-    } else {
-      this.items = [
-        {
-          label: 'Sign-in',
-          icon: 'pi pi-sign-in',
-          routerLink: '/login',
-          items: [
-            {
-              label: 'Register',
-              routerLink: '/register'
-            },
-          ]
-        },
-      ]
-    }
-  })
-}
-*/
