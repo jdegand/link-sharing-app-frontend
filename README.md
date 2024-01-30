@@ -152,3 +152,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/75777093/spring-boot-pass-file-through-form) - spring boot pass file through form
 - [Spring Content](https://paulcwarren.github.io/spring-content/) - spring content
 - [Stack Overflow](https://stackoverflow.com/questions/73284094/how-to-store-profile-pictures-in-spring-boot-rest-api-application) - how to store profile pictures in spring boot rest api application
+- [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals) - angular effects and conditional use of signals
