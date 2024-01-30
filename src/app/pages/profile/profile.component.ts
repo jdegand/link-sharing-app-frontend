@@ -1,33 +1,38 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
-import { FileUploadModule } from 'primeng/fileupload';
+import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule, FileUploadModule],
+  imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule, FileUploadModule, ToastModule, NgIf, NgFor],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
   authService = inject(AuthService);
   apiService = inject(ApiService);
+  route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
 
   profileForm!: FormGroup;
+
+  fragment = this.route.snapshot.fragment;
 
   ngOnInit() {
     this.profileForm = this.fb.group({
       firstname: [this.authService.currentUserSig()?.firstname, Validators.required],
       lastname: [this.authService.currentUserSig()?.lastname, Validators.required],
       email: [this.authService.currentUserSig()?.email],
-      image: [this.authService.currentUserSig()?.image],
+      //image: [this.authService.currentUserSig()?.image],
     });
   }
 
@@ -38,5 +43,11 @@ export class ProfileComponent implements OnInit {
       this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
     }
   }
+
+  onUpload(event: FileUploadEvent) {
+    console.log(event);
+    // message service 
+  }
+
 
 }

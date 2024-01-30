@@ -22,7 +22,8 @@ export class NavbarComponent {
           label: 'Profile Details',
           icon: 'pi pi-user-edit',
           routerLink: '/profile',
-          fragment: this.authService.currentUserSig()?.id?.toString()
+          fragment: this.authService.currentUserSig()?.id?.toString(),
+          visible: !!this.authService.currentUserSig()?.id
         },
         {
           label: 'Links',

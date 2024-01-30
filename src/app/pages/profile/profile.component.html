@@ -2,11 +2,14 @@
     <h1>Profile Details</h1>
     <p>Add your details to create a personal touch to your profile.</p>
     <br>
+    <div>
+        <span>fragment: {{fragment}}</span>
+        <p-toast></p-toast>
+        <p-fileUpload chooseLabel="Add a Profile Picture" mode="basic" name="image" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" accept="image/*" [maxFileSize]="1000000">
+        </p-fileUpload>
+    </div>   
+    <br>
     <form [formGroup]="profileForm" (submit)="onSubmit()">
-        <label for="image">Image</label>
-        <br>
-        <input type="text" pInputText id="image" formControlName="image" placeholder="Add an image url" />
-        <br>
         <label for="firstname">First name</label>
         <br>
         <input type="text" pInputText id="firstname" formControlName="firstname" />
@@ -31,3 +34,17 @@
         </p-button>
     </form>
 </section>
+
+<!--
+    <h2>Add a profile picture</h2>
+    <div>
+        <p-toast></p-toast>
+        <p-fileUpload chooseLabel="Choose" mode="basic" name="demo[]" (onUpload)="onUpload($event)" [auto]="true" accept="image/*" [maxFileSize]="1000000">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+    </div>   
+-->
