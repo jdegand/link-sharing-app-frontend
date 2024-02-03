@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
@@ -30,6 +30,8 @@ export class ProfileComponent implements OnInit {
 
   fragment = this.route.snapshot.fragment;
 
+  @ViewChild('imageForm') imageForm!: any;
+
   ngOnInit() {
     this.profileForm = this.fb.group({
       firstname: [this.authService.currentUserSig()?.firstname, Validators.required],
@@ -48,11 +50,15 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpload(event: FileUploadEvent) {
+    // https://github.com/primefaces/primeng/issues/4018
+
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Image uploaded' });
+    this.imageForm.clear();
   }
 
   onUploadError(event: FileUploadErrorEvent){
     this.messageService.add({ severity: 'error', summary: 'Error', detail: event.error?.message });
+    this.imageForm.clear();
   }
 
 }

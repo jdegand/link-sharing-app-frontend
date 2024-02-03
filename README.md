@@ -159,3 +159,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/73284094/how-to-store-profile-pictures-in-spring-boot-rest-api-application) - how to store profile pictures in spring boot rest api application
 - [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals) - angular effects and conditional use of signals
 - [Blog](https://danielk.tech/home/basic-auth-state-management) - basic auth state management
+- [Stack Overflow](https://stackoverflow.com/questions/45082603/p-fileupload-does-not-work-more-than-once-primeng) - fileupload does not work more than once primeng
+- [Github](https://github.com/primefaces/primeng/issues/4018) - When using custom file uploads, selected file does not clear
