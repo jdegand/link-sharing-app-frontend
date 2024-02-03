@@ -15,77 +15,22 @@ export class NavbarComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
-  /*
-  items: Signal<MenuItem[]> = computed(() => {
-    if (this.authService.currentUserSig()?.token) {
-      return [
-        {
-          label: 'Profile Details',
-          icon: 'pi pi-user-edit',
-          routerLink: '/profile',
-          fragment: this.authService.currentUserSig()?.id?.toString(),
-          visible: !!this.authService.currentUserSig()?.id
-        },
-        {
-          label: 'Links',
-          icon: 'pi pi-link',
-          routerLink: '/links',
-          fragment: this.authService.currentUserSig()?.id?.toString()
-        },
-        {
-          label: 'Preview',
-          icon: 'pi pi-eye',
-          routerLink: '/preview',
-          // queryParams: {id: this.authService.currentUserSig()?.id}
-          // queryParams are not added on initial navigation
-          // use fragment to add id -> grab the fragment id to query Profile object ?
-          // fragment needs to be a string vs signal
-          fragment: this.authService.currentUserSig()?.id?.toString()
-        },
-        {
-          label: 'Logout',
-          icon: 'pi pi-sign-out',
-          command: () => this.logout(),
-        }
-      ]
-    } else {
-      return [
-        {
-          label: 'Sign-in',
-          icon: 'pi pi-sign-in',
-          routerLink: '/login',
-          items: [
-            {
-              label: 'Register',
-              routerLink: '/register'
-            },
-          ]
-        },
-      ]
-    }
-  })
-  */
-
   items: MenuItem[] = [];
 
   constructor() {
     effect(() => {
 
-      console.log('effect evaluated', this.authService.currentUserSig()?.username)
-
-      if (this.authService.currentUserSig()) {
+      if (this.authService.currentUserSig()) { // try to login and fail -> error is saved -> thus truthy
         this.items = [
           {
             label: 'Profile Details',
             icon: 'pi pi-user-edit',
             routerLink: '/profile',
-            // fragment: this.authService.currentUserSig()?.username?.toString(), // id is not sent from the realworld api on first login?
           },
           {
             label: 'Links',
             icon: 'pi pi-link',
             routerLink: '/links',
-            // fragment: this.authService.currentUserSig()?.username?.toString()
           },
           {
             label: 'Preview',

@@ -39,11 +39,12 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Firefox doesn't show an error for the label.  Firefox had quite a few warnings associated with the `primeng` styling.    
 - To fix this label issue, I may have to refactor again.  
 - In Chrome, the error choice is `incorrect label use` or `no label associated with a form field`.
+- I used the [Messages Module](https://primeng.org/messages) to show inline errors on the forms.   
 - `visible` in the menubar does not update from state changes.  It appears to have been only evaluated once.  I have a correct conditional statement and the `logout` link's visibility does not change.  
 - Is it best to localize the navbar per page versus adding it once to the `app` component?  This strategy would lead to duplicated code.
 - `primeng` has a design philosophy to minimize conditionals in templates.    
 - One strategy I have seen for primeng navbars is to use `ngIf` to conditionally render them.  Basically, you show no menubar when unauthenticated.  I searched Github, and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
-- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made good sense.  
+- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made sense and I was able to toggle menu items.   
 - Signals and guards are a problematic combination.  If you change the signal to an observable, you create a memory leak.  See [Github](https://github.com/angular/angular/issues/51280) for more.  
 - Checking signals with conditionals in templates is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
 - Creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
@@ -54,16 +55,20 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - An implementation choice between including the profile image inside the other form or having the image inside another form.  If it is separate, you would potentially need to make multiple api requests for the preview page. 
 - Primeng file upload doesn't appear to need to be inside a form.  You can complete the upload with an async function or use the `url` action. 
 - `computed` menubar fragments can be missing on navigation.  I can use `visible` to have the links add when the fragment is available.  I would have no routes visible, as I wanted to add a fragment to every route I have.   
-- I don't think the fragments are `recomputed` inside `computed` or `effect`.  See this [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals).   
-- When you first login from the realworld api, the response doesn't have an `id`.  I changed the fragment to `username`.  The fragment is missing on the `links` page only (the first navigation).  It doesn't matter what route you navigate to, the fragment will not be added to *any* route on first navigation.  I guess I need to read the signal inside the submit functions and add the user `id` to the payload.  I can use fragment on other routes.  
+- I don't think the fragments are `recomputed` inside `computed` or `effect`.  See this [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals).
+- I changed to use `effect` in the navbar component.  `computed` is not intended to have conditionals.     
+- When you first login from the [realworld API](https://realworld-docs.netlify.app/docs/specs/frontend-specs/api), the response doesn't have an `id`.  I changed the fragment to `username`.  The fragment is missing on the `links` page only (the first navigation).  It doesn't matter what route you navigate to, the fragment will not be added to *any* route on first navigation.  I guess I need to read the signal inside the submit functions and add the user `id` to the payload.  I can use fragment on other routes.  
 - I may replace my use of signals for auth state and use an Observable approach instead.  
 - I could try to localize the menubars on each page again.  
+- I used [FileUpload](https://primeng.org/fileupload) to save a profile picture.  
+- I did not add the `FileUpload` to the existing form.  It is separate.  I used the `url` action to send the file to the backend.  I used the `onUpload` and `onError` methods to handle successful and unsuccessful API responses.  
+- I ran into a problem where the input did not clear the file name and allow for other requests.  The `FileUpload` does not take multiple files, but a user should be able to change profile pictures, as often as they'd like.  On the backend, I may have to look into adding a function that removes `orphan` images that are not tied to any user account.
+- To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into proper typing the `ViewChild` variable.
 
 ## Continued Development
 
 - Platform label
 - Allow multiple links for same platform? Need another custom validator to prevent it?
-- [Messages Module](https://primeng.org/messages) for inline errors on forms 
 - Dark Mode added to Navbar
 - Styling
 - Drag and Drop functionality on Preview page
@@ -71,12 +76,12 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Authentication
 - Services & Interceptors
 - Spring Boot Backend
-- Profile photo vs profile picture url -> [FileInput](https://primeng.org/fileupload)
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
 - Preview route -> need to make URL unique
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
-- Can't click Register route after failed login attempt
+- Can't navigate to Register route after a failed login attempt -> problem caused by saving error to the currentUserSig -> could create a separate signal for error
+- ViewChild typing
 
 ## Useful Resources
 
