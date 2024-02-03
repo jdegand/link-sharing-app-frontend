@@ -5,9 +5,10 @@
     <div>
         <span>fragment: {{fragment}}</span>
         <p-toast></p-toast>
-        <p-fileUpload chooseLabel="Add a Profile Picture" mode="basic" name="image" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" accept="image/*" [maxFileSize]="1000000">
+        <p-fileUpload chooseLabel="Add a Profile Picture" mode="basic" name="image" url="http://localhost:8080/file"
+            accept="image/*" [maxFileSize]="1000000" (onUpload)="onUpload($event)" (onError)="onUploadError($event)">
         </p-fileUpload>
-    </div>   
+    </div>
     <br>
     <form [formGroup]="profileForm" (submit)="onSubmit()">
         <label for="firstname">First name</label>

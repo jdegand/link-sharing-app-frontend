@@ -79,13 +79,13 @@ export class NavbarComponent {
             label: 'Profile Details',
             icon: 'pi pi-user-edit',
             routerLink: '/profile',
-            fragment: this.authService.currentUserSig()?.username?.toString(), // id is not sent from the realworld api on first login?
+            // fragment: this.authService.currentUserSig()?.username?.toString(), // id is not sent from the realworld api on first login?
           },
           {
             label: 'Links',
             icon: 'pi pi-link',
             routerLink: '/links',
-            fragment: this.authService.currentUserSig()?.username?.toString()
+            // fragment: this.authService.currentUserSig()?.username?.toString()
           },
           {
             label: 'Preview',

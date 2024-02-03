@@ -76,6 +76,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Zod & TypeScript improvements
 - Preview route -> need to make URL unique
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
+- Can't click Register route after failed login attempt
 
 ## Useful Resources
 

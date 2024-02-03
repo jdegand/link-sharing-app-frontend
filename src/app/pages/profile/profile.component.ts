@@ -6,14 +6,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
-import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import { FileUploadErrorEvent, FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [RouterLink, ButtonModule, ReactiveFormsModule, InputTextModule, MessageModule, FileUploadModule, ToastModule, NgIf, NgFor],
+  providers: [MessageService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -22,6 +24,7 @@ export class ProfileComponent implements OnInit {
   apiService = inject(ApiService);
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
+  messageService = inject(MessageService);
 
   profileForm!: FormGroup;
 
@@ -45,9 +48,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpload(event: FileUploadEvent) {
-    console.log(event);
-    // message service 
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Image uploaded' });
   }
 
+  onUploadError(event: FileUploadErrorEvent){
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: event.error?.message });
+  }
 
 }
