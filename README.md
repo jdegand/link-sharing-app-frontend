@@ -63,7 +63,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I used [FileUpload](https://primeng.org/fileupload) to save a profile picture.  
 - I did not add the `FileUpload` to the existing form.  It is separate.  I used the `url` action to send the file to the backend.  I used the `onUpload` and `onError` methods to handle successful and unsuccessful API responses.  
 - I ran into a problem where the input did not clear the file name and allow for other requests.  The `FileUpload` does not take multiple files, but a user should be able to change profile pictures, as often as they'd like.  On the backend, I may have to look into adding a function that removes `orphan` images that are not tied to any user account.
-- To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into proper typing the `ViewChild` variable.
+- To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into the proper typing for the `ViewChild` variable.
 
 ## Continued Development
 
@@ -80,7 +80,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Zod & TypeScript improvements
 - Preview route -> need to make URL unique
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
-- Can't navigate to Register route after a failed login attempt -> problem caused by saving error to the currentUserSig -> could create a separate signal for error
 - ViewChild typing
 
 ## Useful Resources
