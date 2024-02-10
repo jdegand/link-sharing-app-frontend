@@ -45,7 +45,7 @@ export class LoginComponent {
         },
         error: () => {
           this.error = true;
-          this.authService.currentUserSig.set(null);
+          this.authService.currentUserSig.set(undefined);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });
         },
       })

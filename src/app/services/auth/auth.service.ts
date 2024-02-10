@@ -8,7 +8,8 @@ import { JwtDecoderService } from '../jwt/jwt-decoder.service';
 export class AuthService {
   // public vs private 
   // behaviourSubject is viable alternative
-  currentUserSig = signal<UserInterface | undefined | null>(undefined);
+  // allow currentUserSig to be null ? 
+  currentUserSig = signal<UserInterface | undefined>(undefined);
 
   /*
   // persistent login

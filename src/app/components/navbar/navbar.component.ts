@@ -20,7 +20,7 @@ export class NavbarComponent {
   constructor() {
     effect(() => {
 
-      if (this.authService.currentUserSig()) { // try to login and fail -> error is saved -> thus truthy
+      if (this.authService.currentUserSig()) { 
         this.items = [
           {
             label: 'Profile Details',
