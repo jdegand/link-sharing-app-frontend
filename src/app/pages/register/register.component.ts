@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ErrorResponse } from '../../interfaces/ErrorResponse';
-import { UserResponse } from '../../interfaces/UserResponse';
 import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 
@@ -37,21 +36,22 @@ export class RegisterComponent {
   });
 
   submit() {
-    // need interface for response
-    // realworld api just sends a user object back that has no errors object or status codes 
-    this.apiService.register(this.registerForm.getRawValue()).subscribe({
-      next: (response: Partial<UserResponse>) => { // typing still needs work
-        this.success = true;
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: response.user?.username + ' Registered' });
-      },
-      error: (err: ErrorResponse) => {
-        this.success = false;
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
-      },
-      complete: () => {
-        console.log('done');
-      }
-    })
+    if (this.registerForm.valid) {
+      this.apiService.register(this.registerForm.value).subscribe({
+        next: (response: any) => {
+          console.log('response', response);
+          this.success = true;
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.username + ' Registered' });
+        },
+        error: (err: ErrorResponse) => {
+          this.success = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
+        },
+        complete: () => {
+          console.log('done');
+        }
+      })
+    }
   }
 
 }

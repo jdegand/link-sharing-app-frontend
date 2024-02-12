@@ -36,11 +36,6 @@ export class NavbarComponent {
             label: 'Preview',
             icon: 'pi pi-eye',
             routerLink: '/preview',
-            // queryParams: {id: this.authService.currentUserSig()?.id}
-            // queryParams are not added on initial navigation
-            // use fragment to add id -> grab the fragment id to query Profile object ?
-            // fragment needs to be a string vs signal
-            fragment: this.authService.currentUserSig()?.username?.toString()
           },
           {
             label: 'Logout',
@@ -71,7 +66,7 @@ export class NavbarComponent {
     // had a logout method in the authService
     // not really necessary there -> I am not invoking logout method anywhere else in the app
 
-    localStorage.setItem('token', '');
+    localStorage.removeItem('token');
     this.authService.currentUserSig.set(undefined); // undefined vs null
     this.router.navigate(['/login']);
   }
