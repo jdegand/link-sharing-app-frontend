@@ -10,6 +10,7 @@ import { FileUploadErrorEvent, FileUploadEvent, FileUploadModule } from 'primeng
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   messageService = inject(MessageService);
+  jwtService = inject(JwtDecoderService);
 
   profileForm!: FormGroup;
 
@@ -33,11 +35,20 @@ export class ProfileComponent implements OnInit {
   @ViewChild('imageForm') imageForm!: any;
 
   ngOnInit() {
+
+    /*
+    const accessToken = this.authService.currentUserSig()?.accessToken;
+
+    if(accessToken){
+      const decodedToken = this.jwtService.decodeToken(accessToken);
+      console.log('token sub', decodedToken.sub);
+    }
+    */
+
     this.profileForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.email],
-      //image: [this.authService.currentUserSig()?.image],
     });
   }
 

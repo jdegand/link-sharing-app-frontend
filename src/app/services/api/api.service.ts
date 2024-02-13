@@ -19,6 +19,10 @@ export class ApiService {
     return this.http.post('http://localhost:8080/auth/authenticate', payload);
   }
 
+  getUser(email: any) {
+    return this.http.get('http://localhost:8080/users/email/', email);
+  }
+
   postLinks(links: Link[]){
     return this.http.post('http://localhost:8080/links', links)
   }

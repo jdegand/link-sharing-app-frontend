@@ -67,6 +67,7 @@ export class NavbarComponent {
     // not really necessary there -> I am not invoking logout method anywhere else in the app
 
     localStorage.removeItem('token');
+    localStorage.removeItem('refresh-token');
     this.authService.currentUserSig.set(undefined); // undefined vs null
     this.router.navigate(['/login']);
   }
