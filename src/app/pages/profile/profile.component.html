@@ -3,7 +3,6 @@
     <p>Add your details to create a personal touch to your profile.</p>
     <br>
     <div>
-        <span>fragment: {{fragment}}</span>
         <p-toast></p-toast>
         <p-fileUpload #imageForm chooseLabel="Add a Profile Picture" mode="basic" name="image" url="http://localhost:8080/file"
             accept="image/*" [maxFileSize]="1000000" (onUpload)="onUpload($event)" (onError)="onUploadError($event)">
