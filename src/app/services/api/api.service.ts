@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   getUser(email: any) {
-    return this.http.get('http://localhost:8080/users/email/', email);
+    return this.http.get(`http://localhost:8080/users/email/${email}`);
   }
 
   postLinks(links: Link[]){
@@ -30,31 +30,5 @@ export class ApiService {
   postProfile(profile: Profile){
     return this.http.post('http://localhost:8080/profile', profile)
   }
-
-  /*
-  register(payload: any) {
-    return this.http.post('https://api.realworld.io/api/users', {
-      user: payload,
-    })
-  }
-
-  login(payload: any) {
-    return this.http.post('https://api.realworld.io/api/users/login', {
-      user: payload,
-    })
-  }
-
-  getUser(){
-    return this.http.get<any>('https://api.realworld.io/api/user')
-  }
-
-  postLinks(links: Link[]){
-    return this.http.post('http://localhost:8080/links', links)
-  }
-
-  postProfile(profile: Profile){
-    return this.http.post('http://localhost:8080/profile', profile)
-  }
-  */
 
 }

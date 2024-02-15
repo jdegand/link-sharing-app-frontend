@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-preview',
@@ -7,9 +9,23 @@ import { Component } from '@angular/core';
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.css'
 })
-export class PreviewComponent {
+export class PreviewComponent implements OnInit {
   // implements OnInit 
-  //apiService = inject(ApiService);
-  //authService = inject(AuthService);
+  // apiService = inject(ApiService);
+  // authService = inject(AuthService);
 
+  apiService = inject(ApiService);
+  jwtService = inject(JwtDecoderService);
+
+  ngOnInit() {
+    const token = localStorage.getItem("token");
+    if(token){
+      const decodedToken = this.jwtService.decodeToken(token);
+
+      console.log('decodedToken sub', decodedToken.sub);
+
+      //this.apiService.getUser(decodedToken.sub).subscribe((res)=> console.log('preview', res));
+    }
+    
+  }
 }

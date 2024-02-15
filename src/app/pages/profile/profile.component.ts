@@ -56,6 +56,7 @@ export class ProfileComponent implements OnInit {
     // valid is not enough when you pre-fill all the inputs
     if (this.profileForm.valid && this.profileForm.touched) {
       console.log(this.profileForm.value);
+      // need to add message service 
       this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
     }
   }

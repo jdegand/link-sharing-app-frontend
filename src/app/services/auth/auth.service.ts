@@ -13,11 +13,16 @@ export class AuthService {
 
   constructor(private jwtDecoderService: JwtDecoderService) {
     const localStorageToken = localStorage.getItem('token') ?? "";
+    const refreshStorageToken = localStorage.getItem('refresh-token') ?? "";
 
     if (localStorageToken) {
-      const decoded = jwtDecoderService.decodeToken(localStorageToken);
-
-      console.log('decoded', decoded);
+      // send another api request to validate token sub is in database?
+      // const decoded = jwtDecoderService.decodeToken(localStorageToken);
+      // console.log('decoded', decoded);
+      this.currentUserSig.set({
+        accessToken: localStorageToken,
+        refreshToken: refreshStorageToken
+      })
     }
 
   }
