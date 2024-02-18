@@ -4,8 +4,8 @@
     <br>
     <div>
         <p-toast></p-toast>
-        <p-fileUpload #imageForm chooseLabel="Add a Profile Picture" mode="basic" name="image" url="http://localhost:8080/file"
-            accept="image/*" [maxFileSize]="1000000" (onUpload)="onUpload($event)" (onError)="onUploadError($event)">
+        <p-fileUpload #imageForm chooseLabel="Add a Profile Picture" mode="basic" method="post" name="image" url="http://localhost:8080/images"
+            accept="image/*" [maxFileSize]="1000000" (onBeforeUpload)="onBeforeSend" (onUpload)="onUpload($event)" (onError)="onUploadError($event)">
         </p-fileUpload>
     </div>
     <br>

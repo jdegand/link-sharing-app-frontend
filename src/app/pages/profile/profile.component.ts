@@ -61,6 +61,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  onBeforeSend(event: any) {
+    event.xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+  }
+
   onUpload(event: FileUploadEvent) {
     // https://github.com/primefaces/primeng/issues/4018
 
@@ -68,7 +72,7 @@ export class ProfileComponent implements OnInit {
     this.imageForm.clear();
   }
 
-  onUploadError(event: FileUploadErrorEvent){
+  onUploadError(event: FileUploadErrorEvent) {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: event.error?.message });
     this.imageForm.clear();
   }

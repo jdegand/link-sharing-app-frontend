@@ -10,10 +10,6 @@ import { ApiService } from '../../services/api/api.service';
   styleUrl: './preview.component.css'
 })
 export class PreviewComponent implements OnInit {
-  // implements OnInit 
-  // apiService = inject(ApiService);
-  // authService = inject(AuthService);
-
   apiService = inject(ApiService);
   jwtService = inject(JwtDecoderService);
 
@@ -22,9 +18,7 @@ export class PreviewComponent implements OnInit {
     if(token){
       const decodedToken = this.jwtService.decodeToken(token);
 
-      console.log('decodedToken sub', decodedToken.sub);
-
-      //this.apiService.getUser(decodedToken.sub).subscribe((res)=> console.log('preview', res));
+      this.apiService.getUser(decodedToken.sub).subscribe((res)=> console.log('preview', res));
     }
     
   }

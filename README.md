@@ -169,3 +169,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Github](https://github.com/primefaces/primeng/issues/4018) - When using custom file uploads, selected file does not clear
 - [Stack Overflow](https://stackoverflow.com/questions/73295132/how-do-i-bind-a-primeng-file-upload-component-to-my-angular-form-control) - how do I bind a primeng file upload component to my angular form control
 - [Stack Blitz](https://stackblitz.com/edit/jhcz9a?file=src%2Fapp%2FFileUploadControlValueAccessor.directive.ts) - FileUploadControlValueAccessor
+- [Stack Overflow](https://stackoverflow.com/questions/41825698/add-custom-headers-before-upload-with-primengs-fileupload-component) - add custom headers before upload
