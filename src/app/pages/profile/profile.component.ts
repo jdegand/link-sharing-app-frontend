@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
-import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
-import { FileUploadErrorEvent, FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
@@ -49,36 +49,46 @@ export class ProfileComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.email],
-      img: ['']
+      file: ['']
     });
   }
 
   onFileSelect(event: any) {
-    if (event.files.length > 0) {
+    if (event.files.length === 1) {
       const file = event.files[0];
-      this.profileForm.get('img')?.setValue(file);
+      this.profileForm.get('file')?.setValue(file);
     }
   }
 
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
     if (this.profileForm.valid && this.profileForm.touched) {
-      console.log(this.profileForm.value);
       const formData = new FormData();
-      formData.append('img', this.profileForm.get('img')?.value);
+      
+      formData.append('file', this.profileForm.get('file')?.value); 
       formData.append('firstname', this.profileForm.get('firstname')?.value);
       formData.append('lastname', this.profileForm.get('lastname')?.value);
       formData.append('email', this.profileForm.get('email')?.value);
       /*
       // have to loop to view formData
       // causes typescript issues
+      //@ts-ignore
       for (const value of formData.values()) {
-        console.log(value);
+        console.log('value',value);
       }
       */
-      // need to add message service 
-      //this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
-      this.apiService.postProfile(formData).subscribe((res) => console.log(res));
+
+      this.apiService.postProfile(formData).subscribe({
+        next: (response: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
+        },
+        error: (err: any) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
+        },
+        complete: () => {
+          console.log('done');
+        }
+      });
     }
   }
 

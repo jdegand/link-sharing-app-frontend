@@ -175,3 +175,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/45672235/hide-upload-button-primeng) - hide upload button primeng
 - [Reddit](https://www.reddit.com/r/Angular2/comments/qwt1k9/primeng_pfileupload_reactive_form_approach/?rdt=35579) - primeng file upload reactive form
 - [Stack Overflow](https://stackoverflow.com/questions/50677868/error-ts2339-property-entries-does-not-exist-on-type-formdata) - property entries does not exist on type formData
+- [Stack Overflow](https://stackoverflow.com/questions/55591871/view-blob-response-as-image-in-angular) - view blob response as image in angular
