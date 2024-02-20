@@ -125,11 +125,8 @@ export class LinksComponent implements OnInit {
         complete: () => {
           console.info('complete');
           // navigate to preview or reload page?
-          // use ngOnInit to make api request for users links 
-          // and preload those links
         }
       })
-
     }
   }
 

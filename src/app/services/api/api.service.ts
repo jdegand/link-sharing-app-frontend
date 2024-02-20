@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Link } from '../../interfaces/Link';
-import { Profile } from '../../interfaces/Profile';
 import { RegisterDto } from '../../interfaces/RegisterDto';
 
 @Injectable({
@@ -27,7 +26,7 @@ export class ApiService {
     return this.http.post('http://localhost:8080/links', links)
   }
 
-  postProfile(profile: Profile){
+  postProfile(profile: FormData){
     return this.http.post('http://localhost:8080/profile', profile)
   }
 

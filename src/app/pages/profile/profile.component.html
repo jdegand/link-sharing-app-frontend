@@ -1,15 +1,65 @@
+<p-toast></p-toast>
+<section>
+  <h1>Profile Details</h1>
+  <p>Add your details to create a personal touch to your profile.</p>
+  <br>
+  <form [formGroup]="profileForm" (submit)="onSubmit()">
+    <p-fileUpload name="img" mode="basic" [auto]="false" accept="image/*" [maxFileSize]="1000000"
+      (onSelect)="onFileSelect($event)" chooseLabel="Choose"></p-fileUpload>
+    <br>
+    <label for="firstname">First name</label>
+    <br>
+    <input type="text" pInputText id="firstname" formControlName="firstname" />
+    @if(profileForm.get('firstname')?.touched && profileForm.get('firstname')?.errors?.['required']){
+    <p-message severity="error" text="First Name is required"></p-message>
+    }
+    <br>
+    <label for="lastname">Last name</label>
+    <br>
+    <input type="text" pInputText id="lastname" formControlName="lastname" />
+    @if(profileForm.get('lastname')?.touched && profileForm.get('lastname')?.errors?.['required']){
+    <p-message severity="error" text="Last Name is required"></p-message>
+    }
+    <br>
+    <label for="email">Email</label>
+    <br>
+    <input type="email" pInputText id="email" formControlName="email" />
+    <br>
+    <br>
+    <p-button type="submit">
+      Save
+    </p-button>
+  </form>
+</section>
+
+<!--
+    <h2>Add a profile picture</h2>
+    <div>
+        <p-toast></p-toast>
+        <p-fileUpload chooseLabel="Choose" mode="basic" name="demo[]" (onUpload)="onUpload($event)" [auto]="true" accept="image/*" [maxFileSize]="1000000">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+    </div>   
+-->
+
+<!--
+<p-toast></p-toast>
 <section>
     <h1>Profile Details</h1>
     <p>Add your details to create a personal touch to your profile.</p>
     <br>
-    <div>
-        <p-toast></p-toast>
-        <p-fileUpload #imageForm chooseLabel="Add a Profile Picture" mode="basic" method="post" name="image" url="http://localhost:8080/images"
-            accept="image/*" [maxFileSize]="1000000" (onBeforeUpload)="onBeforeSend" (onUpload)="onUpload($event)" (onError)="onUploadError($event)">
-        </p-fileUpload>
-    </div>
-    <br>
     <form [formGroup]="profileForm" (submit)="onSubmit()">
+        <p-fileUpload mode="basic" name="file" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*"
+            [maxFileSize]="1000000" (onUpload)="onSubmit()" [auto]="false" chooseLabel="Browse"
+            formControlName="abcFile">
+        </p-fileUpload>
+        <span>Form value: {{this.profileForm.value.abcFile?.files ?
+            this.profileForm.value.abcFile?.files[0]?.name : ''}}</span>
+        <br>
         <label for="firstname">First name</label>
         <br>
         <input type="text" pInputText id="firstname" formControlName="firstname" />
@@ -34,17 +84,49 @@
         </p-button>
     </form>
 </section>
+-->
 
 <!--
-    <h2>Add a profile picture</h2>
-    <div>
-        <p-toast></p-toast>
-        <p-fileUpload chooseLabel="Choose" mode="basic" name="demo[]" (onUpload)="onUpload($event)" [auto]="true" accept="image/*" [maxFileSize]="1000000">
-            <ng-template pTemplate="content">
-                <ul *ngIf="uploadedFiles.length">
-                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                </ul>
-            </ng-template>
-        </p-fileUpload>
-    </div>   
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-file-upload-form',
+  templateUrl: './file-upload-form.component.html',
+  styleUrls: ['./file-upload-form.component.css']
+})
+export class FileUploadFormComponent {
+  fileUploadForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.fileUploadForm = this.fb.group({
+      file: [''], // FileUpload control
+      otherInput: [''] // Other input field
+    });
+  }
+
+  onFileSelect(event) {
+    if (event.files.length > 0) {
+      const file = event.files[0];
+      this.fileUploadForm.get('file').setValue(file);
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.fileUploadForm.get('file').value);
+    formData.append('otherInput', this.fileUploadForm.get('otherInput').value);
+
+    // Send formData to server or perform other actions
+  }
+}
+
+<form [formGroup]="fileUploadForm" (ngSubmit)="onSubmit()">
+  <p-fileUpload name="file" (onSelect)="onFileSelect($event)" chooseLabel="Choose"></p-fileUpload>
+  
+  <input type="text" formControlName="otherInput" placeholder="Enter other input">
+  
+  <button type="submit">Submit</button>
+</form>
+
 -->

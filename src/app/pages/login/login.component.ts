@@ -31,19 +31,17 @@ export class LoginComponent {
   });
 
   submit() {
-
     if (this.loginForm.valid) {
-
       this.apiService.login(this.loginForm.value)
         .subscribe({
           next: (response: any) => {
-              console.log('login response', response);
-              this.error = false;
-              localStorage.setItem('token', response.accessToken);
-              localStorage.setItem('refresh-token', response.refreshToken);
-              this.authService.currentUserSig.set(response);
-              console.log('currentUserSignal', this.authService.currentUserSig());
-              this.router.navigate(['/links']); // add fragment or query param here ?
+            console.log('login response', response);
+            this.error = false;
+            localStorage.setItem('token', response.accessToken);
+            localStorage.setItem('refresh-token', response.refreshToken);
+            this.authService.currentUserSig.set(response);
+            console.log('currentUserSignal', this.authService.currentUserSig());
+            this.router.navigate(['/links']); // add fragment or query param here ?
           },
           error: () => {
             this.error = true;

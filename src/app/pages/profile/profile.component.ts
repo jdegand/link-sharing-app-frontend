@@ -49,18 +49,40 @@ export class ProfileComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.email],
+      img: ['']
     });
+  }
+
+  onFileSelect(event: any) {
+    if (event.files.length > 0) {
+      const file = event.files[0];
+      this.profileForm.get('img')?.setValue(file);
+    }
   }
 
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
     if (this.profileForm.valid && this.profileForm.touched) {
       console.log(this.profileForm.value);
+      const formData = new FormData();
+      formData.append('img', this.profileForm.get('img')?.value);
+      formData.append('firstname', this.profileForm.get('firstname')?.value);
+      formData.append('lastname', this.profileForm.get('lastname')?.value);
+      formData.append('email', this.profileForm.get('email')?.value);
+      /*
+      // have to loop to view formData
+      // causes typescript issues
+      for (const value of formData.values()) {
+        console.log(value);
+      }
+      */
       // need to add message service 
-      this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
+      //this.apiService.postProfile(this.profileForm.value).subscribe((res) => console.log(res));
+      this.apiService.postProfile(formData).subscribe((res) => console.log(res));
     }
   }
 
+  /*
   onBeforeSend(event: any) {
     event.xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
   }
@@ -76,5 +98,6 @@ export class ProfileComponent implements OnInit {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: event.error?.message });
     this.imageForm.clear();
   }
+  */
 
 }

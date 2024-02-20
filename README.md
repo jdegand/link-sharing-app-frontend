@@ -1,6 +1,6 @@
 # Link Sharing App Frontend
 
-This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).  I have yet to determine how close I will match the design.  
+This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).  I have yet to determine how close I will match the design.  I have to take some liberties, as the design does not fully account for authentication.  
 
 ## Screenshots
 
@@ -66,6 +66,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into the proper typing for the `ViewChild` variable.
 - Keeping the file data separate affects the mappings between entities.  You can have a `FileData` class and have a `OneToOne` mapping between that and the `User` class.  I have also thought about creating an intermediate `Profile` class and using that class to hold all the necessary data and the mappings.  I have also thought about adding all the mapping references to the `User` object.         
 - Ultimately, the mapping may not matter if I build a `DTO` object to send back the necessary info for the `preview` component.  You can query the database for the required objects and build a DTO that eliminates the need for multiple API requests in the frontend.   
+- `markAllAsTouched` -> good to use to show inline form errors ?
 
 ## Continued Development
 
@@ -83,6 +84,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Preview route -> need to make URL unique
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
 - ViewChild typing
+- Handle failed submit -> need to loop through controls and mark them as touched or dirty
 
 ## Useful Resources
 
@@ -170,3 +172,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/73295132/how-do-i-bind-a-primeng-file-upload-component-to-my-angular-form-control) - how do I bind a primeng file upload component to my angular form control
 - [Stack Blitz](https://stackblitz.com/edit/jhcz9a?file=src%2Fapp%2FFileUploadControlValueAccessor.directive.ts) - FileUploadControlValueAccessor
 - [Stack Overflow](https://stackoverflow.com/questions/41825698/add-custom-headers-before-upload-with-primengs-fileupload-component) - add custom headers before upload
+- [Stack Overflow](https://stackoverflow.com/questions/45672235/hide-upload-button-primeng) - hide upload button primeng
+- [Reddit](https://www.reddit.com/r/Angular2/comments/qwt1k9/primeng_pfileupload_reactive_form_approach/?rdt=35579) - primeng file upload reactive form
+- [Stack Overflow](https://stackoverflow.com/questions/50677868/error-ts2339-property-entries-does-not-exist-on-type-formdata) - property entries does not exist on type formData
