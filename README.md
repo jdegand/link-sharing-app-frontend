@@ -85,6 +85,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
 - ViewChild typing
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
+- JWT expires -> log user out immediately or not ?  There will be prevented from querying more info but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again
 
 ## Useful Resources
 
@@ -176,3 +177,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Reddit](https://www.reddit.com/r/Angular2/comments/qwt1k9/primeng_pfileupload_reactive_form_approach/?rdt=35579) - primeng file upload reactive form
 - [Stack Overflow](https://stackoverflow.com/questions/50677868/error-ts2339-property-entries-does-not-exist-on-type-formdata) - property entries does not exist on type formData
 - [Stack Overflow](https://stackoverflow.com/questions/55591871/view-blob-response-as-image-in-angular) - view blob response as image in angular
+- [Stack Overflow](https://stackoverflow.com/questions/33923985/parameter-is-not-of-type-blob) - parameter is not of type blob
+- [Stack Overflow](https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript) - creating a blob from a base64 string in javascript
+- [Medium](https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03) - how to implement file uploading in angular reactive forms
+- [Stack Overflow](https://stackoverflow.com/questions/7120456/how-to-get-file-type-extension-from-byte-blob) - how to get file type extension from byte blob 

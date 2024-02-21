@@ -34,6 +34,8 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('imageForm') imageForm!: any;
 
+  fileType = '';
+
   ngOnInit() {
 
     /*
@@ -56,23 +58,25 @@ export class ProfileComponent implements OnInit {
   onFileSelect(event: any) {
     if (event.files.length === 1) {
       const file = event.files[0];
+      console.log('file', file);
+      this.fileType = file.type;
       this.profileForm.get('file')?.setValue(file);
     }
   }
 
   onSubmit() {
-    // valid is not enough when you pre-fill all the inputs
-    if (this.profileForm.valid && this.profileForm.touched) {
+    if (this.profileForm.valid) {
       const formData = new FormData();
       
       formData.append('file', this.profileForm.get('file')?.value); 
       formData.append('firstname', this.profileForm.get('firstname')?.value);
       formData.append('lastname', this.profileForm.get('lastname')?.value);
       formData.append('email', this.profileForm.get('email')?.value);
+      formData.append('fileType', this.fileType);
       /*
       // have to loop to view formData
       // causes typescript issues
-      //@ts-ignore
+      // @ts-ignore
       for (const value of formData.values()) {
         console.log('value',value);
       }
