@@ -1,4 +1,6 @@
 <section>
     <p>Preview works!</p>
-    <img [src]="image" alt="" width="200" height="200">
+    @if(image){
+        <img [src]="image" alt="" width="200" height="200">
+    }
 </section>

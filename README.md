@@ -85,7 +85,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
 - ViewChild typing
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
-- JWT expires -> log user out immediately or not ?  There will be prevented from querying more info but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again
+- JWT expires -> log user out immediately or not ?  User will be prevented from querying for more info, but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again.
 
 ## Useful Resources
 
@@ -181,3 +181,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript) - creating a blob from a base64 string in javascript
 - [Medium](https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03) - how to implement file uploading in angular reactive forms
 - [Stack Overflow](https://stackoverflow.com/questions/7120456/how-to-get-file-type-extension-from-byte-blob) - how to get file type extension from byte blob 
+- [Stack Overflow](https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2) - change route params without reloading

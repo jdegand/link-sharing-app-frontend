@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
+import { PostProfile } from '../../interfaces/PostProfile';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +35,7 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('imageForm') imageForm!: any;
 
-  fileType = '';
+  #fileType = '';
 
   ngOnInit() {
 
@@ -58,8 +59,7 @@ export class ProfileComponent implements OnInit {
   onFileSelect(event: any) {
     if (event.files.length === 1) {
       const file = event.files[0];
-      console.log('file', file);
-      this.fileType = file.type;
+      this.#fileType = file.type;
       this.profileForm.get('file')?.setValue(file);
     }
   }
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
       formData.append('firstname', this.profileForm.get('firstname')?.value);
       formData.append('lastname', this.profileForm.get('lastname')?.value);
       formData.append('email', this.profileForm.get('email')?.value);
-      formData.append('fileType', this.fileType);
+      formData.append('fileType', this.#fileType);
       /*
       // have to loop to view formData
       // causes typescript issues
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
       */
 
       this.apiService.postProfile(formData).subscribe({
-        next: (response: any) => {
+        next: (response: PostProfile) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
         },
         error: (err: any) => {
