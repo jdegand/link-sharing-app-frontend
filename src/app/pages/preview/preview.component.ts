@@ -3,6 +3,7 @@ import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { ApiService } from '../../services/api/api.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { UserInfoDto } from '../../interfaces/UserInfoDto';
 
 @Component({
   selector: 'app-preview',
@@ -33,8 +34,8 @@ export class PreviewComponent implements OnInit {
       this.router.navigate(['/preview'], { queryParams: { user: decodedToken.sub.split('@')[0] } });
 
       this.apiService.getUser(decodedToken.sub).subscribe({
-        next: (response: any) => {
-          console.log('response', response);
+        next: (response: UserInfoDto) => {
+          console.log('UserInfoDto response', response);
           this.image = `data:${response.profile.fileType};base64,` + response.profile.img;
         },
         error: (err: any) => {

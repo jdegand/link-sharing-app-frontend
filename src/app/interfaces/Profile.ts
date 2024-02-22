@@ -2,6 +2,6 @@ export interface Profile {
     firstname: string;
     lastname: string;
     email: string;
-    file: File;
+    img: File;
     fileType: string;
 }

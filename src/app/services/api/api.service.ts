@@ -3,6 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { Link } from '../../interfaces/Link';
 import { RegisterDto } from '../../interfaces/RegisterDto';
 import { PostProfile } from '../../interfaces/PostProfile';
+import { UserInfoDto } from '../../interfaces/UserInfoDto';
+import { AuthRequest } from '../../interfaces/AuthRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +17,16 @@ export class ApiService {
     return this.http.post('http://localhost:8080/users/new', payload);
   }
 
-  login(payload: any) {
+  login(payload: AuthRequest) {
     return this.http.post('http://localhost:8080/auth/authenticate', payload);
   }
 
-  getUser(email: any) {
-    return this.http.get(`http://localhost:8080/users/email/${email}`);
+  getUser(email: string) {
+    return this.http.get<UserInfoDto>(`http://localhost:8080/users/email/${email}`);
   }
 
   postLinks(links: Link[]){
-    return this.http.post('http://localhost:8080/links', links)
+    return this.http.post<Link[]>('http://localhost:8080/links', links)
   }
 
   postProfile(profile: FormData){

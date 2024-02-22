@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ApiService } from '../../services/api/api.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { Link } from '../../interfaces/Link';
 
 @Component({
   selector: 'app-home',
@@ -113,10 +114,13 @@ export class LinksComponent implements OnInit {
     if (this.linksForm.valid && this.linksForm.touched) {
       this.loading = true;
       this.apiService.postLinks(this.linksForm.value.links).subscribe({
-        next: (res: any) => { // Response object
-          console.log('api post response', res);
+        next: (res: Link[]) => { 
           this.loading = false;
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link(s) saved' }); // conditional to check link length
+          if(res.length >= 2 ){
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Links saved' }); 
+          } else {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link saved' }); 
+          }
         },
         error: (err: any) => {
           this.loading = false;
