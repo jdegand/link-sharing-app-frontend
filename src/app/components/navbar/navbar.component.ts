@@ -3,7 +3,6 @@ import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-//import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,26 +13,13 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   authService = inject(AuthService);
-  //jwtService = inject(JwtDecoderService);
   router = inject(Router);
 
   items: MenuItem[] = [];
-  //email = '';
 
   constructor() {
-
-    /*
-    const accessToken = this.authService.currentUserSig()?.accessToken;
-    if(accessToken){
-      const decodedToken = this.jwtService.decodeToken(accessToken);
-      //this.email = decodedToken.sub;
-      //console.log('split', decodedToken.sub.split('@')[0])
-    }
-    */
-
     effect(() => {
-
-      if (this.authService.currentUserSig()) { 
+      if (this.authService.currentUserSig()) {
         this.items = [
           {
             label: 'Profile Details',
@@ -49,7 +35,6 @@ export class NavbarComponent {
             label: 'Preview',
             icon: 'pi pi-eye',
             routerLink: '/preview',
-            //queryParams: {user: this.email}
           },
           {
             label: 'Logout',

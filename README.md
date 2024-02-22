@@ -40,11 +40,11 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - To fix this label issue, I may have to refactor again.  
 - In Chrome, the error choice is `incorrect label use` or `no label associated with a form field`.
 - I used the [Messages Module](https://primeng.org/messages) to show inline errors on the forms.   
-- `visible` in the menubar does not update from state changes.  It appears to have been only evaluated once.  I have a correct conditional statement and the `logout` link's visibility does not change.  
+- `visible` in the menubar does not update from state changes.  It appears to have been only evaluated once.  I have a correct conditional statement, and the `logout` link's visibility does not change.  
 - Is it best to localize the navbar per page versus adding it once to the `app` component?  This strategy would lead to duplicated code.
 - `primeng` has a design philosophy to minimize conditionals in templates.    
 - One strategy I have seen for primeng navbars is to use `ngIf` to conditionally render them.  Basically, you show no menubar when unauthenticated.  I searched Github, and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
-- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made sense and I was able to toggle menu items.   
+- Ultimately, I used a `computed` signal to update the menu items.  Since I am using a signal for the auth state, this made sense, and I was able to toggle menu items.   
 - Signals and guards are a problematic combination.  If you change the signal to an observable, you create a memory leak.  See [Github](https://github.com/angular/angular/issues/51280) for more.  
 - Checking signals with conditionals in templates is problematic.  See [Github](https://github.com/angular/angular/issues/49161) for more.
 - Creating a simple guard to prevent a user from visiting `login` and `register` when authenticated has been difficult.
@@ -52,19 +52,19 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Instead of using a guard for the `register` and `login` pages, I can check for the auth signal in the constructor and redirect if the auth signal is not `undefined`.  I got the idea from looking at this [Github project](https://github.com/joshuamorony/angularstart-chat/blob/main/src/app/auth/login/login.component.ts).
 - Since auth signal is only saved in memory, a refresh or typing a URL erases the signal state.  By persisting the auth signal, you can add a guard to `register` and `login`.  A user visits the routes but sees nothing on the page besides the navbar.     
 - Using a signal for authentication state is a [new strategy](https://www.youtube.com/watch?v=R8a8ituFkls). See this [video](https://www.youtube.com/watch?v=foUS5JlDlCs) for how signals and RxJs can work together for authentication.  
-- An implementation choice between including the profile image inside the other form or having the image inside another form.  If it is separate, you would potentially need to make multiple api requests for the preview page. 
+- An implementation choice between including the profile image inside the other form or having the image inside another form.  If it is separate, you would potentially need to make multiple API requests for the preview page. 
 - Primeng file upload doesn't appear to need to be inside a form.  You can complete the upload with an async function or use the `url` action. 
-- `computed` menubar fragments can be missing on navigation.  I can use `visible` to have the links add when the fragment is available.  I would have no routes visible, as I wanted to add a fragment to every route I have.   
+- `computed` menubar fragments can be missing on navigation.  I can use `visible` to have the links added when the fragment is available.  I would have no routes visible, as I wanted to add a fragment to every route I have.   
 - I don't think the fragments are `recomputed` inside `computed` or `effect`.  See this [Stack Overflow](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals).
 - I changed to use `effect` in the navbar component.  `computed` is not intended to have conditionals.     
-- When you first login from the [realworld API](https://realworld-docs.netlify.app/docs/specs/frontend-specs/api), the response doesn't have an `id`.  I changed the fragment to `username`.  The fragment is missing on the `links` page only (the first navigation).  It doesn't matter what route you navigate to, the fragment will not be added to *any* route on first navigation.  I guess I need to read the signal inside the submit functions and add the user `id` to the payload.  I can use fragment on other routes.  
-- I may replace my use of signals for auth state and use an Observable approach instead.  
+- When you first login from the [realworld API](https://realworld-docs.netlify.app/docs/specs/frontend-specs/api), the response doesn't have an `id`.  I changed the fragment to `username`.  The fragment is missing on the `links` page only (the first navigation).  It doesn't matter what route you navigate to, the fragment will not be added to *any* route on first navigation.  I guess I need to read the signal inside the submit functions and add the user `id` to the payload.  I can use `fragment` on other routes.  
+- I may replace my use of signals for the auth state and use an Observable approach instead.  
 - I could try to localize the menubars on each page again.  
 - I used [FileUpload](https://primeng.org/fileupload) to save a profile picture.  
-- I did not add the `FileUpload` to the existing form.  It is separate.  I used the `url` action to send the file to the backend.  I used the `onUpload` and `onError` methods to handle successful and unsuccessful API responses.  
+- I did not add the `FileUpload` component to the existing form.  It is separate.  I used the `url` action to send the file to the backend.  I used the `onUpload` and `onError` methods to handle successful and unsuccessful API responses.  
 - I ran into a problem where the input did not clear the file name and allow for other requests.  The `FileUpload` does not take multiple files, but a user should be able to change profile pictures, as often as they'd like.  On the backend, I may have to look into adding a function that removes `orphan` images that are not tied to any user account.
-- To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into the proper typing for the `ViewChild` variable.
-- Keeping the file data separate affects the mappings between entities.  You can have a `FileData` class and have a `OneToOne` mapping between that and the `User` class.  I have also thought about creating an intermediate `Profile` class and using that class to hold all the necessary data and the mappings.  I have also thought about adding all the mapping references to the `User` object.         
+- To reset the file input, I used a `ViewChild` ref.  I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work, although the file was correctly saved.  `ViewChild` was an easy way to grab the template variable, and I could call the `clear` method on the `ViewChild` variable.  I had to use `any` for the TypeScript type.  I will need to look more into the proper typing for the `ViewChild` variable.
+- Keeping the file data separate affects the mappings between entities.  You can have a `FileData` class and a `OneToOne` mapping between that and the `User` class.  I have also thought about creating an intermediate `Profile` class and using that class to hold all the necessary data and the mappings.  I have also thought about adding all the mapping references to the `User` object.         
 - Ultimately, the mapping may not matter if I build a `DTO` object to send back the necessary info for the `preview` component.  You can query the database for the required objects and build a DTO that eliminates the need for multiple API requests in the frontend.   
 - `markAllAsTouched` -> good to use to show inline form errors ?
 
@@ -76,12 +76,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Styling
 - Drag and Drop functionality on Preview page
 - When to send the API request -> have to save the links array when order of links changes
-- Authentication
-- Services & Interceptors
-- Spring Boot Backend
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
-- Preview route -> need to make URL unique
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
 - ViewChild typing
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty

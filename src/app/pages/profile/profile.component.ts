@@ -38,16 +38,6 @@ export class ProfileComponent implements OnInit {
   #fileType = '';
 
   ngOnInit() {
-
-    /*
-    const accessToken = this.authService.currentUserSig()?.accessToken;
-
-    if(accessToken){
-      const decodedToken = this.jwtService.decodeToken(accessToken);
-      console.log('token sub', decodedToken.sub);
-    }
-    */
-
     this.profileForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -67,8 +57,7 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       const formData = new FormData();
-      
-      formData.append('file', this.profileForm.get('file')?.value); 
+      formData.append('file', this.profileForm.get('file')?.value);
       formData.append('firstname', this.profileForm.get('firstname')?.value);
       formData.append('lastname', this.profileForm.get('lastname')?.value);
       formData.append('email', this.profileForm.get('email')?.value);
@@ -95,23 +84,5 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
-
-  /*
-  onBeforeSend(event: any) {
-    event.xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
-  }
-
-  onUpload(event: FileUploadEvent) {
-    // https://github.com/primefaces/primeng/issues/4018
-
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Image uploaded' });
-    this.imageForm.clear();
-  }
-
-  onUploadError(event: FileUploadErrorEvent) {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: event.error?.message });
-    this.imageForm.clear();
-  }
-  */
 
 }
