@@ -5,6 +5,7 @@ import { RegisterDto } from '../../interfaces/RegisterDto';
 import { PostProfile } from '../../interfaces/PostProfile';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { AuthRequest } from '../../interfaces/AuthRequest';
+import { AuthResponse } from '../../interfaces/AuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ApiService {
   }
 
   login(payload: AuthRequest) {
-    return this.http.post('http://localhost:8080/auth/authenticate', payload);
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/authenticate', payload);
   }
 
   getUser(email: string) {

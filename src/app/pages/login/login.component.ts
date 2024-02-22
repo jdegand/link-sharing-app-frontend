@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
+import { AuthResponse } from '../../interfaces/AuthResponse';
 
 @Component({
   selector: 'app-login',
@@ -34,13 +35,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.apiService.login(this.loginForm.value)
         .subscribe({
-          next: (response: any) => {
-            console.log('login response', response);
+          next: (response: AuthResponse) => {
             this.error = false;
             localStorage.setItem('token', response.accessToken);
             localStorage.setItem('refresh-token', response.refreshToken);
             this.authService.currentUserSig.set(response);
-            console.log('currentUserSignal', this.authService.currentUserSig());
             this.router.navigate(['/links']); // add fragment or query param here ?
           },
           error: () => {
