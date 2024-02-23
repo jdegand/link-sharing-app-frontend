@@ -15,7 +15,7 @@ export class ApiService {
   http = inject(HttpClient);
 
   register(payload: RegisterDto) {
-    return this.http.post('http://localhost:8080/users/new', payload);
+    return this.http.post<Partial<UserInfoDto>>('http://localhost:8080/users/new', payload);
   }
 
   login(payload: AuthRequest) {

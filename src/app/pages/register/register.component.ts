@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
+import { UserInfoDto } from '../../interfaces/UserInfoDto';
 
 @Component({
   selector: 'app-register',
@@ -37,10 +38,9 @@ export class RegisterComponent {
   submit() {
     if (this.registerForm.valid) {
       this.apiService.register(this.registerForm.value).subscribe({
-        next: (response: any) => {
-          console.log('response', response);
+        next: (response: Partial<UserInfoDto>) => {
           this.success = true;
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.username + ' Registered' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.username + ' registered' });
         },
         error: (err: any) => {
           this.success = false;
