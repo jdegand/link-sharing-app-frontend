@@ -2,13 +2,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { ApiService } from '../../services/api/api.service';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 
 @Component({
   selector: 'app-preview',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   providers: [MessageService],
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.css'
@@ -19,7 +19,8 @@ export class PreviewComponent implements OnInit {
   messageService = inject(MessageService);
   router = inject(Router);
 
-  image: any = undefined;
+  //image = '';
+  userInfo!:UserInfoDto;
 
   ngOnInit() {
     const token = localStorage.getItem("token");
@@ -35,8 +36,9 @@ export class PreviewComponent implements OnInit {
 
       this.apiService.getUser(decodedToken.sub).subscribe({
         next: (response: UserInfoDto) => {
-          console.log('UserInfoDto response', response);
-          this.image = `data:${response.profile.fileType};base64,` + response.profile.img;
+          // don't need to set image separately -> added to src in the template
+          // this.image = `data:${response.profile.fileType};base64,` + response.profile.img;
+          this.userInfo = response;
         },
         error: (err: any) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile retrieval failed' });

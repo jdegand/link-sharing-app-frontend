@@ -178,3 +178,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Medium](https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03) - how to implement file uploading in angular reactive forms
 - [Stack Overflow](https://stackoverflow.com/questions/7120456/how-to-get-file-type-extension-from-byte-blob) - how to get file type extension from byte blob 
 - [Stack Overflow](https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2) - change route params without reloading
+- [Stack Overflow](https://stackoverflow.com/questions/47057696/how-to-use-es6-template-literal-as-angular-component-input) - es6 template literal as angular component input
