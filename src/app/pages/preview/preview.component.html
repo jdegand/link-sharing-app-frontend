@@ -24,31 +24,3 @@
     <p>Please complete your <a routerLink="/profile">profile</a>.</p>
     }
 </section>
-
-<!--
-<section>
-    @if(image){
-    <img [src]="image" alt="" width="200" height="200">
-}
-@if(userInfo){
-<h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>
-<p>{{userInfo.profile.email}}</p>
-@for (link of userInfo.links; track link.id) {
-<div>
-    <span class="pi pi-{{link.platform}}"></span>
-    <span>
-        &nbsp;
-        {{ link.platform }}
-        &nbsp;
-    </span>
-    <a target="_blank" href={{link.url}}>
-        <span class="pi pi-arrow-right"></span>
-    </a>
-</div>
-}
-}
-@if(!userInfo) {
-<p>Please complete your <a routerLink="/profile">profile</a>.</p>
-}
-</section>
--->

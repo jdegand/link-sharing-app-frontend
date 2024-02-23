@@ -19,7 +19,6 @@ export class PreviewComponent implements OnInit {
   messageService = inject(MessageService);
   router = inject(Router);
 
-  //image = '';
   userInfo!:UserInfoDto;
 
   ngOnInit() {
@@ -36,8 +35,6 @@ export class PreviewComponent implements OnInit {
 
       this.apiService.getUser(decodedToken.sub).subscribe({
         next: (response: UserInfoDto) => {
-          // don't need to set image separately -> added to src in the template
-          // this.image = `data:${response.profile.fileType};base64,` + response.profile.img;
           this.userInfo = response;
         },
         error: (err: any) => {
