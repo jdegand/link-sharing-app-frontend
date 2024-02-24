@@ -26,7 +26,7 @@ export class LinksComponent implements OnInit {
   linksForm: FormGroup;
   link: FormArray;
   platforms: Options[] = [];
-  loading: boolean = false;
+  loading = false;
 
   count = signal(2);
 

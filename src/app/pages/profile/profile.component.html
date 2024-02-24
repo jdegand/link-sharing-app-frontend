@@ -26,8 +26,6 @@
     <input type="email" pInputText id="email" formControlName="email" />
     <br>
     <br>
-    <p-button type="submit">
-      Save
-    </p-button>
+    <p-button [loading]="loading" type="submit" label="save"></p-button>
   </form>
 </section>

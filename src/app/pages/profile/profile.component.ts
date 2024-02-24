@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('imageForm') imageForm!: any;
 
   #fileType = '';
+  loading = false;
 
   ngOnInit() {
     this.profileForm = this.fb.group({
@@ -70,12 +71,16 @@ export class ProfileComponent implements OnInit {
         console.log('value',value);
       }
       */
+      this.loading = true;
 
       this.apiService.postProfile(formData).subscribe({
         next: (response: PostProfile) => {
+          this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
+          // reset the form & make file blank
         },
         error: (err: any) => {
+          this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
         },
         complete: () => {
