@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
-import { UserResponse } from '../../interfaces/UserResponse';
+import { AuthResponse } from '../../interfaces/AuthResponse';
 
 @Component({
   selector: 'app-login',
@@ -32,21 +32,22 @@ export class LoginComponent {
   });
 
   submit() {
-    this.apiService.login(this.loginForm.value)
-      .subscribe({
-        next: (response: Partial<UserResponse>) => {
-          if(response.user){
+    if (this.loginForm.valid) {
+      this.apiService.login(this.loginForm.value)
+        .subscribe({
+          next: (response: AuthResponse) => {
             this.error = false;
-            localStorage.setItem('token', response.user.token);
-            this.authService.currentUserSig.set(response.user);
-            this.router.navigateByUrl('/links'); //navigate vs navigateByUrl
-          }
-        },
-        error: () => {
-          this.error = true;
-          this.authService.currentUserSig.set(null);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });
-        },
-      })
+            localStorage.setItem('token', response.accessToken);
+            localStorage.setItem('refresh-token', response.refreshToken);
+            this.authService.currentUserSig.set(response);
+            this.router.navigate(['/links']); // add fragment or query param here ?
+          },
+          error: () => {
+            this.error = true;
+            this.authService.currentUserSig.set(undefined);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials' });
+          },
+        })
+    }
   }
 }

@@ -1,24 +1,32 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { Options } from '../../interfaces/Options';
 import { AuthService } from '../../services/auth/auth.service';
+import { ApiService } from '../../services/api/api.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { Link } from '../../interfaces/Link';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor, NgIf, CommonModule, ReactiveFormsModule, DropdownModule, ButtonModule, InputTextModule],
+  imports: [NgFor, NgIf, CommonModule, ReactiveFormsModule, DropdownModule, ButtonModule, InputTextModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './links.component.html',
   styleUrl: './links.component.css'
 })
 
 export class LinksComponent implements OnInit {
-  form: FormGroup;
+  apiService = inject(ApiService);
+  messageService = inject(MessageService);
+  linksForm: FormGroup;
   link: FormArray;
   platforms: Options[] = [];
+  loading: boolean = false;
 
   count = signal(2);
 
@@ -26,10 +34,10 @@ export class LinksComponent implements OnInit {
   #REGEX = '(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?\/[a-zA-Z0-9]{2,}';
 
   constructor(private fb: FormBuilder, public authService: AuthService) {
-    this.form = this.fb.group({
+    this.linksForm = this.fb.group({
       links: this.fb.array([]),
     });
-    this.link = this.form.get('links') as FormArray
+    this.link = this.linksForm.get('links') as FormArray
     this.platforms = [
       { label: 'Github', value: 'github' }, // need value lowercase for the icon
       { label: 'YouTube', value: 'youtube' },
@@ -60,7 +68,7 @@ export class LinksComponent implements OnInit {
   }
 
   get links() {
-    return this.form.controls['links'] as FormArray;
+    return this.linksForm.controls['links'] as FormArray;
   }
 
   private customValidator() {
@@ -103,8 +111,26 @@ export class LinksComponent implements OnInit {
 
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
-    if (this.form.valid && this.form.touched) {
-      console.log(this.form)
+    if (this.linksForm.valid && this.linksForm.touched) {
+      this.loading = true;
+      this.apiService.postLinks(this.linksForm.value.links).subscribe({
+        next: (res: Link[]) => { 
+          this.loading = false;
+          if(res.length >= 2 ){
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Links saved' }); 
+          } else {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link saved' }); 
+          }
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
+        },
+        complete: () => {
+          console.info('complete');
+          // navigate to preview or reload page?
+        }
+      })
     }
   }
 

@@ -7,7 +7,7 @@ export const CanActivate = () => {
     const authService = inject(AuthService);
     const router = inject(Router);
 
-    if (authService.currentUserSig()?.token) {
+    if (authService.currentUserSig()?.accessToken) {
         return true;
     } else {
         router.navigate(['/login']);

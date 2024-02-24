@@ -1,8 +1,9 @@
+<p-toast></p-toast>
 <section>
     <h1>Customize your links</h1>
     <p>Add/edit/remove links below and then share all your profiles with the world!</p>
 </section>
-<form [formGroup]="form" (submit)="onSubmit()">
+<form [formGroup]="linksForm" (submit)="onSubmit()">
     <p-button type="button" [outlined]="true" severity="secondary" (click)="addLink()" [disabled]="count() === 6">+Add
         New Link</p-button>
     <br>
@@ -42,5 +43,5 @@
             }
         </ng-container>
     </div>
-    <p-button type="submit" label="Submit"></p-button>
+    <p-button [loading]="loading" type="submit" label="Submit"></p-button>
 </form>

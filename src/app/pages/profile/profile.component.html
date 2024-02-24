@@ -1,33 +1,33 @@
+<p-toast></p-toast>
 <section>
-    <h1>Profile Details</h1>
-    <p>Add your details to create a personal touch to your profile.</p>
+  <h1>Profile Details</h1>
+  <p>Add your details to create a personal touch to your profile.</p>
+  <br>
+  <form [formGroup]="profileForm" (submit)="onSubmit()">
+    <p-fileUpload name="file" mode="basic" [auto]="false" accept="image/*" [maxFileSize]="1000000"
+      (onSelect)="onFileSelect($event)" chooseLabel="Choose"></p-fileUpload>
     <br>
-    <form [formGroup]="profileForm" (submit)="onSubmit()">
-        <label for="image">Image</label>
-        <br>
-        <input type="text" pInputText id="image" formControlName="image" placeholder="Add an image url" />
-        <br>
-        <label for="firstname">First name</label>
-        <br>
-        <input type="text" pInputText id="firstname" formControlName="firstname" />
-        @if(profileForm.get('firstname')?.touched && profileForm.get('firstname')?.errors?.['required']){
-        <p-message severity="error" text="First Name is required"></p-message>
-        }
-        <br>
-        <label for="lastname">Last name</label>
-        <br>
-        <input type="text" pInputText id="lastname" formControlName="lastname" />
-        @if(profileForm.get('lastname')?.touched && profileForm.get('lastname')?.errors?.['required']){
-        <p-message severity="error" text="Last Name is required"></p-message>
-        }
-        <br>
-        <label for="email">Email</label>
-        <br>
-        <input type="email" pInputText id="email" formControlName="email" />
-        <br>
-        <br>
-        <p-button type="submit">
-            Save
-        </p-button>
-    </form>
+    <label for="firstname">First name</label>
+    <br>
+    <input type="text" pInputText id="firstname" formControlName="firstname" />
+    @if(profileForm.get('firstname')?.touched && profileForm.get('firstname')?.errors?.['required']){
+    <p-message severity="error" text="First Name is required"></p-message>
+    }
+    <br>
+    <label for="lastname">Last name</label>
+    <br>
+    <input type="text" pInputText id="lastname" formControlName="lastname" />
+    @if(profileForm.get('lastname')?.touched && profileForm.get('lastname')?.errors?.['required']){
+    <p-message severity="error" text="Last Name is required"></p-message>
+    }
+    <br>
+    <label for="email">Email</label>
+    <br>
+    <input type="email" pInputText id="email" formControlName="email" />
+    <br>
+    <br>
+    <p-button type="submit">
+      Save
+    </p-button>
+  </form>
 </section>

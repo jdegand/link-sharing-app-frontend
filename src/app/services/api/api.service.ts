@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { UserInterface } from '../../interfaces/UserInterface';
+import { Link } from '../../interfaces/Link';
+import { RegisterDto } from '../../interfaces/RegisterDto';
+import { PostProfile } from '../../interfaces/PostProfile';
+import { UserInfoDto } from '../../interfaces/UserInfoDto';
+import { AuthRequest } from '../../interfaces/AuthRequest';
+import { AuthResponse } from '../../interfaces/AuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +14,24 @@ export class ApiService {
 
   http = inject(HttpClient);
 
-  register(payload: UserInterface) {
-    return this.http.post('https://api.realworld.io/api/users', {
-      user: payload,
-    })
+  register(payload: RegisterDto) {
+    return this.http.post<Partial<UserInfoDto>>('http://localhost:8080/users/new', payload);
   }
 
-  login(payload: Partial<UserInterface>) {
-    return this.http.post('https://api.realworld.io/api/users/login', {
-      user: payload,
-    })
+  login(payload: AuthRequest) {
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/authenticate', payload);
   }
 
-  getUser(){
-    return this.http.get<{ user: UserInterface }>('https://api.realworld.io/api/user')
+  getUser(email: string) {
+    return this.http.get<UserInfoDto>(`http://localhost:8080/users/email/${email}`);
   }
 
+  postLinks(links: Link[]){
+    return this.http.post<Link[]>('http://localhost:8080/links', links)
+  }
+
+  postProfile(profile: FormData){
+    return this.http.post<PostProfile>('http://localhost:8080/profile', profile)
+  }
 
 }
