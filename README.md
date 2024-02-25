@@ -67,6 +67,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Keeping the file data separate affects the mappings between entities.  You can have a `FileData` class and a `OneToOne` mapping between that and the `User` class.  I have also thought about creating an intermediate `Profile` class and using that class to hold all the necessary data and the mappings.  I have also thought about adding all the mapping references to the `User` object.         
 - Ultimately, the mapping may not matter if I build a `DTO` object to send back the necessary info for the `preview` component.  You can query the database for the required objects and build a DTO that eliminates the need for multiple API requests in the frontend.   
 - `markAllAsTouched` -> good to use to show inline form errors ?
+- Prime Ng does not have a `Clipboard` component like Angular Material.
 
 ## Continued Development
 

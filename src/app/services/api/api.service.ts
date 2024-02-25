@@ -26,12 +26,16 @@ export class ApiService {
     return this.http.get<UserInfoDto>(`http://localhost:8080/users/email/${email}`);
   }
 
-  postLinks(links: Link[]){
+  postLinks(links: Link[]) {
     return this.http.post<Link[]>('http://localhost:8080/links', links)
   }
 
-  postProfile(profile: FormData){
+  postProfile(profile: FormData) {
     return this.http.post<PostProfile>('http://localhost:8080/profile', profile)
+  }
+
+  getUserByUsernameAndId(username: string, id: number) {
+    return this.http.get<UserInfoDto>(`http://localhost:8080/users/username/${username}/id/${id}`);
   }
 
 }

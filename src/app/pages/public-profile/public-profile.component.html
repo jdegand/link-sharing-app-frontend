@@ -1,0 +1,28 @@
+<!-- Need to fix logic here -->
+<section>
+    @if(userInfo){
+    @if(userInfo.profile.img){
+    <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
+        height="200"><!-- add object-fit, border,& border-radius -->
+    }
+    <h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>
+    <p>{{userInfo.profile.email}}</p>
+    @for (link of userInfo.links; track link.id) {
+    <div>
+        <span class="pi pi-{{link.platform}}"></span>
+        <span>
+            &nbsp;
+            {{ link.platform }}
+            &nbsp;
+        </span>
+        <a target="_blank" href={{link.url}}>
+            <span class="pi pi-arrow-right"></span>
+        </a>
+    </div>
+    }
+    }
+    @if(!userInfo) {
+    <p>No user with that username and id.</p>
+    }
+    <p>loading is {{loading}}</p>
+</section>

@@ -5,6 +5,11 @@ import { MessageService } from 'primeng/api';
 import { Router, RouterLink } from '@angular/router';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 
+// This component can have the drop and drag functionality for the links
+// Need to have token for api request to get userInfo
+// duplicated component into public profile component
+// using that component to display the public profile
+
 @Component({
   selector: 'app-preview',
   standalone: true,
@@ -19,7 +24,7 @@ export class PreviewComponent implements OnInit {
   messageService = inject(MessageService);
   router = inject(Router);
 
-  userInfo!:UserInfoDto;
+  userInfo!: UserInfoDto;
 
   ngOnInit() {
     const token = localStorage.getItem("token");
@@ -36,7 +41,7 @@ export class PreviewComponent implements OnInit {
       this.apiService.getUser(decodedToken.sub).subscribe({
         next: (response: UserInfoDto) => {
           this.userInfo = response;
-          this.router.navigate(['/preview'], { queryParams: { user: this.userInfo.username, id: this.userInfo.id } });
+          //this.router.navigate(['/preview'], { queryParams: { user: this.userInfo.username, id: this.userInfo.id } });
         },
         error: (err: any) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile retrieval failed' });

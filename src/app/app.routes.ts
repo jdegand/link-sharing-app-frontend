@@ -23,6 +23,10 @@ export const routes: Routes = [
         path: 'links', title: 'primelinks', canActivate: [CanActivate], loadComponent: () =>
             import('./pages/links/links.component').then((m) => m.LinksComponent)
     },
+    {
+        path: 'public/:username/:userId', title: 'Public Profile', loadComponent: () =>
+            import('./pages/public-profile/public-profile.component').then((m) => m.PublicProfileComponent)
+    },
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
         path: '**', title: '404 Not Found', loadComponent: () =>
