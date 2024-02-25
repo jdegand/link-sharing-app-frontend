@@ -1,5 +1,5 @@
+@if(userInfo){
 <section>
-    @if(userInfo){
     @if(userInfo.profile.img){
     <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
         height="200"><!-- add object-fit, border,& border-radius -->
@@ -19,8 +19,10 @@
         </a>
     </div>
     }
-    }
-    @if(!userInfo) {
-    <p>Please complete your <a routerLink="/profile">profile</a>.</p>
-    }
 </section>
+}
+@if(!userInfo) {
+<section>
+    <p>Please complete your <a routerLink="/profile">profile</a>.</p>
+</section>
+}

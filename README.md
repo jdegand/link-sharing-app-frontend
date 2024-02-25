@@ -67,7 +67,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Keeping the file data separate affects the mappings between entities.  You can have a `FileData` class and a `OneToOne` mapping between that and the `User` class.  I have also thought about creating an intermediate `Profile` class and using that class to hold all the necessary data and the mappings.  I have also thought about adding all the mapping references to the `User` object.         
 - Ultimately, the mapping may not matter if I build a `DTO` object to send back the necessary info for the `preview` component.  You can query the database for the required objects and build a DTO that eliminates the need for multiple API requests in the frontend.   
 - `markAllAsTouched` -> good to use to show inline form errors ?
-- Prime Ng does not have a `Clipboard` component like Angular Material.
+- Prime Ng does not have a `Clipboard` component.  [Angular Material CDK](https://material.angular.io/cdk/clipboard/overview) has a clipboard directive.  In lieu of adding that dependency, I have looked into using the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).  The clipboard API can be blocked by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) if you don't use the clipboard API in conjunction with a user click.  
 
 ## Continued Development
 
@@ -76,7 +76,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Dark Mode added to Navbar
 - Styling
 - Drag and Drop functionality on Preview page
-- When to send the API request -> have to save the links array when order of links changes
+- When to send the API request -> have to save the links array when order of links changes -> add another button?
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
 - Use copy-to-clipboard functionality for sharing the preview link -> directive?
@@ -180,3 +180,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/7120456/how-to-get-file-type-extension-from-byte-blob) - how to get file type extension from byte blob 
 - [Stack Overflow](https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2) - change route params without reloading
 - [Stack Overflow](https://stackoverflow.com/questions/47057696/how-to-use-es6-template-literal-as-angular-component-input) - es6 template literal as angular component input
+- [Stack Blitz](https://stackblitz.com/edit/angular-clipboard-example?file=src%2Fapp%2Fapp.component.ts) - Clipboard API and Angular
+- [Stack Overflow](https://stackoverflow.com/questions/60581285/execcommand-is-now-obsolete-whats-the-alternative) - execCommand is now obsolete whats the alternative (there is none.)

@@ -1,6 +1,5 @@
-<!-- Need to fix logic here -->
+@if(userInfo){
 <section>
-    @if(userInfo){
     @if(userInfo.profile.img){
     <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
         height="200"><!-- add object-fit, border,& border-radius -->
@@ -20,9 +19,11 @@
         </a>
     </div>
     }
-    }
-    @if(!userInfo) {
-    <p>No user with that username and id.</p>
-    }
-    <p>loading is {{loading}}</p>
 </section>
+}
+@if(!userInfo) {
+<section>
+    <h1>The profile you're looking for does not exist.</h1>
+    <p>Want your own profile?&nbsp;<a routerLink="/register">Register and create your devlinks now.</a></p>
+</section>
+}

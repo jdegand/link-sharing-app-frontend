@@ -31,19 +31,11 @@ export class PreviewComponent implements OnInit {
     if (token) {
       const decodedToken = this.jwtService.decodeToken(token);
 
-      // could make another api request for username info
-      // and add that to the url
-      // or change backend response -> need to query user from database -> and add that to the JWT Response
-      // adding router to append to the url is a viable approach since the menubar is not really responsive 
-      // to changes (effect is async), as it takes multiple hits to a route for queryParams to be added
-      //this.router.navigate(['/preview'], { queryParams: { user: decodedToken.sub.split('@')[0] } });
-
       this.apiService.getUser(decodedToken.sub).subscribe({
         next: (response: UserInfoDto) => {
           this.userInfo = response;
-          //this.router.navigate(['/preview'], { queryParams: { user: this.userInfo.username, id: this.userInfo.id } });
         },
-        error: (err: any) => {
+        error: (err: unknown) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile retrieval failed' });
         },
         complete: () => {

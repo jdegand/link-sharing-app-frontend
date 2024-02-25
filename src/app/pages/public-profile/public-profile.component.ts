@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-//import { MessageService } from 'primeng/api';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { ApiService } from '../../services/api/api.service';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
@@ -8,14 +7,13 @@ import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 @Component({
   selector: 'app-public-profile',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './public-profile.component.html',
   styleUrl: './public-profile.component.css'
 })
 export class PublicProfileComponent implements OnInit {
   apiService = inject(ApiService);
   jwtService = inject(JwtDecoderService);
-  //messageService = inject(MessageService);
   private activatedRoute = inject(ActivatedRoute);
 
   userInfo!: UserInfoDto;
@@ -32,12 +30,9 @@ export class PublicProfileComponent implements OnInit {
         next: (response: UserInfoDto) => {
           this.loading = false;
           this.userInfo = response;
-          console.log('public response', response);
         },
-        error: (err: any) => {
-          //this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No user found' });
+        error: (err: unknown) => {
           this.loading = false;
-          console.log('error', err);
         },
         complete: () => {
           console.log('done');
