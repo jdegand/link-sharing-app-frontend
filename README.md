@@ -79,7 +79,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - When to send the API request -> have to save the links array when order of links changes -> add another button?
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
-- Use copy-to-clipboard functionality for sharing the preview link -> directive?
 - ViewChild typing
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
 - JWT expires -> log user out immediately or not ?  User will be prevented from querying for more info, but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again.
@@ -182,3 +181,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/47057696/how-to-use-es6-template-literal-as-angular-component-input) - es6 template literal as angular component input
 - [Stack Blitz](https://stackblitz.com/edit/angular-clipboard-example?file=src%2Fapp%2Fapp.component.ts) - Clipboard API and Angular
 - [Stack Overflow](https://stackoverflow.com/questions/60581285/execcommand-is-now-obsolete-whats-the-alternative) - execCommand is now obsolete whats the alternative (there is none.)
+- [Stack Overflow](https://stackoverflow.com/questions/72109664/how-to-show-primeng-tooltip-only-on-click) - how to show primeng tooltip only on click

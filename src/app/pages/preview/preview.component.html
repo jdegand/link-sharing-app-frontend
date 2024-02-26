@@ -1,4 +1,18 @@
 @if(userInfo){
+<p-inplace>
+    <ng-template pTemplate="display">
+        <span>Share Link</span>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <div #sharedLink>
+            http://localhost:4200/public/{{userInfo.username}}/{{userInfo.id}}
+        </div>
+        <p-button severity="help" icon="pi pi-copy" type="button" (click)="copy()" [life]="1000" tooltipEvent="focus" pTooltip="Copied"
+        tooltipPosition="top"></p-button>
+    </ng-template>
+</p-inplace>
+<br>
+<br>
 <section>
     @if(userInfo.profile.img){
     <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
