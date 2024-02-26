@@ -3,11 +3,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { ApiService } from '../../services/api/api.service';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-public-profile',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ProgressSpinnerModule],
   templateUrl: './public-profile.component.html',
   styleUrl: './public-profile.component.css'
 })

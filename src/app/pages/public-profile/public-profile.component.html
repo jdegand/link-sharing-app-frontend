@@ -1,4 +1,7 @@
-@if(userInfo){
+@if(loading){
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+}
+@if(userInfo && !loading){
 <section>
     @if(userInfo.profile.img){
     <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
@@ -21,7 +24,7 @@
     }
 </section>
 }
-@if(!userInfo) {
+@if(!userInfo && !loading) {
 <section>
     <h1>The profile you're looking for does not exist.</h1>
     <p>Want your own profile?&nbsp;<a routerLink="/register">Register and create your devlinks now.</a></p>

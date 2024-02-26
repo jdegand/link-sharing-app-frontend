@@ -1,12 +1,15 @@
-@if(userInfo){
+@if(loading){
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+}
+@if(userInfo && !loading){
 <p-inplace>
     <ng-template pTemplate="display">
         <span>Share Link</span>
     </ng-template>
     <ng-template pTemplate="content">
-        <div #sharedLink>
+        <span #sharedLink>
             http://localhost:4200/public/{{userInfo.username}}/{{userInfo.id}}
-        </div>
+        </span>
         <p-button severity="help" icon="pi pi-copy" type="button" (click)="copy()" [life]="1000" tooltipEvent="focus" pTooltip="Copied"
         tooltipPosition="top"></p-button>
     </ng-template>
@@ -35,7 +38,7 @@
     }
 </section>
 }
-@if(!userInfo) {
+@if(!userInfo && !loading) {
 <section>
     <p>Please complete your <a routerLink="/profile">profile</a>.</p>
 </section>

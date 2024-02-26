@@ -8,6 +8,7 @@ import { InplaceModule } from 'primeng/inplace';
 import { ButtonModule } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 // This component can have the drop and drag functionality for the links
 // Need to have token for api request to get userInfo
@@ -17,7 +18,7 @@ import { TooltipModule } from 'primeng/tooltip';
 @Component({
   selector: 'app-preview',
   standalone: true,
-  imports: [RouterLink, InplaceModule, ButtonModule, TooltipModule],
+  imports: [RouterLink, InplaceModule, ButtonModule, TooltipModule, ProgressSpinnerModule],
   providers: [MessageService],
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.css'
@@ -29,6 +30,7 @@ export class PreviewComponent implements OnInit {
   router = inject(Router);
 
   userInfo!: UserInfoDto;
+  loading = false;
 
   @ViewChild('sharedLink')
   sharedLink!: ElementRef;
@@ -37,15 +39,18 @@ export class PreviewComponent implements OnInit {
   tooltip!: Tooltip;
 
   ngOnInit() {
+    this.loading = true;
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = this.jwtService.decodeToken(token);
 
       this.apiService.getUser(decodedToken.sub).subscribe({
         next: (response: UserInfoDto) => {
+          this.loading = false;
           this.userInfo = response;
         },
         error: (err: unknown) => {
+          this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile retrieval failed' });
         },
         complete: () => {
