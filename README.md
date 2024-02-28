@@ -182,3 +182,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Blitz](https://stackblitz.com/edit/angular-clipboard-example?file=src%2Fapp%2Fapp.component.ts) - Clipboard API and Angular
 - [Stack Overflow](https://stackoverflow.com/questions/60581285/execcommand-is-now-obsolete-whats-the-alternative) - execCommand is now obsolete whats the alternative (there is none.)
 - [Stack Overflow](https://stackoverflow.com/questions/72109664/how-to-show-primeng-tooltip-only-on-click) - how to show primeng tooltip only on click
+- [Stack Overflow](https://stackoverflow.com/questions/74645689/upload-files-using-reactiveforms-and-fileupload-component-angular) - upload files using reactive forms and file upload component angular

@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.email],
-      file: ['']
+      file: [null, Validators.required]
     });
   }
 
@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
         next: (response: PostProfile) => {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
-          // reset the form & make file blank
+          // reset the form
         },
         error: (err: any) => {
           this.loading = false;
