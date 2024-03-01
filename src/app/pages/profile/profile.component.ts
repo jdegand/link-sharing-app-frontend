@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
   fragment = this.route.snapshot.fragment;
 
-  @ViewChild('imageForm') imageForm!: any;
+  @ViewChild('imageForm') imageForm!: ElementRef;
 
   #fileType = '';
   loading = false;
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
           // reset the form
         },
-        error: (err: any) => {
+        error: (err: unknown) => {
           this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
         },

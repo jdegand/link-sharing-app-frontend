@@ -79,7 +79,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - When to send the API request -> have to save the links array when order of links changes -> add another button?
 - Testing (I left the Karma and Jasmine packages installed)
 - Zod & TypeScript improvements
-- ViewChild typing
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
 - JWT expires -> log user out immediately or not ?  User will be prevented from querying for more info, but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again.
 
@@ -183,3 +182,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/60581285/execcommand-is-now-obsolete-whats-the-alternative) - execCommand is now obsolete whats the alternative (there is none.)
 - [Stack Overflow](https://stackoverflow.com/questions/72109664/how-to-show-primeng-tooltip-only-on-click) - how to show primeng tooltip only on click
 - [Stack Overflow](https://stackoverflow.com/questions/74645689/upload-files-using-reactiveforms-and-fileupload-component-angular) - upload files using reactive forms and file upload component angular
+- [Stack Overflow](https://stackoverflow.com/questions/64319089/primeng-listbox-how-to-allow-re-ordering-of-items-via-drag-and-drop) - primeng listbox how to allow reording of items vis drag and drop
