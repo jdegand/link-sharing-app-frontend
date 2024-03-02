@@ -38,4 +38,8 @@ export class ApiService {
     return this.http.get<UserInfoDto>(`http://localhost:8080/users/username/${username}/id/${id}`);
   }
 
+  deleteLinkById(linkId: number | undefined) {
+    return this.http.delete<String>(`http://localhost:8080/links/${linkId}`);
+  }
+
 }

@@ -65,4 +65,16 @@ export class PreviewComponent implements OnInit {
     this.tooltip.activate();
   }
 
+  delete(linkId: number | undefined) {
+    this.apiService.deleteLinkById(linkId).subscribe({
+      next: (response: String) => {
+        console.log(response);
+        location.reload();
+      }, 
+      error: (err: unknown) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Deletion failed' });
+      }
+    })
+  }
+
 }
