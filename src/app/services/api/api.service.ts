@@ -42,4 +42,8 @@ export class ApiService {
     return this.http.delete<String>(`http://localhost:8080/links/${linkId}`);
   }
 
+  getNewToken(refreshToken: string){
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', refreshToken);
+  }
+
 }

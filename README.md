@@ -183,3 +183,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/72109664/how-to-show-primeng-tooltip-only-on-click) - how to show primeng tooltip only on click
 - [Stack Overflow](https://stackoverflow.com/questions/74645689/upload-files-using-reactiveforms-and-fileupload-component-angular) - upload files using reactive forms and file upload component angular
 - [Stack Overflow](https://stackoverflow.com/questions/64319089/primeng-listbox-how-to-allow-re-ordering-of-items-via-drag-and-drop) - primeng listbox how to allow reording of items vis drag and drop
+- [Medium](https://medium.com/@bakhtmunir/refresh-token-in-angular-e212c2adaa77) - refresh token in angular
+- [YouTube](https://www.youtube.com/watch?v=HXwj-_mii3c) - How Interceptors EASILY implement Refresh Tokens in Angular!
