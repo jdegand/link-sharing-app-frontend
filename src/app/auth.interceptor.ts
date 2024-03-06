@@ -31,6 +31,9 @@ export const authInterceptor = (request: HttpRequest<any>, next: HttpHandlerFn) 
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
+
+      console.log('catchError', error);
+
       if (error.status === 401 || error.status === 403) {
         // Should be 401 error -> backend needs rework 
         const refreshToken = localStorage.getItem('refresh-token') ?? '';

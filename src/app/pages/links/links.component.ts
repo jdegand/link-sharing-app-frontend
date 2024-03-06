@@ -114,12 +114,12 @@ export class LinksComponent implements OnInit {
     if (this.linksForm.valid && this.linksForm.touched) {
       this.loading = true;
       this.apiService.postLinks(this.linksForm.value.links).subscribe({
-        next: (res: Link[]) => { 
+        next: (res: Link[]) => {
           this.loading = false;
-          if(res.length >= 2 ){
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Links saved' }); 
+          if (res.length >= 2) {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Links saved' });
           } else {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link saved' }); 
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link saved' });
           }
         },
         error: (err: any) => {

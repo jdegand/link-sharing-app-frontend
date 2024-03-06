@@ -43,7 +43,7 @@ export class ApiService {
   }
 
   getNewToken(refreshToken: string){
-    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', refreshToken);
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', {token:refreshToken});
   }
 
 }
