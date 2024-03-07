@@ -68,6 +68,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Ultimately, the mapping may not matter if I build a `DTO` object to send back the necessary info for the `preview` component.  You can query the database for the required objects and build a DTO that eliminates the need for multiple API requests in the frontend.   
 - `markAllAsTouched` -> good to use to show inline form errors ?
 - Prime Ng does not have a `Clipboard` component.  [Angular Material CDK](https://material.angular.io/cdk/clipboard/overview) has a clipboard directive.  In lieu of adding that dependency, I have looked into using the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).  The clipboard API can be blocked by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) if you don't use the clipboard API in conjunction with a user click.  
+- Using binding, you can sanitize (albeit not fully (hrefs are still displayed)) DOM input.  The profile image is `base64` and I did not sanitize it.  I used `src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}"` inside the `img` tag.  I could not bind the image value to `[src]` because the type of `img` was `File`.  I needed to change it to `string` for the binding to work.  I duplicated `UserInfoDto` into `Preview` and created a separate `ProfileDto` with `img` being set to `string`.  This is a marginal improvement. If you were to inject and use `DomSanitizer`, I think it might be best to construct the string separately and save the sanitized output to another variable that you would use in the template.       
 
 ## Continued Development
 
@@ -185,3 +186,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/64319089/primeng-listbox-how-to-allow-re-ordering-of-items-via-drag-and-drop) - primeng listbox how to allow reording of items vis drag and drop
 - [Medium](https://medium.com/@bakhtmunir/refresh-token-in-angular-e212c2adaa77) - refresh token in angular
 - [YouTube](https://www.youtube.com/watch?v=HXwj-_mii3c) - How Interceptors EASILY implement Refresh Tokens in Angular!
+- [Stack Overflow](https://stackoverflow.com/questions/66074693/warning-sanitizing-unsafe-url-value-datatext-htmlbase64) - warning sanitizing unsafe url value datatext htmlbase64
+- [Stack Overflow](https://stackoverflow.com/questions/38812993/base64-to-image-angular-2) - base64 to image angular 2

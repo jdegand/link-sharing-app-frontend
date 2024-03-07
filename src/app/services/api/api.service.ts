@@ -6,6 +6,7 @@ import { PostProfile } from '../../interfaces/PostProfile';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { AuthRequest } from '../../interfaces/AuthRequest';
 import { AuthResponse } from '../../interfaces/AuthResponse';
+import { Preview } from '../../interfaces/Preview';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ApiService {
   }
 
   getUser(email: string) {
-    return this.http.get<UserInfoDto>(`http://localhost:8080/users/email/${email}`);
+    return this.http.get<Preview>(`http://localhost:8080/users/email/${email}`);
   }
 
   postLinks(links: Link[]) {
@@ -35,15 +36,15 @@ export class ApiService {
   }
 
   getUserByUsernameAndId(username: string, id: number) {
-    return this.http.get<UserInfoDto>(`http://localhost:8080/users/username/${username}/id/${id}`);
+    return this.http.get<Preview>(`http://localhost:8080/users/username/${username}/id/${id}`);
   }
 
   deleteLinkById(linkId: number | undefined) {
     return this.http.delete<String>(`http://localhost:8080/links/${linkId}`);
   }
 
-  getNewToken(refreshToken: string){
-    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', {token:refreshToken});
+  getNewToken(refreshToken: string) {
+    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', { token: refreshToken });
   }
 
 }

@@ -1,10 +1,10 @@
 @if(loading){
-    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+<p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 }
 @if(userInfo && !loading){
 <section>
     @if(userInfo.profile.img){
-    <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
+    <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
         height="200"><!-- add object-fit, border,& border-radius -->
     }
     <h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>

@@ -1,5 +1,5 @@
 @if(loading){
-    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+<p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 }
 @if(userInfo && !loading){
 <p-inplace>
@@ -10,15 +10,15 @@
         <span #sharedLink>
             http://localhost:4200/public/{{userInfo.username}}/{{userInfo.id}}
         </span>
-        <p-button severity="help" icon="pi pi-copy" type="button" (click)="copy()" [life]="1000" tooltipEvent="focus" pTooltip="Copied"
-        tooltipPosition="top"></p-button>
+        <p-button severity="help" icon="pi pi-copy" type="button" (click)="copy()" [life]="1000" tooltipEvent="focus"
+            pTooltip="Copied" tooltipPosition="top"></p-button>
     </ng-template>
 </p-inplace>
 <br>
 <br>
 <section>
     @if(userInfo.profile.img){
-    <img src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}" alt="" width="200"
+    <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
         height="200"><!-- add object-fit, border,& border-radius -->
     }
     <h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>

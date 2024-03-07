@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { ApiService } from '../../services/api/api.service';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { Preview } from '../../interfaces/Preview';
 
 @Component({
   selector: 'app-public-profile',
@@ -17,7 +17,7 @@ export class PublicProfileComponent implements OnInit {
   jwtService = inject(JwtDecoderService);
   private activatedRoute = inject(ActivatedRoute);
 
-  userInfo!: UserInfoDto;
+  userInfo!: Preview;
   loading = true;
 
   ngOnInit() {
@@ -28,15 +28,12 @@ export class PublicProfileComponent implements OnInit {
     if (userId && username) {
 
       this.apiService.getUserByUsernameAndId(username, Number(userId)).subscribe({
-        next: (response: UserInfoDto) => {
+        next: (response: Preview) => {
           this.loading = false;
           this.userInfo = response;
         },
         error: (err: unknown) => {
           this.loading = false;
-        },
-        complete: () => {
-          console.log('done');
         }
       });
     }
