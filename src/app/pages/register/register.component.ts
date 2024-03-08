@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +38,7 @@ export class RegisterComponent {
 
   submit() {
     if (this.registerForm.valid) {
-      this.apiService.register(this.registerForm.value).subscribe({
+      this.apiService.register(this.registerForm.value).pipe(take(1)).subscribe({
         next: (response: Partial<UserInfoDto>) => {
           this.success = true;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: response.username + ' registered' });

@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { AuthResponse } from '../../interfaces/AuthResponse';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ export class LoginComponent {
 
   submit() {
     if (this.loginForm.valid) {
-      this.apiService.login(this.loginForm.value)
+      this.apiService.login(this.loginForm.value).pipe(take(1))
         .subscribe({
           next: (response: AuthResponse) => {
             this.error = false;

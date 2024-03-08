@@ -10,6 +10,7 @@ import { ApiService } from '../../services/api/api.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Link } from '../../interfaces/Link';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -113,7 +114,7 @@ export class LinksComponent implements OnInit {
     // valid is not enough when you pre-fill all the inputs
     if (this.linksForm.valid && this.linksForm.touched) {
       this.loading = true;
-      this.apiService.postLinks(this.linksForm.value.links).subscribe({
+      this.apiService.postLinks(this.linksForm.value.links).pipe(take(1)).subscribe({
         next: (res: Link[]) => {
           this.loading = false;
           if (res.length >= 2) {

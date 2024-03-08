@@ -9,6 +9,7 @@ import { Tooltip } from 'primeng/tooltip';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Preview } from '../../interfaces/Preview';
+import { take } from 'rxjs';
 
 // This component can have the drop and drag functionality for the links
 
@@ -41,7 +42,7 @@ export class PreviewComponent implements OnInit {
     if (token) {
       const decodedToken = this.jwtService.decodeToken(token);
 
-      this.apiService.getUser(decodedToken.sub).subscribe({
+      this.apiService.getUser(decodedToken.sub).pipe(take(1)).subscribe({
         next: (response: Preview) => {
           this.loading = false;
           this.userInfo = response;
@@ -60,7 +61,7 @@ export class PreviewComponent implements OnInit {
   }
 
   delete(linkId: number | undefined) {
-    this.apiService.deleteLinkById(linkId).subscribe({
+    this.apiService.deleteLinkById(linkId).pipe(take(1)).subscribe({
       next: () => {
         location.reload();
       },

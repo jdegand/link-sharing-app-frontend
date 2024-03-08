@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api/api.service';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Preview } from '../../interfaces/Preview';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-public-profile',
@@ -27,7 +28,7 @@ export class PublicProfileComponent implements OnInit {
 
     if (userId && username) {
 
-      this.apiService.getUserByUsernameAndId(username, Number(userId)).subscribe({
+      this.apiService.getUserByUsernameAndId(username, Number(userId)).pipe(take(1)).subscribe({
         next: (response: Preview) => {
           this.loading = false;
           this.userInfo = response;

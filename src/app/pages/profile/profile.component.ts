@@ -12,6 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { PostProfile } from '../../interfaces/PostProfile';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -73,7 +74,7 @@ export class ProfileComponent implements OnInit {
       */
       this.loading = true;
 
-      this.apiService.postProfile(formData).subscribe({
+      this.apiService.postProfile(formData).pipe(take(1)).subscribe({
         next: (response: PostProfile) => {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
