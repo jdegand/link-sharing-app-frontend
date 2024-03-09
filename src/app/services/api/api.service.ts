@@ -7,6 +7,7 @@ import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { AuthRequest } from '../../interfaces/AuthRequest';
 import { AuthResponse } from '../../interfaces/AuthResponse';
 import { Preview } from '../../interfaces/Preview';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -15,36 +16,38 @@ export class ApiService {
 
   http = inject(HttpClient);
 
+  #apiUrl = environment.apiUrl;
+
   register(payload: RegisterDto) {
-    return this.http.post<Partial<UserInfoDto>>('http://localhost:8080/users/new', payload);
+    return this.http.post<Partial<UserInfoDto>>(`${this.#apiUrl}/users/new`, payload);
   }
 
   login(payload: AuthRequest) {
-    return this.http.post<AuthResponse>('http://localhost:8080/auth/authenticate', payload);
+    return this.http.post<AuthResponse>(`${this.#apiUrl}/auth/authenticate`, payload);
   }
 
   getUser(email: string) {
-    return this.http.get<Preview>(`http://localhost:8080/users/email/${email}`);
+    return this.http.get<Preview>(`${this.#apiUrl}/users/email/${email}`);
   }
 
   postLinks(links: Link[]) {
-    return this.http.post<Link[]>('http://localhost:8080/links', links)
+    return this.http.post<Link[]>(`${this.#apiUrl}/links`, links)
   }
 
   postProfile(profile: FormData) {
-    return this.http.post<PostProfile>('http://localhost:8080/profile', profile)
+    return this.http.post<PostProfile>(`${this.#apiUrl}/profile`, profile)
   }
 
   getUserByUsernameAndId(username: string, id: number) {
-    return this.http.get<Preview>(`http://localhost:8080/users/username/${username}/id/${id}`);
+    return this.http.get<Preview>(`${this.#apiUrl}/users/username/${username}/id/${id}`);
   }
 
   deleteLinkById(linkId: number | undefined) {
-    return this.http.delete<String>(`http://localhost:8080/links/${linkId}`);
+    return this.http.delete<String>(`${this.#apiUrl}/links/${linkId}`);
   }
 
   getNewToken(refreshToken: string) {
-    return this.http.post<AuthResponse>('http://localhost:8080/auth/refresh', { token: refreshToken });
+    return this.http.post<AuthResponse>(`${this.#apiUrl}/auth/refresh`, { token: refreshToken });
   }
 
 }
