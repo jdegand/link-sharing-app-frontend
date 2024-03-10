@@ -28,7 +28,7 @@ export class PreviewComponent implements OnInit {
   router = inject(Router);
 
   userInfo!: Preview;
-  loading = false;
+  loading = true;
 
   @ViewChild('sharedLink')
   sharedLink!: ElementRef;
@@ -37,7 +37,6 @@ export class PreviewComponent implements OnInit {
   tooltip!: Tooltip;
 
   ngOnInit() {
-    this.loading = true;
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = this.jwtService.decodeToken(token);

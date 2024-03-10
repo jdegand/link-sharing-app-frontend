@@ -1,7 +1,7 @@
 @if(loading){
 <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 }
-@if(userInfo && !loading){
+@if(userInfo && userInfo.profile !== null && userInfo.links.length > 0 && !loading){
 <p-inplace>
     <ng-template pTemplate="display">
         <span>Share Link</span>
@@ -17,32 +17,38 @@
 <br>
 <br>
 <section>
-    @if(userInfo.profile.img){
-    <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
-        height="200"><!-- add object-fit, border,& border-radius -->
-    }
-    <h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>
-    <p>{{userInfo.profile.email}}</p>
-    @for (link of userInfo.links; track link.id) {
     <div>
-        <span class="pi pi-{{link.platform}}"></span>
-        <span>
-            &nbsp;
-            {{ link.platform }}
-            &nbsp;
-        </span>
-        <a target="_blank" href={{link.url}}>
-            <span class="pi pi-arrow-right"></span>
-        </a>
+        <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
+            height="200">
     </div>
-    <div>
-        <p-button severity="danger" type="button" icon="pi pi-trash" (click)="delete(link.id)"></p-button>
-    </div>
-    }
+    <h1>{{userInfo.username}}</h1>
+    <h2>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h2>
+</section>
+@for (link of userInfo.links; track link.id) {
+<div>
+    <span class="pi pi-{{link.platform}}"></span>
+    <span>
+        &nbsp;
+        {{ link.platform }}
+        &nbsp;
+    </span>
+    <a target="_blank" href={{link.url}}>
+        <span class="pi pi-arrow-right"></span>
+    </a>
+</div>
+<div>
+    <p-button severity="danger" type="button" icon="pi pi-trash" (click)="delete(link.id)"></p-button>
+</div>
+}
+}
+@if(userInfo && (userInfo.profile === null || userInfo.links.length === 0) && !loading) {
+<section>
+    <p>Please complete your <a routerLink="/profile">profile</a> and make sure to add some <a
+            routerLink="/links">links</a>.</p>
 </section>
 }
 @if(!userInfo && !loading) {
 <section>
-    <p>Please complete your <a routerLink="/profile">profile</a>.</p>
+    <p>Error fetching profile. Refresh the page or re-authenticate.</p>
 </section>
 }
