@@ -24,6 +24,9 @@
     <label for="email">Email</label>
     <br>
     <input type="email" pInputText id="email" formControlName="email" />
+    @if(profileForm.get('email')?.touched && profileForm.get('email')?.errors?.['required']){
+    <p-message severity="error" text="Email is required"></p-message>
+    }
     <br>
     <br>
     <p-button [loading]="loading" type="submit" label="Save"></p-button>

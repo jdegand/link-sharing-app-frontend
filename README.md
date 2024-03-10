@@ -69,7 +69,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - `markAllAsTouched` -> good to use to show inline form errors ?
 - Prime Ng does not have a `Clipboard` component.  [Angular Material CDK](https://material.angular.io/cdk/clipboard/overview) has a clipboard directive.  In lieu of adding that dependency, I have looked into using the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).  The clipboard API can be blocked by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) if you don't use the clipboard API in conjunction with a user click.  
 - Using binding, you can sanitize (albeit not fully (hrefs are still displayed)) DOM input.  The profile image is `base64` and I did not sanitize it.  I used `src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}"` inside the `img` tag.  I could not bind the image value to `[src]` because the type of `img` was `File`.  I needed to change it to `string` for the binding to work.  I duplicated `UserInfoDto` into `Preview` and created a separate `ProfileDto` with `img` being set to `string`.  This is a marginal improvement. If you were to inject and use `DomSanitizer`, I think it might be best to construct the string separately and save the sanitized output to another variable that you would use in the template.     
-- VS Code doesn't seem to be great at formatting Angular templates with the new control syntax. 
+- [VS Code](https://github.com/microsoft/vscode/issues/205651) does not plan on supporting the new Angular control flow syntax.  Apparently, [JS Beautify](https://github.com/beautifier/js-beautify/issues/2219) is used by VS Code, and it added control flow formatting that is not perfect, so the formatting option for it is turned off by default.  It seems like it will be some time before formatting for the new control flow syntax is handled error-free.  
 - Instead of grouping the data together on the backend, I could have had multiple fetch requests and used `combineLatest` to create a single observable for the template. 
 
 ## Continued Development
@@ -85,8 +85,9 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
 - JWT expires -> log user out immediately or not ?  User will be prevented from querying for more info, but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again.
 - Unsubscribe from all observables or use `take` or convert to a declarative approach with async pipe
-- Reformat the templates with new Angular control syntax.    
+- Need to reformat the templates that have the new Angular control syntax, as VS Code does not understand the syntax.   
 - Best to refactor `Preview` template into more components?
+- File typing in `profile.component.ts`
 
 ## Useful Resources
 
@@ -195,3 +196,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/38812993/base64-to-image-angular-2) - base64 to image angular 2
 - [Medium](https://betterprogramming.pub/angular-vs-interceptors-guide-c256b72f3415#:~:text=This%20means%20that%20if%20you,you%20should%20use%20a%20guard.) - can activate vs interceptors guide
 - [Angular University](https://blog.angular-university.io/angular-if/) - angular if
+- [Stack Overflow](https://stackoverflow.com/questions/59208257/file-input-event-type-in-angular) - file input event type in angular

@@ -10,7 +10,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
-import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { PostProfile } from '../../interfaces/PostProfile';
 import { take } from 'rxjs';
 
@@ -28,7 +27,6 @@ export class ProfileComponent implements OnInit {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   messageService = inject(MessageService);
-  jwtService = inject(JwtDecoderService);
 
   profileForm!: FormGroup;
 
@@ -40,10 +38,12 @@ export class ProfileComponent implements OnInit {
   loading = false;
 
   ngOnInit() {
+    // I made all fields required
+    // To allow file to be optional requires extra work on the frontend & backend
     this.profileForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       file: [null, Validators.required]
     });
   }
@@ -78,14 +78,11 @@ export class ProfileComponent implements OnInit {
         next: (response: PostProfile) => {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
-          // reset the form
+          // You could reset the whole form here.  Better to just reset file ? 
         },
         error: (err: unknown) => {
           this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
-        },
-        complete: () => {
-          console.log('done');
         }
       });
     }
