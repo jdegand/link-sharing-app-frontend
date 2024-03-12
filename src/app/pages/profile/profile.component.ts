@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { ApiService } from '../../services/api/api.service';
-import { FileUploadModule } from 'primeng/fileupload';
+import { FileSelectEvent, FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
   fragment = this.route.snapshot.fragment;
 
-  @ViewChild('imageForm') imageForm!: ElementRef;
+  @ViewChild('imageUpload') imageUpload!: FileUpload;
 
   #fileType = '';
   loading = false;
@@ -48,9 +48,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onFileSelect(event: any) {
-    if (event.files.length === 1) {
-      const file = event.files[0];
+  onFileSelect(event: FileSelectEvent) {
+    const files: File[] = event.files;
+    if (files.length === 1) {
+      const file: File = files[0];
       this.#fileType = file.type;
       this.profileForm.get('file')?.setValue(file);
     }
@@ -79,6 +80,7 @@ export class ProfileComponent implements OnInit {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
           // You could reset the whole form here.  Better to just reset file ? 
+          this.imageUpload.clear();
         },
         error: (err: unknown) => {
           this.loading = false;

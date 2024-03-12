@@ -81,13 +81,12 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Drag and Drop functionality on Preview page
 - When to send the API request -> have to save the links array when order of links changes -> add another button?
 - Testing (I left the Karma and Jasmine packages installed)
-- Zod & TypeScript improvements
+- Zod & TypeScript improvements.  Interfaces can be changed to `type` and properties can be marked as `readonly`.
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
 - JWT expires -> log user out immediately or not ?  User will be prevented from querying for more info, but there needs to be feedback that tells them that the JWT has expired and they need to authenticate again.
 - Unsubscribe from all observables or use `take` or convert to a declarative approach with async pipe
 - Need to reformat the templates that have the new Angular control syntax, as VS Code does not understand the syntax.   
 - Best to refactor `Preview` template into more components?
-- File typing in `profile.component.ts`
 
 ## Useful Resources
 
@@ -197,3 +196,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Medium](https://betterprogramming.pub/angular-vs-interceptors-guide-c256b72f3415#:~:text=This%20means%20that%20if%20you,you%20should%20use%20a%20guard.) - can activate vs interceptors guide
 - [Angular University](https://blog.angular-university.io/angular-if/) - angular if
 - [Stack Overflow](https://stackoverflow.com/questions/59208257/file-input-event-type-in-angular) - file input event type in angular
+- [Stack Overflow](https://stackoverflow.com/questions/77477534/how-can-i-use-async-pipe-with-defer-to-load-and-declare-variable-in-template-in) - how can I use async pipe with defer to load and declare variable in template
+- [Stack Overflow](https://stackoverflow.com/questions/45082603/p-fileupload-does-not-work-more-than-once-primeng) - p fileupload does not work more than once primeng

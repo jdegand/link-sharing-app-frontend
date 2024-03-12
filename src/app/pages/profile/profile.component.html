@@ -4,7 +4,7 @@
   <p>Add your details to create a personal touch to your profile.</p>
   <br>
   <form [formGroup]="profileForm" (submit)="onSubmit()">
-    <p-fileUpload name="file" mode="basic" [auto]="false" accept="image/*" [maxFileSize]="1000000"
+    <p-fileUpload #imageUpload name="file" mode="basic" [auto]="false" accept="image/*" [maxFileSize]="1000000"
       (onSelect)="onFileSelect($event)" chooseLabel="Choose"></p-fileUpload>
     <br>
     <label for="firstname">First name</label>
