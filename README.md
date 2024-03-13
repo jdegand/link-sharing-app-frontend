@@ -198,3 +198,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/59208257/file-input-event-type-in-angular) - file input event type in angular
 - [Stack Overflow](https://stackoverflow.com/questions/77477534/how-can-i-use-async-pipe-with-defer-to-load-and-declare-variable-in-template-in) - how can I use async pipe with defer to load and declare variable in template
 - [Stack Overflow](https://stackoverflow.com/questions/45082603/p-fileupload-does-not-work-more-than-once-primeng) - p fileupload does not work more than once primeng
+- [Dev.to](https://dev.to/rensjaspers/stop-pretending-the-error-never-happened-1pfn) - stop pretending the error never happened
+- [Medium](https://codereacter.medium.com/goodbye-async-pipe-hello-signals-w-ngrx-signals-f61f1f3074bd) - goodbye async pipe hello signals w ngrx signals
