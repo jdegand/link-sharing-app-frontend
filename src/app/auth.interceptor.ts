@@ -63,7 +63,6 @@ export class AuthInterceptor implements HttpInterceptor {
     return throwError(() => new Error("logout"));
   }
 
-
   isHeaderNeeded(url: string) {
     return url.includes("http://localhost:8080/auth/refresh2") ? false : true;
   }
