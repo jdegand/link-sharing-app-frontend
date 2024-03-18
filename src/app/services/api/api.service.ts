@@ -8,6 +8,7 @@ import { AuthRequest } from '../../interfaces/AuthRequest';
 import { AuthResponse } from '../../interfaces/AuthResponse';
 import { Preview } from '../../interfaces/Preview';
 import { environment } from '../../../environments/environment.development';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { environment } from '../../../environments/environment.development';
 export class ApiService {
 
   http = inject(HttpClient);
+  authService = inject(AuthService);
 
   #apiUrl = environment.apiUrl;
 
@@ -47,7 +49,24 @@ export class ApiService {
   }
 
   getNewToken(refreshToken: string) {
-    return this.http.post<AuthResponse>(`${this.#apiUrl}/auth/refresh`, { token: refreshToken });
+    /*
+    const payload = {
+      method: 'POST',
+      body: JSON.stringify({ token: refreshToken }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }
+    */
+
+    const payload = JSON.stringify({ token: refreshToken });
+
+    return this.http.post<AuthResponse>(`${this.#apiUrl}/auth/refresh`, payload);
+  }
+
+  getNewToken2() {
+    return this.http.get<AuthResponse>(`${this.#apiUrl}/auth/refresh2?token=${this.authService.getRefreshTokenFromLocalStorage()}`);
   }
 
 }

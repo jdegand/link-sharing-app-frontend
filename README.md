@@ -200,3 +200,9 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/45082603/p-fileupload-does-not-work-more-than-once-primeng) - p fileupload does not work more than once primeng
 - [Dev.to](https://dev.to/rensjaspers/stop-pretending-the-error-never-happened-1pfn) - stop pretending the error never happened
 - [Medium](https://codereacter.medium.com/goodbye-async-pipe-hello-signals-w-ngrx-signals-f61f1f3074bd) - goodbye async pipe hello signals w ngrx signals
+- [Medium](https://itnext.io/migrate-angular-interceptors-to-function-based-interceptors-90bd433e0c2a) - migrate angular interceptors to function based interceptors
+- [Stack Overflow](https://stackoverflow.com/questions/55711337/angular-http-interceptor-subscribing-to-observable-and-then-returning-next-handl) - angular http interceptor subscribing to observable and then return next handl
+- [Blog](https://danielk.tech/home/angular-retry-an-http-request) - angular retry an http request
+- [Stack Overflow](https://stackoverflow.com/questions/76851243/angular-interceptor-always-get-null-value-accessing-the-accesstoken-from-local) - angular interceptor always get null value accesing the access token from local 
+- [Stack Overflow](https://stackoverflow.com/questions/77840978/how-to-use-functional-interceptor-for-refreshing-token-in-angular-17) - how to use functional interceptor for refreshing token in angular 17
+- [Stack Overflow](https://stackoverflow.com/questions/58377068/remove-authorization-header-for-some-http-calls-angular) - remove authorization header for http calls angular

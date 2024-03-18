@@ -1,5 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { JwtDecoderService } from '../jwt/jwt-decoder.service';
 import { AuthResponse } from '../../interfaces/AuthResponse';
 
 @Injectable({
@@ -11,20 +10,28 @@ export class AuthService {
   // allow currentUserSig to be null ? 
   currentUserSig = signal<AuthResponse | undefined>(undefined);
 
-  constructor(private jwtDecoderService: JwtDecoderService) {
-    const localStorageToken = localStorage.getItem('token') ?? "";
-    const refreshStorageToken = localStorage.getItem('refresh-token') ?? "";
+  constructor() {
+    // make functions to get the tokens ?
+    const accessToken = this.getAccessTokenFromLocalStorage();
+    const refreshToken = this.getRefreshTokenFromLocalStorage();
 
-    if (localStorageToken) {
+    if (accessToken) {
       // send another api request to validate token sub is in database?
       // const decoded = jwtDecoderService.decodeToken(localStorageToken);
       // console.log('decoded', decoded);
       this.currentUserSig.set({
-        accessToken: localStorageToken,
-        refreshToken: refreshStorageToken
+        accessToken: accessToken,
+        refreshToken: refreshToken
       })
     }
+  }
 
+  getAccessTokenFromLocalStorage() {
+    return localStorage.getItem('token') ?? "";
+  }
+
+  getRefreshTokenFromLocalStorage() {
+    return localStorage.getItem('refresh-token') ?? "";
   }
 
   notSignedIn() {
