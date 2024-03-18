@@ -49,19 +49,7 @@ export class ApiService {
   }
 
   getNewToken(refreshToken: string) {
-    /*
-    const payload = {
-      method: 'POST',
-      body: JSON.stringify({ token: refreshToken }),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    }
-    */
-
     const payload = JSON.stringify({ token: refreshToken });
-
     return this.http.post<AuthResponse>(`${this.#apiUrl}/auth/refresh`, payload);
   }
 
