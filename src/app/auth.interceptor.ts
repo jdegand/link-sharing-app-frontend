@@ -3,12 +3,14 @@ import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, finalize, switchMap, throwError } from "rxjs";
 import { AuthService } from "./services/auth/auth.service";
 import { ApiService } from "./services/api/api.service";
+//import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   private authService = inject(AuthService);
   private apiService = inject(ApiService);
+  //private router = inject(Router);
   private isRefreshingToken = false;
 
   setToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
@@ -40,11 +42,11 @@ export class AuthInterceptor implements HttpInterceptor {
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
       return this.apiService.getNewToken2().pipe(
-        switchMap(success => {
-          if (success) {
-            localStorage.setItem('token', success.accessToken);
-            req = this.setToken(req, success.accessToken);
-            this.authService.currentUserSig.set(success);
+        switchMap(successResponse => {
+          if (successResponse) {
+            localStorage.setItem('token', successResponse.accessToken);
+            req = this.setToken(req, successResponse.accessToken);
+            this.authService.currentUserSig.set(successResponse);
             return next.handle(req);
           } else {
             return this.logout(error);
@@ -59,8 +61,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   logout(error: any): Observable<HttpEvent<any>> {
-    // router navigate to login?
-    return throwError(() => new Error("logout"));
+    //this.authService.currentUserSig.set(undefined);
+    //this.router.navigateByUrl("/");
+    return throwError(() => error);
   }
 
   isHeaderNeeded(url: string) {

@@ -79,13 +79,13 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Dark Mode added to Navbar
 - Styling
 - Drag and Drop functionality on Preview page
-- When to send the API request -> have to save the links array when order of links changes -> add another button?
 - Testing (I left the Karma and Jasmine packages installed)
-- Zod & TypeScript improvements.  Interfaces can be changed to `type` and properties can be marked as `readonly`.
+- TypeScript improvements.  Zod?  Interfaces can be changed to `type` and properties can be marked as `readonly`.
 - Handle failed submit -> need to loop through controls and mark them as touched or dirty
 - Unsubscribe from all observables or use `take` or convert to a declarative approach with async pipe
 - Need to reformat the templates that have the new Angular control syntax, as VS Code does not understand the syntax.   
 - Best to refactor `Preview` template into more components?
+- Convert class based interceptor into a functional interceptor?
 
 ## Useful Resources
 
