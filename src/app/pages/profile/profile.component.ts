@@ -12,6 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { PostProfile } from '../../interfaces/PostProfile';
 import { take } from 'rxjs';
+import { ErrorResponse } from '../../interfaces/ErrorResponse';
 
 @Component({
   selector: 'app-profile',
@@ -82,9 +83,16 @@ export class ProfileComponent implements OnInit {
           // You could reset the whole form here.  Better to just reset file ? 
           this.imageUpload.clear();
         },
-        error: (err: unknown) => {
+        error: (err: ErrorResponse) => {
           this.loading = false;
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
+          /*
+          if (err.status === 401) {
+            this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'JWT Token expired.  Refresh and try again.' });
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
+          }
+          */
         }
       });
     }

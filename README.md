@@ -90,6 +90,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 ## Useful Resources
 
 - [Image Color Picker](https://imagecolorpicker.com/)
+- [Transform Tools](https://transform.tools/) - JSON to TypeScript converter & more
 - [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT) - Link Sharing App
 - [W3 Schools](https://www.w3schools.com/howto/howto_css_devices.asp) - how to create devices with CSS
 - [YouTube](https://www.youtube.com/watch?v=Ekkt5S0BzCo&list=PL1BztTYDF-QNlGo5-g65Xj1mINHYk_FM9&index=130) - #130 Adding Form Groups Dynamically | Reactive Forms | A Complete Angular Course

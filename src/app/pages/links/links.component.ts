@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Link } from '../../interfaces/Link';
 import { take } from 'rxjs';
+import { ErrorResponse } from '../../interfaces/ErrorResponse';
 
 @Component({
   selector: 'app-home',
@@ -123,13 +124,9 @@ export class LinksComponent implements OnInit {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Link saved' });
           }
         },
-        error: (err: any) => {
+        error: (err: ErrorResponse) => {
           this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
-        },
-        complete: () => {
-          console.info('complete');
-          // navigate to preview or reload page?
         }
       })
     }
