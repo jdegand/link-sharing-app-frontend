@@ -33,7 +33,7 @@ export class PublicProfileComponent implements OnInit {
           this.loading = false;
           this.userInfo = response;
         },
-        error: (err: unknown) => {
+        error: () => {
           this.loading = false;
         }
       });

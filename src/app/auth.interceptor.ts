@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   //private router = inject(Router);
   private isRefreshingToken = false;
 
-  setToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
+  setToken(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
     return req.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`
@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     });
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // can't send expired jwt back as header for refresh endpoint
 
     if (this.authService.getAccessTokenFromLocalStorage() && this.isHeaderNeeded(req.url)) {
@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
       }))
   }
 
-  handler401Error(req: HttpRequest<any>, next: HttpHandler, error: any): Observable<HttpEvent<any>> {
+  handler401Error(req: HttpRequest<unknown>, next: HttpHandler, error: unknown): Observable<HttpEvent<unknown>> {
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
       return this.apiService.getNewToken2().pipe(
@@ -60,7 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return throwError(() => new Error('End'));
   }
 
-  logout(error: any): Observable<HttpEvent<any>> {
+  logout(error: unknown): Observable<HttpEvent<unknown>> {
     //this.authService.currentUserSig.set(undefined);
     //this.router.navigateByUrl("/");
     return throwError(() => error);

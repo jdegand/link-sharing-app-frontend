@@ -10,7 +10,6 @@ import { FileSelectEvent, FileUpload, FileUploadModule } from 'primeng/fileuploa
 import { ToastModule } from 'primeng/toast';
 import { NgFor, NgIf } from '@angular/common';
 import { MessageService } from 'primeng/api';
-import { PostProfile } from '../../interfaces/PostProfile';
 import { take } from 'rxjs';
 import { ErrorResponse } from '../../interfaces/ErrorResponse';
 
@@ -77,7 +76,7 @@ export class ProfileComponent implements OnInit {
       this.loading = true;
 
       this.apiService.postProfile(formData).pipe(take(1)).subscribe({
-        next: (response: PostProfile) => {
+        next: () => { // response: PostProfile
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated' });
           // You could reset the whole form here.  Better to just reset file ? 

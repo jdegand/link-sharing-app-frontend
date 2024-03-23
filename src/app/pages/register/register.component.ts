@@ -11,6 +11,7 @@ import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { UserInfoDto } from '../../interfaces/UserInfoDto';
 import { take } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -43,12 +44,9 @@ export class RegisterComponent {
           this.success = true;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: response.username + ' registered' });
         },
-        error: (err: any) => {
+        error: (err: HttpErrorResponse) => {
           this.success = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message });
-        },
-        complete: () => {
-          console.log('done');
         }
       })
     }

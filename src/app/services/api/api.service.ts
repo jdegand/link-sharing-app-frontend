@@ -45,7 +45,7 @@ export class ApiService {
   }
 
   deleteLinkById(linkId: number | undefined) {
-    return this.http.delete<String>(`${this.#apiUrl}/links/${linkId}`);
+    return this.http.delete<string>(`${this.#apiUrl}/links/${linkId}`);
   }
 
   getNewToken(refreshToken: string) {

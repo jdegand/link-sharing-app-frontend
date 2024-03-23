@@ -46,7 +46,7 @@ export class PreviewComponent implements OnInit {
           this.loading = false;
           this.userInfo = response;
         },
-        error: (err: unknown) => {
+        error: () => {
           this.loading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile retrieval failed' });
         }
@@ -64,7 +64,7 @@ export class PreviewComponent implements OnInit {
       next: () => {
         location.reload();
       },
-      error: (err: unknown) => {
+      error: () => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Deletion failed' });
       }
     })
