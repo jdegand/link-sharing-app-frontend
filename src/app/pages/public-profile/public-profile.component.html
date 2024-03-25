@@ -7,14 +7,14 @@
     <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
         height="200"><!-- add object-fit, border,& border-radius -->
     }
-    <h1>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h1>
+    <h1>{{userInfo.profile.firstname | titlecase}}&nbsp;{{userInfo.profile.lastname | titlecase}}</h1>
     <p>{{userInfo.profile.email}}</p>
     @for (link of userInfo.links; track link.id) {
     <div>
-        <span class="pi pi-{{link.platform}}"></span>
+        <span class="pi pi-{{link.platform.toLowerCase()}}"></span>
         <span>
             &nbsp;
-            {{ link.platform }}
+            {{ link.platform | titlecase }}
             &nbsp;
         </span>
         <a target="_blank" href={{link.url}}>

@@ -22,15 +22,15 @@
         <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
             height="200">
     </div>
-    <h1>{{userInfo.username}}</h1>
-    <h2>{{userInfo.profile.firstname}}&nbsp;{{userInfo.profile.lastname}}</h2>
+    <h1>{{userInfo.username | titlecase}}</h1>
+    <h2>{{userInfo.profile.firstname | titlecase}}&nbsp;{{userInfo.profile.lastname | titlecase}}</h2>
 </section>
 @for (link of userInfo.links; track link.id) {
 <div>
-    <span class="pi pi-{{link.platform}}"></span>
+    <span class="pi pi-{{link.platform.toLowerCase()}}"></span>
     <span>
         &nbsp;
-        {{ link.platform }}
+        {{ link.platform | titlecase }}
         &nbsp;
     </span>
     <a target="_blank" href={{link.url}}>

@@ -5,11 +5,12 @@ import { JwtDecoderService } from '../../services/jwt/jwt-decoder.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Preview } from '../../interfaces/Preview';
 import { take } from 'rxjs';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-public-profile',
   standalone: true,
-  imports: [RouterLink, ProgressSpinnerModule],
+  imports: [RouterLink, ProgressSpinnerModule, TitleCasePipe],
   templateUrl: './public-profile.component.html',
   styleUrl: './public-profile.component.css'
 })
