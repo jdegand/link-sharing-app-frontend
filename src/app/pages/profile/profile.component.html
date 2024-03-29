@@ -2,33 +2,50 @@
 <section>
   <h1>Profile Details</h1>
   <p>Add your details to create a personal touch to your profile.</p>
-  <br>
+  <br />
   <form [formGroup]="profileForm" (submit)="onSubmit()">
-    <p-fileUpload #imageUpload name="file" mode="basic" [auto]="false" accept="image/*" [maxFileSize]="1000000"
-      (onSelect)="onFileSelect($event)" chooseLabel="Choose"></p-fileUpload>
-    <br>
+    <p-fileUpload
+      #imageUpload
+      name="file"
+      mode="basic"
+      [auto]="false"
+      accept="image/*"
+      [maxFileSize]="1000000"
+      (onSelect)="onFileSelect($event)"
+      chooseLabel="Choose"
+    ></p-fileUpload>
+    <br />
     <label for="firstname">First name</label>
-    <br>
+    <br />
     <input type="text" pInputText id="firstname" formControlName="firstname" />
-    @if(profileForm.get('firstname')?.touched && profileForm.get('firstname')?.errors?.['required']){
-    <p-message severity="error" text="First Name is required"></p-message>
+    @if (
+      profileForm.get("firstname")?.touched &&
+      profileForm.get("firstname")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="First Name is required"></p-message>
     }
-    <br>
+    <br />
     <label for="lastname">Last name</label>
-    <br>
+    <br />
     <input type="text" pInputText id="lastname" formControlName="lastname" />
-    @if(profileForm.get('lastname')?.touched && profileForm.get('lastname')?.errors?.['required']){
-    <p-message severity="error" text="Last Name is required"></p-message>
+    @if (
+      profileForm.get("lastname")?.touched &&
+      profileForm.get("lastname")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="Last Name is required"></p-message>
     }
-    <br>
+    <br />
     <label for="email">Email</label>
-    <br>
+    <br />
     <input type="email" pInputText id="email" formControlName="email" />
-    @if(profileForm.get('email')?.touched && profileForm.get('email')?.errors?.['required']){
-    <p-message severity="error" text="Email is required"></p-message>
+    @if (
+      profileForm.get("email")?.touched &&
+      profileForm.get("email")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="Email is required"></p-message>
     }
-    <br>
-    <br>
+    <br />
+    <br />
     <p-button [loading]="loading" type="submit" label="Save"></p-button>
   </form>
 </section>

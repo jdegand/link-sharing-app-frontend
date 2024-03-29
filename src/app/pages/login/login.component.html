@@ -1,34 +1,55 @@
 <p-toast></p-toast>
 <section>
-    <h1>Sign In</h1>
-    <br>
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
-        <label for="email">Email:</label>
-        <br>
-        <input type="email" pInputText id="email" formControlName="email" autocomplete="off" />
-        @if(loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']){
-        <p-message severity="error" text="Email is required"></p-message>
-        } @else if(loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']){
-        <p-message severity="error" text="Invalid email format"></p-message>
-        }
-        <br>
-        <label for="password">Password:</label>
-        <br>
-        <input type="password" pInputText id="password" formControlName="password" autocomplete="off" />
-        @if(loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']){
-        <p-message severity="error" text="Password is required"></p-message>
-        }
-        <br>
-        <br>
-        <p-button type="submit" label="Sign in"></p-button>
-    </form>
-    <br>
-    <br>
-    <p>
-        Need an Account?
-        <span>
-            &nbsp;
-            <a routerLink="/register">Sign Up</a>
-        </span>
-    </p>
+  <h1>Sign In</h1>
+  <br />
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <label for="email">Email:</label>
+    <br />
+    <input
+      type="email"
+      pInputText
+      id="email"
+      formControlName="email"
+      autocomplete="off"
+    />
+    @if (
+      loginForm.get("email")?.touched &&
+      loginForm.get("email")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="Email is required"></p-message>
+    } @else if (
+      loginForm.get("email")?.touched &&
+      loginForm.get("email")?.errors?.["email"]
+    ) {
+      <p-message severity="error" text="Invalid email format"></p-message>
+    }
+    <br />
+    <label for="password">Password:</label>
+    <br />
+    <input
+      type="password"
+      pInputText
+      id="password"
+      formControlName="password"
+      autocomplete="off"
+    />
+    @if (
+      loginForm.get("password")?.touched &&
+      loginForm.get("password")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="Password is required"></p-message>
+    }
+    <br />
+    <br />
+    <p-button type="submit" label="Sign in"></p-button>
+  </form>
+  <br />
+  <br />
+  <p>
+    Need an Account?
+    <span>
+      &nbsp;
+      <a routerLink="/register">Sign Up</a>
+    </span>
+  </p>
 </section>

@@ -1,15 +1,15 @@
-import { Component, effect, inject } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Component, effect, inject } from "@angular/core";
+import { MenuItem } from "primeng/api";
+import { MenubarModule } from "primeng/menubar";
+import { AuthService } from "../../services/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
+  selector: "app-navbar",
   standalone: true,
   imports: [MenubarModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: "./navbar.component.html",
+  styleUrl: "./navbar.component.css",
 })
 export class NavbarComponent {
   authService = inject(AuthService);
@@ -22,42 +22,42 @@ export class NavbarComponent {
       if (this.authService.currentUserSig()) {
         this.items = [
           {
-            label: 'Profile Details',
-            icon: 'pi pi-user-edit',
-            routerLink: '/profile',
+            label: "Profile Details",
+            icon: "pi pi-user-edit",
+            routerLink: "/profile",
           },
           {
-            label: 'Links',
-            icon: 'pi pi-link',
-            routerLink: '/links',
+            label: "Links",
+            icon: "pi pi-link",
+            routerLink: "/links",
           },
           {
-            label: 'Preview',
-            icon: 'pi pi-eye',
-            routerLink: '/preview',
+            label: "Preview",
+            icon: "pi pi-eye",
+            routerLink: "/preview",
           },
           {
-            label: 'Logout',
-            icon: 'pi pi-sign-out',
+            label: "Logout",
+            icon: "pi pi-sign-out",
             command: () => this.logout(),
-          }
-        ]
+          },
+        ];
       } else {
         this.items = [
           {
-            label: 'Sign-in',
-            icon: 'pi pi-sign-in',
-            routerLink: '/login',
+            label: "Sign-in",
+            icon: "pi pi-sign-in",
+            routerLink: "/login",
             items: [
               {
-                label: 'Register',
-                routerLink: '/register'
+                label: "Register",
+                routerLink: "/register",
               },
-            ]
+            ],
           },
-        ]
+        ];
       }
-    })
+    });
   }
 
   logout() {
@@ -65,10 +65,9 @@ export class NavbarComponent {
     // had a logout method in the authService
     // not really necessary there -> I am not invoking logout method anywhere else in the app
 
-    localStorage.removeItem('token');
-    localStorage.removeItem('refresh-token');
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh-token");
     this.authService.currentUserSig.set(undefined); // undefined vs null
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
   }
-
 }

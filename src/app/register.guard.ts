@@ -1,8 +1,8 @@
-import { toObservable } from '@angular/core/rxjs-interop';
-import { computed, inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { AuthService } from './services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { toObservable } from "@angular/core/rxjs-interop";
+import { computed, inject } from "@angular/core";
+import { CanActivateFn } from "@angular/router";
+import { AuthService } from "./services/auth/auth.service";
+import { Observable } from "rxjs";
 
 // guard is taken from https://github.com/angular/angular/issues/51280
 
@@ -13,7 +13,10 @@ export const CanRegister: CanActivateFn = () => {
 
   if (!isLoggedIn$) {
     const isLoggedIn = computed(() => {
-      console.log('The computed value has been read!', authService.notSignedIn());
+      console.log(
+        "The computed value has been read!",
+        authService.notSignedIn(),
+      );
       return authService.notSignedIn();
     });
     isLoggedIn$ = toObservable(isLoggedIn);

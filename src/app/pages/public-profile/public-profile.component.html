@@ -1,32 +1,48 @@
-@if(loading){
-<p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+@if (loading) {
+  <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 }
-@if(userInfo && !loading){
-<section>
-    @if(userInfo.profile.img){
-    <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
-        height="200"><!-- add object-fit, border,& border-radius -->
+@if (userInfo && !loading) {
+  <section>
+    @if (userInfo.profile.img) {
+      <img
+        [src]="
+          'data:' +
+          userInfo.profile.fileType +
+          ';base64,' +
+          userInfo.profile.img
+        "
+        alt=""
+        width="200"
+        height="200"
+      /><!-- add object-fit, border,& border-radius -->
     }
-    <h1>{{userInfo.profile.firstname | titlecase}}&nbsp;{{userInfo.profile.lastname | titlecase}}</h1>
-    <p>{{userInfo.profile.email}}</p>
+    <h1>
+      {{ userInfo.profile.firstname | titlecase }}&nbsp;{{
+        userInfo.profile.lastname | titlecase
+      }}
+    </h1>
+    <p>{{ userInfo.profile.email }}</p>
     @for (link of userInfo.links; track link.id) {
-    <div>
-        <span class="pi pi-{{link.platform.toLowerCase()}}"></span>
+      <div>
+        <span class="pi pi-{{ link.platform.toLowerCase() }}"></span>
         <span>
-            &nbsp;
-            {{ link.platform | titlecase }}
-            &nbsp;
+          &nbsp;
+          {{ link.platform | titlecase }}
+          &nbsp;
         </span>
-        <a target="_blank" href={{link.url}}>
-            <span class="pi pi-arrow-right"></span>
+        <a target="_blank" href="{{ link.url }}">
+          <span class="pi pi-arrow-right"></span>
         </a>
-    </div>
+      </div>
     }
-</section>
+  </section>
 }
-@if(!userInfo && !loading) {
-<section>
+@if (!userInfo && !loading) {
+  <section>
     <h1>The profile you're looking for does not exist.</h1>
-    <p>Want your own profile?&nbsp;<a routerLink="/register">Register</a> and create your devlinks now.</p>
-</section>
+    <p>
+      Want your own profile?&nbsp;<a routerLink="/register">Register</a> and
+      create your devlinks now.
+    </p>
+  </section>
 }

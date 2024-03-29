@@ -1,0 +1,10 @@
+dist 
+.angular
+.vscode
+.editorconfig
+angular.json
+package.json
+package-lock.json
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json

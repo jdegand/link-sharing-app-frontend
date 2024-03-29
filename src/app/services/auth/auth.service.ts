@@ -1,13 +1,13 @@
-import { Injectable, signal } from '@angular/core';
-import { AuthResponse } from '../../interfaces/AuthResponse';
+import { Injectable, signal } from "@angular/core";
+import { AuthResponse } from "../../interfaces/AuthResponse";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-  // public vs private 
+  // public vs private
   // behaviourSubject is viable alternative
-  // allow currentUserSig to be null ? 
+  // allow currentUserSig to be null ?
   currentUserSig = signal<AuthResponse | undefined>(undefined);
 
   constructor() {
@@ -21,17 +21,17 @@ export class AuthService {
       // console.log('decoded', decoded);
       this.currentUserSig.set({
         accessToken: accessToken,
-        refreshToken: refreshToken
-      })
+        refreshToken: refreshToken,
+      });
     }
   }
 
   getAccessTokenFromLocalStorage() {
-    return localStorage.getItem('token') ?? "";
+    return localStorage.getItem("token") ?? "";
   }
 
   getRefreshTokenFromLocalStorage() {
-    return localStorage.getItem('refresh-token') ?? "";
+    return localStorage.getItem("refresh-token") ?? "";
   }
 
   notSignedIn() {

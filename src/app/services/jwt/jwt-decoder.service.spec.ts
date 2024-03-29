@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { JwtDecoderService } from './jwt-decoder.service';
+import { JwtDecoderService } from "./jwt-decoder.service";
 
-describe('JwtDecoderService', () => {
+describe("JwtDecoderService", () => {
   let service: JwtDecoderService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('JwtDecoderService', () => {
     service = TestBed.inject(JwtDecoderService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

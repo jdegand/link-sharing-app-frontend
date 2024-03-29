@@ -1,5 +1,5 @@
 export interface Link {
-    id?: number;
-    platform: string;
-    url: string;
+  id?: number;
+  platform: string;
+  url: string;
 }

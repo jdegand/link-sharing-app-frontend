@@ -1,26 +1,26 @@
 export interface ErrorResponse {
-    headers: Headers
-    status: number
-    statusText: string
-    url: string
-    ok: boolean
-    name: string
-    message: string
-    error: Error
+  headers: Headers;
+  status: number;
+  statusText: string;
+  url: string;
+  ok: boolean;
+  name: string;
+  message: string;
+  error: Error;
 }
 
 interface Headers {
-    normalizedNames: NormalizedNames
-    lazyUpdate: unknown
+  normalizedNames: NormalizedNames;
+  lazyUpdate: unknown;
 }
 
-interface NormalizedNames { }
+interface NormalizedNames {}
 
 interface Error {
-    type: string
-    title: string
-    status: number
-    detail: string
-    instance: string
-    access_denied_reason: string
+  type: string;
+  title: string;
+  status: number;
+  detail: string;
+  instance: string;
+  access_denied_reason: string;
 }

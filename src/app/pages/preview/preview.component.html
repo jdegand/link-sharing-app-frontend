@@ -1,55 +1,89 @@
-@if(loading){
-<p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+@if (loading) {
+  <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 }
-@if(userInfo && userInfo.profile !== null && userInfo.links.length > 0 && !loading){
-<br>
-<p-inplace>
+@if (
+  userInfo && userInfo.profile !== null && userInfo.links.length > 0 && !loading
+) {
+  <br />
+  <p-inplace>
     <ng-template pTemplate="display">
-        <span>Share Link</span>
+      <span>Share Link</span>
     </ng-template>
     <ng-template pTemplate="content">
-        <span #sharedLink>
-            http://localhost:4200/public/{{userInfo.username}}/{{userInfo.id}}
-        </span>
-        <p-button severity="help" icon="pi pi-copy" type="button" (click)="copy()" [life]="1000" tooltipEvent="focus"
-            pTooltip="Copied" tooltipPosition="top"></p-button>
+      <span #sharedLink>
+        http://localhost:4200/public/{{ userInfo.username }}/{{ userInfo.id }}
+      </span>
+      <p-button
+        severity="help"
+        icon="pi pi-copy"
+        type="button"
+        (click)="copy()"
+        [life]="1000"
+        tooltipEvent="focus"
+        pTooltip="Copied"
+        tooltipPosition="top"
+      ></p-button>
     </ng-template>
-</p-inplace>
-<br>
-<br>
-<section>
+  </p-inplace>
+  <br />
+  <br />
+  <section>
     <div>
-        <img [src]="'data:' + userInfo.profile.fileType + ';base64,' + userInfo.profile.img" alt="" width="200"
-            height="200">
+      <img
+        [src]="
+          'data:' +
+          userInfo.profile.fileType +
+          ';base64,' +
+          userInfo.profile.img
+        "
+        alt=""
+        width="200"
+        height="200"
+      />
     </div>
-    <h1>{{userInfo.username | titlecase}}</h1>
-    <h2>{{userInfo.profile.firstname | titlecase}}&nbsp;{{userInfo.profile.lastname | titlecase}}</h2>
-</section>
-@for (link of userInfo.links; track link.id) {
-<div>
-    <span class="pi pi-{{link.platform.toLowerCase()}}"></span>
-    <span>
+    <h1>{{ userInfo.username | titlecase }}</h1>
+    <h2>
+      {{ userInfo.profile.firstname | titlecase }}&nbsp;{{
+        userInfo.profile.lastname | titlecase
+      }}
+    </h2>
+  </section>
+  @for (link of userInfo.links; track link.id) {
+    <div>
+      <span class="pi pi-{{ link.platform.toLowerCase() }}"></span>
+      <span>
         &nbsp;
         {{ link.platform | titlecase }}
         &nbsp;
-    </span>
-    <a target="_blank" href={{link.url}}>
+      </span>
+      <a target="_blank" href="{{ link.url }}">
         <span class="pi pi-arrow-right"></span>
-    </a>
-</div>
-<div>
-    <p-button severity="danger" type="button" icon="pi pi-trash" (click)="delete(link.id)"></p-button>
-</div>
+      </a>
+    </div>
+    <div>
+      <p-button
+        severity="danger"
+        type="button"
+        icon="pi pi-trash"
+        (click)="delete(link.id)"
+      ></p-button>
+    </div>
+  }
 }
+@if (
+  userInfo &&
+  (userInfo.profile === null || userInfo.links.length === 0) &&
+  !loading
+) {
+  <section>
+    <p>
+      Please complete your <a routerLink="/profile">profile</a> and make sure to
+      add some <a routerLink="/links">links</a>.
+    </p>
+  </section>
 }
-@if(userInfo && (userInfo.profile === null || userInfo.links.length === 0) && !loading) {
-<section>
-    <p>Please complete your <a routerLink="/profile">profile</a> and make sure to add some <a
-            routerLink="/links">links</a>.</p>
-</section>
-}
-@if(!userInfo && !loading) {
-<section>
+@if (!userInfo && !loading) {
+  <section>
     <p>Error fetching profile. Refresh the page or re-authenticate.</p>
-</section>
+  </section>
 }

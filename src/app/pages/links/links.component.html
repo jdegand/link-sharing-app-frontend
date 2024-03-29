@@ -1,47 +1,68 @@
 <p-toast></p-toast>
 <section>
-    <h1>Customize your links</h1>
-    <p>Add/edit/remove links below and then share all your profiles with the world!</p>
+  <h1>Customize your links</h1>
+  <p>
+    Add/edit/remove links below and then share all your profiles with the world!
+  </p>
 </section>
 <form [formGroup]="linksForm" (submit)="onSubmit()">
-    <p-button type="button" [outlined]="true" severity="secondary" (click)="addLink()" [disabled]="count() === 6">+Add
-        New Link</p-button>
-    <br>
-    <div formArrayName="links" *ngFor="let link of links.controls; let i = index">
-        <ng-container [formGroupName]="i">
-            <div>
-                <div>
-                    <h2>Link #{{i + 1}}</h2>
-                    <p-button type="button" severity="danger" [text]="true" (click)="deleteLink(i)">
-                        Remove
-                    </p-button>
-                </div>
-            </div>
-            <label for="dropdown">Platform</label>
-            <br>
-            <p-dropdown id="dropdown" formControlName="platform" [options]="platforms">
-                <ng-template let-platform pTemplate="platform">
-                    <div>
-                        <span class="pi pi-{{platform.value}}"></span>
-                        &nbsp;
-                        <span>{{ platform.label }}</span>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-            <br>
-            <label for="url-{{i}}">Link</label>
-            <br>
-            <span class="p-input-icon-left">
-                <i class="pi pi-link"></i>
-                <input type="text" pInputText id="url-{{i}}" name="url-{{i}}" placeholder="https://"
-                    formControlName="url">
-            </span>
-            @if(links.controls[i].errors?.['platformDoesNotMatchUrl']){
-            <div>
-                *Platform must match url link.
-            </div>
-            }
-        </ng-container>
-    </div>
-    <p-button [loading]="loading" type="submit" label="Submit"></p-button>
+  <p-button
+    type="button"
+    [outlined]="true"
+    severity="secondary"
+    (click)="addLink()"
+    [disabled]="count() === 6"
+    >+Add New Link</p-button
+  >
+  <br />
+  <div formArrayName="links" *ngFor="let link of links.controls; let i = index">
+    <ng-container [formGroupName]="i">
+      <div>
+        <div>
+          <h2>Link #{{ i + 1 }}</h2>
+          <p-button
+            type="button"
+            severity="danger"
+            [text]="true"
+            (click)="deleteLink(i)"
+          >
+            Remove
+          </p-button>
+        </div>
+      </div>
+      <label for="dropdown">Platform</label>
+      <br />
+      <p-dropdown
+        id="dropdown"
+        formControlName="platform"
+        [options]="platforms"
+      >
+        <ng-template let-platform pTemplate="platform">
+          <div>
+            <span class="pi pi-{{ platform.value }}"></span>
+            &nbsp;
+            <span>{{ platform.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <br />
+      <label for="url-{{ i }}">Link</label>
+      <br />
+      <span class="p-input-icon-left">
+        <i class="pi pi-link"></i>
+        <input
+          type="text"
+          pInputText
+          id="url-{{ i }}"
+          name="url-{{ i }}"
+          placeholder="https://"
+          formControlName="url"
+        />
+      </span>
+      @if (links.controls[i].errors?.["platformDoesNotMatchUrl"]) {
+        <div>*Platform must match url link.</div>
+      }
+    </ng-container>
+  </div>
+  <p-button [loading]="loading" type="submit" label="Submit"></p-button>
 </form>
