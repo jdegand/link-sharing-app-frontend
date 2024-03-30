@@ -60,7 +60,10 @@
         />
       </span>
       @if (links.controls[i].errors?.["platformDoesNotMatchUrl"]) {
-        <div>*Platform must match url link.</div>
+        <div>*URL must include selected platform.</div>
+      }
+      @if (links.controls[i].errors?.["urlUnchanged"]) {
+        <div>*URL is unchanged.</div>
       }
     </ng-container>
   </div>

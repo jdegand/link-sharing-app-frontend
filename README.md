@@ -78,7 +78,6 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - Drag and Drop functionality on Preview page
 - Testing (I left the Karma and Jasmine packages installed)
 - TypeScript improvements. Zod?
-- Handle failed submit -> need to loop through controls and mark them as touched or dirty to get inline errors to display
 - Best to refactor `Preview` template into more components?
 - Convert class based interceptor into a functional interceptor? Refresh token expiration ?
 

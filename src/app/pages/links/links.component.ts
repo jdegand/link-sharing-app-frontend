@@ -152,9 +152,35 @@ export class LinksComponent implements OnInit {
     this.links.removeAt(linkIndex);
   }
 
+  setUrlError(): void {
+    const linksArray = this.linksForm.get("links") as FormArray;
+
+    linksArray.controls.forEach((control: AbstractControl) => {
+      control.setErrors({
+        urlUnchanged: true,
+      });
+    });
+  }
+
+  checkUrlValues() {
+    const linksArray = this.linksForm.get("links") as FormArray;
+
+    let urlUntouched = true;
+
+    linksArray.controls.forEach((control: AbstractControl) => {
+      if (
+        typeof control.value.url === "string" &&
+        !control.value.url.includes("username")
+      ) {
+        urlUntouched = false;
+      }
+    });
+    return urlUntouched;
+  }
+
   onSubmit() {
     // valid is not enough when you pre-fill all the inputs
-    if (this.linksForm.valid && this.linksForm.touched) {
+    if (this.linksForm.valid && !this.checkUrlValues()) {
       this.loading = true;
       this.apiService
         .postLinks(this.linksForm.value.links)
@@ -185,6 +211,8 @@ export class LinksComponent implements OnInit {
             });
           },
         });
+    } else {
+      this.setUrlError();
     }
   }
 }
