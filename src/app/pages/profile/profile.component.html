@@ -37,7 +37,13 @@
     <br />
     <label for="email">Email</label>
     <br />
-    <input type="email" pInputText id="email" formControlName="email" />
+    <input
+      type="email"
+      pInputText
+      id="email"
+      formControlName="email"
+      autocomplete="off"
+    />
     @if (
       profileForm.get("email")?.touched &&
       profileForm.get("email")?.errors?.["required"]
