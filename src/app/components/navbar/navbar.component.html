@@ -4,5 +4,11 @@
       <i class="pi pi-prime"></i>
       primelinks
     </span>
+    <p-dropdown
+      [options]="themes"
+      [(ngModel)]="selectedTheme"
+      (onChange)="changeTheme(selectedTheme.id)"
+      styleClass="mb-3"
+    ></p-dropdown>
   </ng-template>
 </p-menubar>

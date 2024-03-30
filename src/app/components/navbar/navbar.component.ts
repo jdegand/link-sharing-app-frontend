@@ -3,21 +3,52 @@ import { MenuItem } from "primeng/api";
 import { MenubarModule } from "primeng/menubar";
 import { AuthService } from "../../services/auth/auth.service";
 import { Router } from "@angular/router";
+import { DropdownModule } from "primeng/dropdown";
+import { ThemeService } from "../../services/theme/theme.service";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-navbar",
   standalone: true,
-  imports: [MenubarModule],
+  imports: [MenubarModule, DropdownModule, FormsModule],
   templateUrl: "./navbar.component.html",
   styleUrl: "./navbar.component.css",
 })
 export class NavbarComponent {
   authService = inject(AuthService);
   router = inject(Router);
+  themeService = inject(ThemeService);
 
   items: MenuItem[] = [];
 
+  themes = [
+    {
+      id: "lara-light-blue",
+      label: "Lara Light Blue",
+    },
+    {
+      id: "rhea",
+      label: "Rhea",
+    },
+    {
+      id: "mdc-dark-indigo",
+      label: "MDC Dark Indigo",
+    },
+  ];
+
+  localStorageTheme = localStorage.getItem("theme");
+
+  selectedTheme: { id: string; label: string } =
+    this.themes.find((theme) => theme.id === this.localStorageTheme) ??
+    this.themes[0];
+
+  changeTheme(themeId: string) {
+    this.themeService.switchTheme(themeId);
+  }
+
   constructor() {
+    this.changeTheme(this.selectedTheme.id);
+
     effect(() => {
       if (this.authService.currentUserSig()) {
         this.items = [
