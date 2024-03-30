@@ -30,7 +30,13 @@
           {{ link.platform | titlecase }}
           &nbsp;
         </span>
-        <a target="_blank" href="{{ link.url }}">
+        <a
+          aria-label="Navigate"
+          href="{{ link.url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-button font-bold"
+        >
           <span class="pi pi-arrow-right"></span>
         </a>
       </div>
