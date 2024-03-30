@@ -16,6 +16,7 @@ import { Options } from "../../interfaces/Options";
 import { AuthService } from "../../services/auth/auth.service";
 import { ApiService } from "../../services/api/api.service";
 import { ToastModule } from "primeng/toast";
+import { MessageModule } from "primeng/message";
 import { MessageService } from "primeng/api";
 import { Link } from "../../interfaces/Link";
 import { take } from "rxjs";
@@ -33,6 +34,7 @@ import { ErrorResponse } from "../../interfaces/ErrorResponse";
     ButtonModule,
     InputTextModule,
     ToastModule,
+    MessageModule,
   ],
   providers: [MessageService],
   templateUrl: "./links.component.html",
