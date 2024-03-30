@@ -67,7 +67,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I have two different API requests (`GET` and `POST`) to get the refresh token.
 - [VS Code](https://github.com/microsoft/vscode/issues/205651) does not plan on supporting the new Angular control flow syntax. Apparently, [JS Beautify](https://github.com/beautifier/js-beautify/issues/2219) is used by VS Code, and it added control flow formatting that is not perfect, so the formatting option for it is turned off by default. It seems like it will be some time before formatting for the new control flow syntax is handled error-free. `Prettier` may be necessary.
 - I periodically add linting with `ng add @angular-eslint/schematics`. I lint, fix the errors, and remove the dependencies.
-- The register page's `p-password` and label were correctly associated. The documentation was not clear. This [github issue](https://github.com/primefaces/primeng/issues/13952) shows a solution, but there still seems to be issues with the `p-password` component.
+- The register page's `p-password` and label were incorrectly associated. The documentation was not clear. This [Github issue](https://github.com/primefaces/primeng/issues/13952) shows a solution, but there still seems to be issues with the `p-password` component.
 - A lot of primeng components have accessibility issues. I used `ariaLabelledBy` to get around issues where a label `for` attribute would not work.
 
 ## Continued Development
@@ -201,3 +201,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/76851243/angular-interceptor-always-get-null-value-accessing-the-accesstoken-from-local) - angular interceptor always get null value accesing the access token from local
 - [Stack Overflow](https://stackoverflow.com/questions/77840978/how-to-use-functional-interceptor-for-refreshing-token-in-angular-17) - how to use functional interceptor for refreshing token in angular 17
 - [Stack Overflow](https://stackoverflow.com/questions/58377068/remove-authorization-header-for-some-http-calls-angular) - remove authorization header for http calls angular
+- [Blog](https://www.sarasoueidan.com/blog/accessible-icon-buttons/) - accessible icon buttons

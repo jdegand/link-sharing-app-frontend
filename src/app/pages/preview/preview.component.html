@@ -14,6 +14,7 @@
         http://localhost:4200/public/{{ userInfo.username }}/{{ userInfo.id }}
       </span>
       <p-button
+        ariaLabel="copy"
         severity="help"
         icon="pi pi-copy"
         type="button"
@@ -56,12 +57,14 @@
         {{ link.platform | titlecase }}
         &nbsp;
       </span>
-      <a target="_blank" href="{{ link.url }}">
+      <a aria-label="Navigate" href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="p-button font-bold">
         <span class="pi pi-arrow-right"></span>
       </a>
     </div>
     <div>
       <p-button
+        name="delete"
+        ariaLabel="delete"
         severity="danger"
         type="button"
         icon="pi pi-trash"
