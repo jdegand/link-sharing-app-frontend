@@ -67,6 +67,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I have two different API requests (`GET` and `POST`) to get the refresh token.
 - [VS Code](https://github.com/microsoft/vscode/issues/205651) does not plan on supporting the new Angular control flow syntax. Apparently, [JS Beautify](https://github.com/beautifier/js-beautify/issues/2219) is used by VS Code, and it added control flow formatting that is not perfect, so the formatting option for it is turned off by default. It seems like it will be some time before formatting for the new control flow syntax is handled error-free. `Prettier` may be necessary.
 - I periodically add linting with `ng add @angular-eslint/schematics`. I lint, fix the errors, and remove the dependencies.
+- The register page's `p-password` and label were correctly associated. The documentation was not clear. This [github issue](https://github.com/primefaces/primeng/issues/13952) shows a solution, but there still seems to be issues with the `p-password` component.
 
 ## Continued Development
 

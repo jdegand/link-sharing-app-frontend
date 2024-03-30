@@ -48,10 +48,11 @@
         <p-message severity="error" text="Username is required"></p-message>
       }
       <br />
-      <label for="password"> Password: </label>
+      <span id="pass-label"> Password: </span>
       <br />
       <p-password
         id="password"
+        ariaLabelledBy="pass-label"
         formControlName="password"
         autocomplete="off"
         [feedback]="false"
