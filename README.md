@@ -202,3 +202,4 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Stack Overflow](https://stackoverflow.com/questions/77840978/how-to-use-functional-interceptor-for-refreshing-token-in-angular-17) - how to use functional interceptor for refreshing token in angular 17
 - [Stack Overflow](https://stackoverflow.com/questions/58377068/remove-authorization-header-for-some-http-calls-angular) - remove authorization header for http calls angular
 - [Blog](https://www.sarasoueidan.com/blog/accessible-icon-buttons/) - accessible icon buttons
+- [Stack Overflow](https://stackoverflow.com/questions/42235156/angular-2-iterate-over-reactive-form-controls-and-mark-as-dirty) - iterate over reactive form controls and mark as dirty

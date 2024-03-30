@@ -125,6 +125,11 @@ export class ProfileComponent implements OnInit {
           */
           },
         });
+    } else {
+      for (const field in this.profileForm.controls) {
+        const control = this.profileForm.get(field);
+        control?.markAsTouched();
+      }
     }
   }
 }

@@ -14,6 +14,12 @@
       (onSelect)="onFileSelect($event)"
       chooseLabel="Choose"
     ></p-fileUpload>
+    @if (
+      profileForm.get("file")?.touched &&
+      profileForm.get("file")?.errors?.["required"]
+    ) {
+      <p-message severity="error" text="File is required"></p-message>
+    }
     <br />
     <label for="firstname">First name</label>
     <br />
