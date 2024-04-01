@@ -37,7 +37,12 @@
         formControlName="platform"
         [options]="platforms"
       >
-        <ng-template let-platform pTemplate="platform">
+        <ng-template
+          [platform]="platforms"
+          platformRef
+          let-platform
+          pTemplate="platform"
+        >
           <div>
             <span class="pi pi-{{ platform.value }}"></span>
             &nbsp;

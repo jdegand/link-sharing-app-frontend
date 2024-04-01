@@ -21,6 +21,7 @@ import { MessageService } from "primeng/api";
 import { Link } from "../../interfaces/Link";
 import { take } from "rxjs";
 import { ErrorResponse } from "../../interfaces/ErrorResponse";
+import { PlatformDirective } from "../../platform.directive";
 
 @Component({
   selector: "app-home",
@@ -35,6 +36,7 @@ import { ErrorResponse } from "../../interfaces/ErrorResponse";
     InputTextModule,
     ToastModule,
     MessageModule,
+    PlatformDirective,
   ],
   providers: [MessageService],
   templateUrl: "./links.component.html",

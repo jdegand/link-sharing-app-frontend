@@ -69,7 +69,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I periodically add linting with `ng add @angular-eslint/schematics`. I lint, fix the errors, and remove the dependencies.
 - The register page's `p-password` and label were incorrectly associated. The documentation was not clear. This [Github issue](https://github.com/primefaces/primeng/issues/13952) shows a solution, but there still seems to be issues with the `p-password` component.
 - A lot of primeng components have accessibility issues. I used `ariaLabelledBy` to get around issues where a label `for` attribute would not work.
-- Very easy to toggle themes in primeng.
+- Very easy to toggle themes in PrimeNg.
 
 ## Continued Development
 
@@ -203,3 +203,5 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [Blog](https://www.sarasoueidan.com/blog/accessible-icon-buttons/) - accessible icon buttons
 - [Stack Overflow](https://stackoverflow.com/questions/42235156/angular-2-iterate-over-reactive-form-controls-and-mark-as-dirty) - iterate over reactive form controls and mark as dirty
 - [YouTube](https://www.youtube.com/watch?v=JZYHo86eov8) - PrimeNG Dynamic Theme Change (using Dropdown contains multiple themes)
+- [Codepen](https://codepen.io/Henrique_Gerhardt/pen/eYRXRQV) - Phone Outline
+- [Blog](https://timdeschryver.dev/blog/use-angular-directives-to-extend-components-that-you-dont-own) - use angular directives to extend components that you dont own
