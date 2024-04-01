@@ -1,14 +1,14 @@
 import { Routes } from "@angular/router";
 import { CanActivate } from "./auth.guard";
 import { CanRegister } from "./register.guard";
+import { LoginComponent } from "./pages/login/login.component";
 
 export const routes: Routes = [
   {
     path: "login",
     title: "Please sign in",
     canActivate: [CanRegister],
-    loadComponent: () =>
-      import("./pages/login/login.component").then((m) => m.LoginComponent),
+    component: LoginComponent
   },
   {
     path: "register",
