@@ -15,65 +15,67 @@
     >+Add New Link</p-button
   >
   <br />
-  <div formArrayName="links" *ngFor="let link of links.controls; let i = index">
-    <ng-container [formGroupName]="i">
-      <div>
+  <div formArrayName="links">
+    @for (link of link.controls; track link; let i = $index) {
+      <ng-container [formGroupName]="i">
         <div>
-          <h2>Link #{{ i + 1 }}</h2>
-          <p-button
-            type="button"
-            severity="danger"
-            [text]="true"
-            (click)="deleteLink(i)"
-          >
-            Remove
-          </p-button>
-        </div>
-      </div>
-      <label id="plat">Platform</label>
-      <br />
-      <p-dropdown
-        ariaLabelledBy="plat"
-        formControlName="platform"
-        [options]="platforms"
-      >
-        <ng-template
-          [platform]="platforms"
-          platformRef
-          let-platform
-          pTemplate="platform"
-        >
           <div>
-            <span class="pi pi-{{ platform.value }}"></span>
-            &nbsp;
-            <span>{{ platform.label }}</span>
+            <h2>Link #{{ i + 1 }}</h2>
+            <p-button
+              type="button"
+              severity="danger"
+              [text]="true"
+              (click)="deleteLink(i)"
+            >
+              Remove
+            </p-button>
           </div>
-        </ng-template>
-      </p-dropdown>
-      <br />
-      <label for="url-{{ i }}">Link</label>
-      <br />
-      <span class="p-input-icon-left">
-        <i class="pi pi-link"></i>
-        <input
-          type="text"
-          pInputText
-          id="url-{{ i }}"
-          name="url-{{ i }}"
-          placeholder="https://"
-          formControlName="url"
-        />
-      </span>
-      @if (links.controls[i].errors?.["platformDoesNotMatchUrl"]) {
-        <p-message
-          severity="error"
-          text="URL must include selected platform"
-        ></p-message>
-      }
-      @if (links.controls[i].errors?.["urlUnchanged"]) {
-        <p-message severity="error" text="URL is unchanged"></p-message>
-      }
-    </ng-container>
+        </div>
+        <label id="plat">Platform</label>
+        <br />
+        <p-dropdown
+          ariaLabelledBy="plat"
+          formControlName="platform"
+          [options]="platforms"
+        >
+          <ng-template
+            [platform]="platforms"
+            platformRef
+            let-platform
+            pTemplate="platform"
+          >
+            <div>
+              <span class="pi pi-{{ platform.value }}"></span>
+              &nbsp;
+              <span>{{ platform.label }}</span>
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <br />
+        <label for="url-{{ i }}">Link</label>
+        <br />
+        <span class="p-input-icon-left">
+          <i class="pi pi-link"></i>
+          <input
+            type="text"
+            pInputText
+            id="url-{{ i }}"
+            name="url-{{ i }}"
+            placeholder="https://"
+            formControlName="url"
+          />
+        </span>
+        @if (links.controls[i].errors?.["platformDoesNotMatchUrl"]) {
+          <p-message
+            severity="error"
+            text="URL must include selected platform"
+          ></p-message>
+        }
+        @if (links.controls[i].errors?.["urlUnchanged"]) {
+          <p-message severity="error" text="URL is unchanged"></p-message>
+        }
+      </ng-container>
+    }
   </div>
   <p-button [loading]="loading" type="submit" label="Submit"></p-button>
 </form>

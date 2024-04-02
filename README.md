@@ -10,8 +10,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 
 - [Angular](https://angular.dev)
 - [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
-- [Prime Ng](https://primeng.org/)
-- [Prime Icons](https://primeng.org/icons)
+- [PrimeNG](https://primeng.org/)
+- [PrimeIcons](https://primeng.org/icons)
 
 ## Thoughts
 
@@ -28,22 +28,22 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I also had trouble getting the `mat-select` working correctly.
 - If you have to add `CUSTOM_ELEMENTS_SCHEMA`, you probably have a misconfiguration.
 - Ultimately, I think there is limited benefit in converting the form to use Angular Material.
-- I did some research and decided to use `primeng` and `primeicons`.
-- Prime Ng has third-party icons. It is almost as feature complete as Angular Material (I would later find out that it doesn't have any copy-to-clipboard features).
-- Prime Ng doesn't have an `ng add` command, so you have to add theme styles to the `angular.json` yourself.
+- I did some research and decided to use `PrimeNG` and `PrimeIcons`.
+- PrimeNG has third-party icons. It is almost as feature complete as Angular Material (I would later find out that it doesn't have any copy-to-clipboard features).
+- PrimeNG doesn't have an `ng add` command, so you have to add theme styles to the `angular.json` yourself.
 - Prime icons require a single import in the global `styles.css` file.
 - `FormField doesn't have a name or id` warning in the browser console, so I added a name with the `index` to the URL input.
 - It is tough to associate a label with the dropdown. The `ng-template` cannot take an ID.
 - I think the ng-template loop creates IDs for each dropdown option.
 - The dropdown's `name` property is `platform`.
-- Firefox doesn't show an error for the label. Firefox had quite a few warnings associated with the `primeng` styling.
+- Firefox doesn't show an error for the label. Firefox had quite a few warnings associated with the `PrimeNG` styling.
 - To fix this label issue, I may have to refactor again.
 - In Chrome, the error choice is `incorrect label use` or `no label associated with a form field`.
 - I used the [Messages Module](https://primeng.org/messages) to show inline errors on the forms.
 - `visible` in the menubar does not update from state changes. It is only evaluated once.
 - Is it best to localize the navbar per page versus adding it once to the `app` component? This strategy would lead to a lot of duplicated code.
-- `primeng` has a design philosophy to minimize conditionals in templates.
-- One strategy I have seen for primeng navbars is to use `ngIf` to conditionally render them. Basically, you show no menubar when unauthenticated. I searched Github, and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
+- `PrimeNG` has a design philosophy to minimize conditionals in templates.
+- One strategy I have seen for PrimeNG navbars is to use `ngIf` to conditionally render them. Basically, you show no menubar when unauthenticated. I searched Github, and [this](https://github.com/softrams/bulwark/blob/master/frontend/src/app/navbar/navbar.component.html) is an example of that strategy.
 - Initially, I used a `computed` signal to update the menu items. Since I am using a signal for the auth state, this made sense, and I was able to toggle menu items. However, when I tried to add `visible` and `fragment` to the menubar, I encountered problems.
 - `computed` menubar fragments are missing on first-run navigation. You can use `visible` to have the links added when the fragment is available. I envisioned using either approach to allow the profile route to be unique and shareable.
 - I don't think the fragments are `recomputed` inside `computed` or `effect`. See this [Stack Overflow article](https://stackoverflow.com/questions/76312588/angular-effects-and-conditional-use-of-signals).
@@ -59,7 +59,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - I used [FileUpload](https://primeng.org/fileupload) to save a profile picture.
 - I did not add the `FileUpload` component to the existing form originally. I used the `url` action to send the file to the backend. I used the `onUpload` and `onError` methods to handle successful and unsuccessful API responses. I refactored to send `formData` back to the backend. You have to loop over the `formData` object to see the values and you will have to ignore TypeScript issues.
 - To reset the file input, I used a `ViewChild` ref. I tried to pass a form template variable on the file input to the `onUpload` function and call the `clear` method inside that function, but it did not work, although the file was correctly saved. `ViewChild` is an easy way to grab the template variable, and you can call the `clear` method on the `ViewChild` variable. I had to use `any` for the TypeScript type. I fixed the typing for the `ViewChild` variable by using `ElementRef`.
-- Prime Ng does not have a `Clipboard` component. [Angular Material CDK](https://material.angular.io/cdk/clipboard/overview) has a clipboard directive. In lieu of adding that dependency, I used the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API). The clipboard API can be blocked by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) if you don't use the clipboard API in conjunction with a user click.
+- PrimeNG does not have a `Clipboard` component. [Angular Material CDK](https://material.angular.io/cdk/clipboard/overview) has a clipboard directive. In lieu of adding that dependency, I used the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API). The clipboard API can be blocked by the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) if you don't use the clipboard API in conjunction with a user click.
 - Using binding, you can sanitize (albeit not fully (hrefs are still displayed)) DOM input. The profile image is `base64` and I did not sanitize it. I used `src="data:{{userInfo.profile.fileType}};base64,{{userInfo.profile.img}}"` inside the `img` tag. I could not bind the image value to `[src]` because the type of `img` was `File`. I needed to change it to `string` for the binding to work. I duplicated `UserInfoDto` into `Preview` and created a separate `ProfileDto` with `img` being set to `string`. This is a marginal improvement. If you were to inject and use `DomSanitizer`, I think it might be best to construct the string separately and save the sanitized output to another variable that you would then use in the template.
 - I used `take` to unsubscribe from my observables. You could manually call `unsubscribe` or convert to a declarative approach with async pipe.
 - I have a jwt decoder service that can be used in combination with the auth guard to prevent a user from accessing routes if the jwt is expired. I have not done that, as the interceptor can refresh the access token. So a user with an expired token can access the links and profile pages and the token will be refreshed when those page's forms are submitted. The preview page refreshes on route navigation.
@@ -68,8 +68,8 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 - [VS Code](https://github.com/microsoft/vscode/issues/205651) does not plan on supporting the new Angular control flow syntax. Apparently, [JS Beautify](https://github.com/beautifier/js-beautify/issues/2219) is used by VS Code, and it added control flow formatting that is not perfect, so the formatting option for it is turned off by default. It seems like it will be some time before formatting for the new control flow syntax is handled error-free. `Prettier` may be necessary.
 - I periodically add linting with `ng add @angular-eslint/schematics`. I lint, fix the errors, and remove the dependencies.
 - The register page's `p-password` and label were incorrectly associated. The documentation was not clear. This [Github issue](https://github.com/primefaces/primeng/issues/13952) shows a solution, but there still seems to be issues with the `p-password` component.
-- A lot of primeng components have accessibility issues. I used `ariaLabelledBy` to get around issues where a label `for` attribute would not work.
-- Very easy to toggle themes in PrimeNg.
+- A lot of PrimeNG components have accessibility issues. I used `ariaLabelledBy` to get around issues where a label `for` attribute would not work.
+- Very easy to toggle themes in PrimeNG.
 
 ## Continued Development
 

@@ -8,7 +8,7 @@ export const routes: Routes = [
     path: "login",
     title: "Please sign in",
     canActivate: [CanRegister],
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: "register",
