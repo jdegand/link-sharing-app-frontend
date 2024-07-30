@@ -4,7 +4,7 @@ This is inspired by the [Link Sharing App Frontend Mentor Challenge](https://www
 
 ## Screenshots
 
-![](screenshots/frontendmentor-link-sharing-app-mobile-1.jpg "Frontend Mentor Mobile Design")
+![Frontend Mentor Mobile Design](screenshots/frontendmentor-link-sharing-app-mobile-1.jpg "Frontend Mentor Mobile Design")
 
 ## Built With
 

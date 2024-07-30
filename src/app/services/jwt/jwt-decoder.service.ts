@@ -6,7 +6,6 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class JwtDecoderService {
-  constructor() {}
 
   public decodeToken(token: string) {
     const base64Url = token.split(".")[1];
