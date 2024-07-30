@@ -36,6 +36,6 @@ export class AuthService {
 
   notSignedIn() {
     const signal = this.currentUserSig();
-    return signal === undefined ? true : false;
+    return signal === undefined;
   }
 }
