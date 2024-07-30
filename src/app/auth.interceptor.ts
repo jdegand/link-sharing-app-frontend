@@ -9,13 +9,11 @@ import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, finalize, switchMap, throwError } from "rxjs";
 import { AuthService } from "./services/auth/auth.service";
 import { ApiService } from "./services/api/api.service";
-//import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private authService = inject(AuthService);
   private apiService = inject(ApiService);
-  //private router = inject(Router);
   private isRefreshingToken = false;
 
   setToken(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {

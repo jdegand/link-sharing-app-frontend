@@ -84,22 +84,14 @@ export class ProfileComponent implements OnInit {
       formData.append("lastname", this.profileForm.get("lastname")?.value);
       formData.append("email", this.profileForm.get("email")?.value);
       formData.append("fileType", this.#fileType);
-      /*
-      // have to loop to view formData
-      // causes typescript issues
-      // @ts-ignore
-      for (const value of formData.values()) {
-        console.log('value',value);
-      }
-      */
+
       this.loading = true;
 
       this.apiService
         .postProfile(formData)
         .pipe(take(1))
         .subscribe({
-          next: () => {
-            // response: PostProfile
+          next: () => { // response: PostProfile
             this.loading = false;
             this.messageService.add({
               severity: "success",
@@ -116,13 +108,6 @@ export class ProfileComponent implements OnInit {
               summary: "Error",
               detail: err.message,
             });
-            /*
-          if (err.status === 401) {
-            this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'JWT Token expired.  Refresh and try again.' });
-          } else {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Profile update failed' });
-          }
-          */
           },
         });
     } else {
