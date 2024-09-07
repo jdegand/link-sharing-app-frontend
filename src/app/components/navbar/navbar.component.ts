@@ -11,8 +11,7 @@ import { FormsModule } from "@angular/forms";
   selector: "app-navbar",
   standalone: true,
   imports: [MenubarModule, DropdownModule, FormsModule],
-  templateUrl: "./navbar.component.html",
-  styleUrl: "./navbar.component.css",
+  templateUrl: "./navbar.component.html"
 })
 export class NavbarComponent {
   authService = inject(AuthService);

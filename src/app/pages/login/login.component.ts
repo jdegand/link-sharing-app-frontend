@@ -23,8 +23,7 @@ import { take } from "rxjs";
     MessageModule,
   ],
   providers: [MessageService],
-  templateUrl: "./login.component.html",
-  styleUrl: "./login.component.css",
+  templateUrl: "./login.component.html"
 })
 export class LoginComponent {
   fb = inject(FormBuilder);

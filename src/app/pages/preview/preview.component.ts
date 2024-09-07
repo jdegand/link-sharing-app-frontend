@@ -31,8 +31,7 @@ import { TitleCasePipe } from "@angular/common";
     TitleCasePipe,
   ],
   providers: [MessageService],
-  templateUrl: "./preview.component.html",
-  styleUrl: "./preview.component.css",
+  templateUrl: "./preview.component.html"
 })
 export class PreviewComponent implements OnInit {
   apiService = inject(ApiService);

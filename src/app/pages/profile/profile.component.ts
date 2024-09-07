@@ -37,8 +37,7 @@ import { ErrorResponse } from "../../interfaces/ErrorResponse";
     NgFor,
   ],
   providers: [MessageService],
-  templateUrl: "./profile.component.html",
-  styleUrl: "./profile.component.css",
+  templateUrl: "./profile.component.html"
 })
 export class ProfileComponent implements OnInit {
   authService = inject(AuthService);

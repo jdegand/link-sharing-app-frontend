@@ -9,7 +9,6 @@ import { MessageService } from "primeng/api";
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, ToastModule],
   providers: [MessageService],
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.css",
+  templateUrl: "./app.component.html"
 })
 export class AppComponent {}

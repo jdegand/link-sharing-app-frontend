@@ -39,8 +39,7 @@ import { PlatformDirective } from "../../platform.directive";
     PlatformDirective,
   ],
   providers: [MessageService],
-  templateUrl: "./links.component.html",
-  styleUrl: "./links.component.css",
+  templateUrl: "./links.component.html"
 })
 export class LinksComponent implements OnInit {
   apiService = inject(ApiService);

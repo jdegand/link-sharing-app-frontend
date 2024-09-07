@@ -11,8 +11,7 @@ import { TitleCasePipe } from "@angular/common";
   selector: "app-public-profile",
   standalone: true,
   imports: [RouterLink, ProgressSpinnerModule, TitleCasePipe],
-  templateUrl: "./public-profile.component.html",
-  styleUrl: "./public-profile.component.css",
+  templateUrl: "./public-profile.component.html"
 })
 export class PublicProfileComponent implements OnInit {
   apiService = inject(ApiService);

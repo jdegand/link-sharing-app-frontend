@@ -26,8 +26,7 @@ import { HttpErrorResponse } from "@angular/common/http";
     PasswordModule,
   ],
   providers: [MessageService],
-  templateUrl: "./register.component.html",
-  styleUrl: "./register.component.css",
+  templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
   success = false;
