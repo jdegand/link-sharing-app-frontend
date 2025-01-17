@@ -79,7 +79,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   logout(error: unknown): Observable<HttpEvent<unknown>> {
     // original thought was log user out if there was an error
-    // this may be too strict and would need to be looked further
+    // this may be too strict and would need to be looked at further
     return throwError(() => error);
   }
 

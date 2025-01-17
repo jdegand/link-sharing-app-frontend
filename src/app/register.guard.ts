@@ -13,10 +13,6 @@ export const CanRegister: CanActivateFn = () => {
 
   if (!isLoggedIn$) {
     const isLoggedIn = computed(() => {
-      console.log(
-        "The computed value has been read!",
-        authService.notSignedIn(),
-      );
       return authService.notSignedIn();
     });
     isLoggedIn$ = toObservable(isLoggedIn);
