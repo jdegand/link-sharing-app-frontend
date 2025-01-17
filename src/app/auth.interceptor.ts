@@ -78,12 +78,12 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   logout(error: unknown): Observable<HttpEvent<unknown>> {
-    //this.authService.currentUserSig.set(undefined);
-    //this.router.navigateByUrl("/");
+    // original thought was log user out if there was an error
+    // this may be too strict and would need to be looked further
     return throwError(() => error);
   }
 
-  isHeaderNeeded(url: string) {
-    return url.includes("http://localhost:8080/auth/refresh2") ? false : true;
+  isHeaderNeeded(url: string): boolean { 
+    return !url.includes("http://localhost:8080/auth/refresh2"); 
   }
 }
