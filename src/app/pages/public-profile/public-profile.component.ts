@@ -16,7 +16,7 @@ import { TitleCasePipe } from "@angular/common";
 export class PublicProfileComponent implements OnInit {
   apiService = inject(ApiService);
   jwtService = inject(JwtDecoderService);
-  private activatedRoute = inject(ActivatedRoute);
+  private readonly activatedRoute = inject(ActivatedRoute);
 
   userInfo!: Preview;
   loading = true;

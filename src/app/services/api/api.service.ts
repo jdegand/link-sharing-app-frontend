@@ -17,7 +17,7 @@ export class ApiService {
   readonly #http = inject(HttpClient);
   authService = inject(AuthService);
 
-  #apiUrl = environment.apiUrl;
+  readonly #apiUrl = environment.apiUrl;
 
   register(payload: RegisterDto) {
     return this.#http.post<Partial<UserInfoDto>>(

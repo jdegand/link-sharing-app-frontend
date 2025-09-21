@@ -12,8 +12,8 @@ import { ApiService } from "./services/api/api.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private authService = inject(AuthService);
-  private apiService = inject(ApiService);
+  private readonly authService = inject(AuthService);
+  private readonly apiService = inject(ApiService);
   private isRefreshingToken = false;
 
   setToken(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
